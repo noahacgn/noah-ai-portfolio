@@ -54,6 +54,8 @@ npm run test:e2e
 
 当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。依赖版本以 `pyproject.toml` 为唯一来源；`requirements.txt` 只让 Community Cloud 以 editable 模式安装当前组件包，使 Streamlit 能发现组件清单，同时让后续代码更新继续直接读取仓库文件。
 
+生产应用跟随 `main` 自动更新；普通源码变更复用现有环境，依赖文件或 Python 版本变化会触发环境重建。
+
 1. 将公开仓库连接到 Streamlit Community Cloud。
 2. Main file path 选择 `streamlit_app.py`。
 3. 在 Advanced settings → Secrets 中配置：
