@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import queue
 import threading
@@ -20,6 +21,7 @@ DEFAULT_BASE_URL = "https://api.deepseek.com"
 MAX_CONTEXT_MESSAGES = 12
 MAX_OUTPUT_TOKENS = 700
 MAX_REQUEST_TIMEOUT_SECONDS = 30.0
+LOGGER = logging.getLogger(__name__)
 
 
 def _request_timeout_seconds() -> float:
@@ -115,16 +117,28 @@ class DeepSeekGateway:
 
         deadline = time.monotonic() + REQUEST_TIMEOUT_SECONDS
         saw_content = False
+        provider_phase = "starting"
         try:
             while True:
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
+                    LOGGER.warning(
+                        "DeepSeek request exceeded the wall-clock deadline during %s",
+                        provider_phase,
+                    )
                     raise _timeout_error()
                 try:
                     kind, value = events.get(timeout=remaining)
                 except queue.Empty as exc:
+                    LOGGER.warning(
+                        "DeepSeek request exceeded the wall-clock deadline during %s",
+                        provider_phase,
+                    )
                     raise _timeout_error() from exc
 
+                if kind == "phase" and isinstance(value, str):
+                    provider_phase = value
+                    continue
                 if kind == "chunk" and isinstance(value, str):
                     saw_content = True
                     yield value
@@ -157,6 +171,7 @@ class DeepSeekGateway:
             client = httpx.Client(timeout=timeout)
 
         try:
+            events.put(("phase", "connecting"))
             with client.stream(
                 "POST",
                 f"{self._base_url}/chat/completions",
@@ -164,9 +179,12 @@ class DeepSeekGateway:
                 json=payload,
                 timeout=timeout,
             ) as response:
+                events.put(("phase", f"response-{response.status_code}"))
                 if response.status_code >= 400:
                     raise DeepSeekGatewayError(_provider_status_message(response.status_code))
 
+                events.put(("phase", "streaming"))
+                saw_content = False
                 for raw_line in response.iter_lines():
                     if cancelled.is_set():
                         return
@@ -184,9 +202,13 @@ class DeepSeekGateway:
                         ) from exc
                     delta = _extract_delta(event)
                     if delta:
+                        if not saw_content:
+                            saw_content = True
+                            events.put(("phase", "receiving-content"))
                         events.put(("chunk", delta))
         except BaseException as exc:  # Keep provider details inside the trusted process.
             if not cancelled.is_set():
+                LOGGER.warning("DeepSeek provider stream failed with %s", type(exc).__name__)
                 events.put(("error", exc))
         else:
             if not cancelled.is_set():
