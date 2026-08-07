@@ -1,0 +1,7 @@
+[project]
+name = "noah-ai-portfolio"
+version = "0.1.0"
+
+[[tool.streamlit.component.components]]
+name = "portfolio"
+asset_dir = "frontend/build"
