@@ -74,3 +74,7 @@ npm run test:e2e
 - `docs/resumes/`、本地 Secrets、访客问题和模型回答不会进入公开部署产物或持久化数据库。
 - 浏览器只与 Streamlit 应用通信；DeepSeek Key 不会发送到前端。
 - 本仓库未提供许可证，因此页面使用 `Source Available`，不宣称 Open Source。
+
+## 第三方声明
+
+WebGL 流体轨迹使用 MIT 许可的第三方实现，版权与许可文本见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。该声明不构成本仓库整体的开源许可。

@@ -50,14 +50,32 @@ button {
 }
 
 .app-root {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   min-width: 320px;
   overflow: hidden;
   background: #fff;
 }
 
+.fluid-trail {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.fluid-trail[data-fluid-state="loading"] {
+  opacity: 0;
+}
+
 .portfolio-shell {
   position: relative;
+  z-index: 1;
   width: min(100%, 1180px);
   margin: 0 auto;
   padding: 18px 32px 36px;

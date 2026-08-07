@@ -110,12 +110,11 @@ test.describe("public portfolio journey", () => {
     const firstQuestion = "delayed-done: How can Noah help with an AI project?";
     await page.getByRole("textbox", { name: "Ask about Noah's work" }).fill(firstQuestion);
     await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
-    await expect(page.getByText(/I’m the AI Portfolio, not Noah himself/)).toBeVisible({ timeout: 20_000 });
-
     const followUpInput = page.getByRole("textbox", { name: "Ask the AI Portfolio" });
     const sendButton = page.getByRole("button", { name: "Send question" });
     await expect(followUpInput).toBeDisabled();
     await expect(sendButton).toBeDisabled();
+    await expect(page.getByText(/I’m the AI Portfolio, not Noah himself/)).toBeVisible({ timeout: 20_000 });
     await expect(followUpInput).toBeEnabled({ timeout: 5_000 });
     await followUpInput.fill("What about the stack?");
     await sendButton.click();

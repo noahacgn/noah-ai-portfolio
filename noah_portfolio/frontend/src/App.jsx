@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { FluidTrail } from "./FluidTrail.jsx";
 
 function assetUrl(assetBase, fileName) {
   return new URL(fileName, assetBase.endsWith("/") ? assetBase : `${assetBase}/`).toString();
@@ -458,6 +459,7 @@ export function App({ data = {}, setTriggerValue, assetBase = "./assets/" }) {
 
   return (
     <div className="app-root">
+      <FluidTrail />
       {view === "chat" ? (
         <ChatView data={data} profile={profile} assetBase={assetBase} setTriggerValue={setTriggerValue} onAction={emitAction} onHome={() => emitAction("home")} onAbout={openAbout} />
       ) : (
