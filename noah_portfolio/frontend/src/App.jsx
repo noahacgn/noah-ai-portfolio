@@ -4,7 +4,6 @@ import {
   BriefcaseBusiness,
   ChevronRight,
   Code2,
-  Database,
   Github,
   Layers3,
   Mail,
@@ -13,7 +12,6 @@ import {
   Send,
   ShieldCheck,
   Sparkles,
-  Terminal,
   Workflow,
   X,
 } from "lucide-react";
@@ -23,12 +21,6 @@ function assetUrl(assetBase, fileName) {
   return new URL(fileName, assetBase.endsWith("/") ? assetBase : `${assetBase}/`).toString();
 }
 
-const UPWORK_URL =
-  "https://www.upwork.com/freelancers/~0119433c70074dd0d0?viewMode=1";
-const PORTFOLIO_REPO = "https://github.com/noahacgn/noah-ai-portfolio";
-const GITHUB_URL = "https://github.com/noahacgn";
-const EMAIL = "noahacgn@gmail.com";
-
 const QUICK_ACTIONS = [
   { id: "me", label: "Me", icon: Sparkles },
   { id: "projects", label: "Projects", icon: Layers3 },
@@ -37,97 +29,23 @@ const QUICK_ACTIONS = [
   { id: "contact", label: "Contact", icon: MessageCircle },
 ];
 
-const QUICK_RESPONSES = {
-  me: {
-    title: "A quick introduction",
-    body:
-      "I’m Noah Wang, a production AI systems engineer based in China (UTC+8). I build agent workflows, retrieval-backed products, and the full-stack delivery around them. I bring seven years of backend and distributed-systems experience, so the AI layer is designed to survive contact with real products—not just a demo. 👋",
-  },
-  projects: {
-    title: "Two projects worth opening",
-    body:
-      "Knowledge Engine is an evidence-first enterprise RAG platform reference, with a focus on grounded answers, authorization boundaries, and reliable ingestion. Quad Agent is a full-stack LangGraph workspace spanning web search, file RAG, research, and human-in-the-loop workflows. Both cards on the home page open their GitHub repositories directly.",
-  },
-  skills: {
-    title: "The stack I reach for",
-    body:
-      "My AI systems work centers on LangGraph, LangChain, RAG, hybrid retrieval, and agent workflows. Around that I use Python, FastAPI, PostgreSQL/pgvector, Elasticsearch, Redis, Neo4j, React/TypeScript, streaming/SSE, OpenTelemetry, Docker, and automated testing. The grouping is intentional: useful AI needs a dependable product boundary.",
-  },
-  experience: {
-    title: "Seven years of engineering context",
-    body:
-      "My public timeline runs from Merypto (CPcash), Aug 2024–Jun 2026, through SandPay, Shanghai Jibeike, and Xiamen Ruanyun. The domains include payments, wallets, blockchain, e-commerce, and banking backends. Java, Spring, Redis, RabbitMQ, concurrency, and distributed systems are the engineering foundation behind my newer AI product work.",
-  },
-  contact: {
-    title: "The easiest next step",
-    body:
-      "Upwork is the main place to discuss a project, scope, start date, and terms. Email is a useful backup, and GitHub is there when you want to inspect the work first. If you share your use case, data shape, current stack, and workflow on Upwork, I can respond with a concrete starting point.",
-  },
-  process: {
-    title: "A five-step engagement process",
-    body:
-      "1. Requirements & data — clarify the user, workflow, data shape, and success signal.\n2. Architecture & risks — choose the smallest reliable design and surface unknowns early.\n3. Minimum vertical slice — ship one useful path end to end.\n4. Reliability & testing — make behavior observable, testable, and safe to change.\n5. Deployment & handoff — document the operating path and leave the team with a maintainable system.",
-  },
-  cta: {
-    title: "How I can help with an AI project",
-    body:
-      "I can help turn an ambiguous AI idea into a working product slice: map the workflow, choose an agent or retrieval shape, build the backend and UI, and put reliability around it. The fastest way to make that specific is to continue on Upwork with your use case, data, existing stack, and current workflow.",
-  },
+const EMPTY_PROFILE = {
+  name: "Portfolio",
+  githubHandle: "",
+  focus: "AI Portfolio",
+  heroSupporting: "",
+  upworkUrl: "#",
+  githubUrl: "#",
+  portfolioRepoUrl: "#",
+  email: "",
+  projects: [],
+  skills: [],
+  experience: [],
 };
 
-const PROJECTS = [
-  {
-    id: "knowledge-engine",
-    title: "Knowledge Engine — Evidence-First Enterprise RAG Platform",
-    description:
-      "A production-oriented, source-available reference for grounded enterprise knowledge workflows: LangGraph orchestration, hybrid retrieval, authorization boundaries, controlled queries, and reliable ingestion.",
-    href: "https://github.com/noahacgn/knowledge-engine",
-    visual: "knowledge-grounded.webp",
-    visualAlt: "Knowledge Engine grounded answer interface",
-    thumbs: ["knowledge-grounded.webp", "knowledge-trace.webp", "knowledge-ingestion.webp", "knowledge-atlas.webp"],
-  },
-  {
-    id: "quad-agent",
-    title: "Quad Agent — Full-Stack LangGraph AI Agent Workspace",
-    description:
-      "A full-stack workspace for practical agent workflows, including web search, file RAG, presentation building, deep research, replayable streaming events, and human-in-the-loop steps.",
-    href: "https://github.com/noahacgn/quad-agent",
-    visual: "quad-web-search.gif",
-    visualAlt: "Quad Agent web search workspace",
-    thumbs: ["quad-web-search.gif", "quad-file-rag.gif", "quad-ppt.gif", "quad-research.gif"],
-  },
-];
-
-const SKILL_GROUPS = [
-  {
-    title: "AI Systems",
-    icon: Workflow,
-    items: ["LangGraph", "LangChain", "RAG", "Hybrid Retrieval", "Agent Workflows"],
-  },
-  {
-    title: "Backend / Data",
-    icon: Database,
-    items: ["Python", "FastAPI", "PostgreSQL/pgvector", "Elasticsearch", "Redis", "Neo4j"],
-  },
-  {
-    title: "Product Delivery",
-    icon: Terminal,
-    items: [
-      "React/TypeScript",
-      "Streaming/SSE",
-      "OpenTelemetry",
-      "Docker",
-      "Automated Testing",
-    ],
-  },
-];
-
-const EXPERIENCE = [
-  { company: "Merypto (CPcash)", dates: "Aug 2024 – Jun 2026", note: "Wallet and payment product engineering" },
-  { company: "SandPay", dates: "Oct 2021 – May 2024", note: "Payment and banking backend systems" },
-  { company: "Shanghai Jibeike", dates: "Oct 2020 – Aug 2021", note: "Digital goods marketplace systems" },
-  { company: "Xiamen Ruanyun", dates: "May 2019 – Jul 2020", note: "Backend and distributed application delivery" },
-];
+function firstNameOf(profile) {
+  return String(profile.name || "").trim().split(/\s+/)[0] || "the portfolio owner";
+}
 
 function Icon({ icon: IconComponent, size = 18, strokeWidth = 1.8 }) {
   return <IconComponent aria-hidden="true" size={size} strokeWidth={strokeWidth} />;
@@ -149,12 +67,12 @@ function MessageText({ children }) {
   );
 }
 
-function Avatar({ small = false, assetBase }) {
+function Avatar({ small = false, assetBase, name = "portfolio owner" }) {
   return (
     <img
       className={small ? "avatar avatar-small" : "avatar"}
       src={assetUrl(assetBase, "noah-avatar.png")}
-      alt="3D portrait of Noah Wang"
+      alt={`3D portrait of ${name}`}
     />
   );
 }
@@ -187,8 +105,9 @@ function ProjectCard({ project, assetBase }) {
   );
 }
 
-function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
+function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
   const [question, setQuestion] = useState("");
+  const firstName = firstNameOf(profile);
 
   function submit(event) {
     event.preventDefault();
@@ -203,21 +122,21 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
 
   return (
     <main className="portfolio-shell home-view">
-      <div className="watermark" aria-hidden="true">Noah Wang</div>
+      <div className="watermark" aria-hidden="true">{profile.name}</div>
       <header className="site-header">
-        <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat("How can Noah help with my AI project?")}>
+        <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my AI project?`)}>
           <span className="opportunity-long">Looking for an AI engineer?</span>
-          <span className="opportunity-short">Available</span>
+          <span className="opportunity-short">AI work?</span>
         </button>
         <button className="brand-button header-brand" type="button" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
-          <span className="header-brand-name">Noah Wang</span>
+          <span className="header-brand-name">{profile.name}</span>
         </button>
         <nav className="header-nav" aria-label="Portfolio navigation">
           <button type="button" className="header-link" onClick={onAbout}>
             About
           </button>
-          <a className="header-link source-button" href={PORTFOLIO_REPO} target="_blank" rel="noreferrer">
+          <a className="header-link source-button" href={profile.portfolioRepoUrl} target="_blank" rel="noreferrer">
             Source <ExternalArrow />
           </a>
         </nav>
@@ -227,19 +146,17 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
       </header>
 
       <section className="hero-section" aria-labelledby="hero-title">
-        <p className="hero-intro">Hey, I&apos;m Noah Wang <span aria-hidden="true">👋</span></p>
+        <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
         <h1 id="hero-title">AI Portfolio</h1>
-        <p className="hero-tagline">Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery</p>
-        <p className="hero-supporting">
-          Seven years of engineering context behind practical AI products. Based in China · UTC+8, available for 30+ hrs/week and contract-to-hire.
-        </p>
+        <p className="hero-tagline">{profile.focus}</p>
+        <p className="hero-supporting">{profile.heroSupporting}</p>
         <div className="hero-avatar-wrap">
           <div className="avatar-orbit orbit-one" aria-hidden="true" />
           <div className="avatar-orbit orbit-two" aria-hidden="true" />
-          <Avatar assetBase={assetBase} />
+          <Avatar assetBase={assetBase} name={profile.name} />
         </div>
         <form className="question-form hero-question" onSubmit={submit}>
-          <label htmlFor="hero-question">Ask about Noah&apos;s work</label>
+          <label htmlFor="hero-question">Ask about {firstName}&apos;s work</label>
           <div className="question-input-row">
             <input
               id="hero-question"
@@ -278,7 +195,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
           </button>
         </div>
         <div className="project-grid">
-          {PROJECTS.map((project) => <ProjectCard key={project.id} project={project} assetBase={assetBase} />)}
+          {profile.projects.map((project) => <ProjectCard key={project.id} project={project} assetBase={assetBase} />)}
         </div>
         <button type="button" className="process-banner" onClick={() => onAction("process")}>
           <span className="process-icon"><Workflow aria-hidden="true" size={20} /></span>
@@ -293,30 +210,94 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
           <h2 id="contact-heading">Bring me the messy AI idea.</h2>
           <p>Share the use case, data shape, current stack, and workflow. We&apos;ll find the smallest useful first slice.</p>
         </div>
-        <a className="upwork-button" href={UPWORK_URL} target="_blank" rel="noreferrer">
+        <a className="upwork-button" href={profile.upworkUrl} target="_blank" rel="noreferrer">
           Continue on Upwork <ExternalArrow />
         </a>
       </section>
 
       <footer className="site-footer">
-        <span>© {new Date().getFullYear()} Noah Wang</span>
+        <span>© {new Date().getFullYear()} {profile.name}</span>
         <div className="footer-links">
-          <a href={`mailto:${EMAIL}`}><Mail aria-hidden="true" size={16} /> {EMAIL}</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer"><Github aria-hidden="true" size={16} /> @noahacgn</a>
+          <a href={`mailto:${profile.email}`}><Mail aria-hidden="true" size={16} /> {profile.email}</a>
+          <a href={profile.githubUrl} target="_blank" rel="noreferrer"><Github aria-hidden="true" size={16} /> {profile.githubHandle}</a>
         </div>
       </footer>
     </main>
   );
 }
 
-function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue }) {
+function StaticDetails({ action, profile }) {
+  const firstName = firstNameOf(profile);
+
+  if (action === "skills") {
+    return (
+      <section className="static-details" aria-label={`${firstName}'s grouped skills`}>
+        <div className="details-heading"><Code2 aria-hidden="true" size={17} /><strong>Core skills</strong></div>
+        <div className="skill-groups">
+          {profile.skills.map((group) => (
+            <div className="skill-group" key={group.title}>
+              <h2>{group.title}</h2>
+              <div className="skill-tags">{group.items.map((item) => <span key={item}>{item}</span>)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (action === "experience") {
+    return (
+      <section className="static-details" aria-label={`${firstName}'s public experience timeline`}>
+        <div className="details-heading"><BriefcaseBusiness aria-hidden="true" size={17} /><strong>Public experience timeline</strong></div>
+        <div className="experience-list">
+          {profile.experience.map((entry) => (
+            <article className="experience-item" key={entry.company}>
+              <div><h2>{entry.company}</h2><p>{entry.note}</p></div>
+              <time>{entry.dates}</time>
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (action === "contact") {
+    return (
+      <section className="static-details contact-details" aria-label={`${firstName}'s public contact channels`}>
+        <div className="details-heading"><Mail aria-hidden="true" size={17} /><strong>Public contact channels</strong></div>
+        <div className="contact-detail-links">
+          <a href={profile.upworkUrl} target="_blank" rel="noreferrer"><span>Upwork</span><ExternalArrow /></a>
+          <a href={`mailto:${profile.email}`}><span>{profile.email}</span><ExternalArrow /></a>
+          <a href={profile.githubUrl} target="_blank" rel="noreferrer"><span>GitHub · {profile.githubHandle}</span><ExternalArrow /></a>
+        </div>
+      </section>
+    );
+  }
+
+  if (action === "projects") {
+    return (
+      <section className="static-details" aria-label={`${firstName}'s project links`}>
+        <div className="details-heading"><Layers3 aria-hidden="true" size={17} /><strong>Open the source</strong></div>
+        <div className="project-detail-links">
+          {profile.projects.map((project) => <a key={project.id} href={project.href} target="_blank" rel="noreferrer"><span>{project.title}</span><ExternalArrow /></a>)}
+        </div>
+      </section>
+    );
+  }
+
+  return null;
+}
+
+function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue, profile }) {
   const [question, setQuestion] = useState("");
   const [localMessages, setLocalMessages] = useState([]);
   const [localNotice, setLocalNotice] = useState("");
   const [localPending, setLocalPending] = useState(false);
   const endRef = useRef(null);
+  const firstName = firstNameOf(profile);
   const serverMessages = Array.isArray(data?.messages) ? data.messages : [];
   const messages = useMemo(() => [...serverMessages, ...localMessages], [serverMessages, localMessages]);
+  const isBusy = Boolean(data?.pending || localPending);
 
   useEffect(() => {
     setLocalMessages([]);
@@ -338,6 +319,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue 
 
   function submit(event) {
     event.preventDefault();
+    if (isBusy) return;
     const value = question.trim();
     if (!value) return;
     if (value.length > 2000) {
@@ -357,27 +339,28 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue 
         <button className="brand-button" type="button" onClick={onHome}>
           <ArrowLeft aria-hidden="true" size={18} />
           <span className="brand-mark">NW</span>
-          <span>Noah Wang</span>
+          <span>{profile.name}</span>
         </button>
         <div className="chat-header-center"><span className="online-dot" /> AI Portfolio chat</div>
         <button className="header-link about-chat" type="button" onClick={onAbout}>About</button>
       </header>
       <section className="chat-content" aria-labelledby="chat-heading">
         <div className="chat-intro">
-          <Avatar small assetBase={assetBase} />
-          <div><p className="eyebrow">AI Portfolio</p><h1 id="chat-heading">Ask me about Noah&apos;s work</h1><p>I&apos;m an AI-generated portfolio, here to make the useful parts easy to explore.</p></div>
+          <Avatar small assetBase={assetBase} name={profile.name} />
+          <div><p className="eyebrow">AI Portfolio</p><h1 id="chat-heading">Ask me about {firstName}&apos;s work</h1><p>I&apos;m an AI-generated portfolio, here to make the useful parts easy to explore.</p></div>
         </div>
         <div className="message-list" aria-live="polite">
-          {messages.length === 0 && <div className="assistant-message"><Avatar small assetBase={assetBase} /><div className="message-bubble"><MessageText>Hi — I can give you a concise tour of Noah&apos;s projects, skills, experience, or process. What are you building?</MessageText></div></div>}
+          {messages.length === 0 && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble"><MessageText>Hi — I can give you a concise tour of this portfolio&apos;s projects, skills, experience, or process. What are you building?</MessageText></div></div>}
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}-${message.content?.slice(0, 10)}`} className={message.role === "user" ? "user-message" : "assistant-message"}>
-              {message.role !== "user" && <Avatar small assetBase={assetBase} />}
-              <div className="message-bubble"><MessageText>{message.content}</MessageText>{message.role !== "user" && data?.showUpwork && <a className="message-cta" href={UPWORK_URL} target="_blank" rel="noreferrer">Continue on Upwork <ExternalArrow /></a>}</div>
+              {message.role !== "user" && <Avatar small assetBase={assetBase} name={profile.name} />}
+              <div className="message-bubble"><MessageText>{message.content}</MessageText>{message.role !== "user" && data?.showUpwork && <a className="message-cta" href={profile.upworkUrl} target="_blank" rel="noreferrer">Continue on Upwork <ExternalArrow /></a>}</div>
             </div>
           ))}
-          {data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} /><div className="message-bubble streaming-bubble"><MessageText>{data.streamingText}</MessageText><span className="streaming-caret" aria-label="Generating" /></div></div>}
-          {(data?.pending || localPending) && !data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} /><div className="message-bubble typing-bubble"><span className="typing-label">Thinking with DeepSeek</span><span className="typing-dots" aria-label="Generating"><i /><i /><i /></span></div></div>}
-          {data?.error && <div className="assistant-message"><Avatar small assetBase={assetBase} /><div className="message-bubble error-bubble"><MessageText>{data.error}</MessageText><button className="inline-action" type="button" onClick={onHome}>Browse the static portfolio <ExternalArrow /></button></div></div>}
+          {data?.staticAction && <StaticDetails action={data.staticAction} profile={profile} />}
+          {data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble streaming-bubble"><MessageText>{data.streamingText}</MessageText><span className="streaming-caret" aria-label="Generating" /></div></div>}
+          {(data?.pending || localPending) && !data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble typing-bubble"><span className="typing-label">Thinking with DeepSeek</span><span className="typing-dots" aria-label="Generating"><i /><i /><i /></span></div></div>}
+          {data?.error && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble error-bubble"><MessageText>{data.error}</MessageText><button className="inline-action" type="button" onClick={onHome}>Browse the static portfolio <ExternalArrow /></button></div></div>}
           {localNotice && <p className="input-notice" role="alert">{localNotice}</p>}
           <div ref={endRef} />
         </div>
@@ -385,19 +368,20 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue 
       <form className="question-form chat-question" onSubmit={submit}>
         <label htmlFor="chat-question">Ask the AI Portfolio</label>
         <div className="question-input-row">
-          <input id="chat-question" value={question} maxLength={2000} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask a follow-up…" autoComplete="off" />
-          <button type="submit" className="send-button" aria-label="Send question"><Icon icon={Send} size={18} /></button>
+          <input id="chat-question" value={question} maxLength={2000} onChange={(event) => setQuestion(event.target.value)} placeholder={isBusy ? "Waiting for this answer…" : "Ask a follow-up…"} autoComplete="off" disabled={isBusy} />
+          <button type="submit" className="send-button" aria-label="Send question" disabled={isBusy}><Icon icon={Send} size={18} /></button>
         </div>
         {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
-        <p className="privacy-note">AI-generated · Don&apos;t share secrets · Final scope and terms are confirmed by Noah on Upwork</p>
+        <p className="privacy-note">AI-generated · Don&apos;t share secrets · Final scope and terms are confirmed by {firstName} on Upwork</p>
       </form>
-      <footer className="chat-footer"><a href={GITHUB_URL} target="_blank" rel="noreferrer">@noahacgn <ExternalArrow /></a><a className="chat-upwork-link" href={UPWORK_URL} target="_blank" rel="noreferrer">Continue on Upwork <ExternalArrow /></a></footer>
+      <footer className="chat-footer"><a href={profile.githubUrl} target="_blank" rel="noreferrer">{profile.githubHandle} <ExternalArrow /></a><a className="chat-upwork-link" href={profile.upworkUrl} target="_blank" rel="noreferrer">Continue on Upwork <ExternalArrow /></a></footer>
     </main>
   );
 }
 
-function AboutModal({ onClose, returnFocusRef }) {
+function AboutModal({ onClose, returnFocusRef, profile }) {
   const closeRef = useRef(null);
+  const firstName = firstNameOf(profile);
 
   useEffect(() => {
     closeRef.current?.focus();
@@ -417,28 +401,43 @@ function AboutModal({ onClose, returnFocusRef }) {
         <button ref={closeRef} className="modal-close" type="button" aria-label="Close About" onClick={onClose}><X size={20} /></button>
         <div className="modal-icon"><Sparkles size={22} /></div>
         <p className="section-kicker">A small note on this site</p>
-        <h2 id="about-title">This is an AI Portfolio, not Noah.</h2>
-        <p>It uses a hand-curated set of Noah&apos;s public portfolio facts and DeepSeek to generate a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on Noah&apos;s behalf.</p>
-        <div className="modal-boundary"><ShieldCheck size={18} /><span>Use it to get oriented; confirm scope, timing, rate, and terms with Noah on Upwork.</span></div>
-        <a className="upwork-button modal-action" href={UPWORK_URL} target="_blank" rel="noreferrer">Open Noah&apos;s Upwork profile <ExternalArrow /></a>
+        <h2 id="about-title">This is an AI Portfolio, not {firstName}.</h2>
+        <p>It uses a hand-curated set of {firstName}&apos;s public portfolio facts and DeepSeek to generate a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on {firstName}&apos;s behalf.</p>
+        <div className="modal-boundary"><ShieldCheck size={18} /><span>Use it to get oriented; confirm scope, timing, rate, and terms with {firstName} on Upwork.</span></div>
+        <a className="upwork-button modal-action" href={profile.upworkUrl} target="_blank" rel="noreferrer">Open {firstName}&apos;s Upwork profile <ExternalArrow /></a>
       </section>
     </div>
   );
 }
 
-export function App({ data = {}, setStateValue, setTriggerValue, assetBase = "./assets/" }) {
-  void setStateValue;
+export function App({ data = {}, setTriggerValue, assetBase = "./assets/" }) {
+  const profile = data.profile || EMPTY_PROFILE;
   const [view, setView] = useState(data.view || "home");
   const [aboutOpen, setAboutOpen] = useState(false);
   const aboutReturnRef = useRef(null);
+  const queryPresenceRef = useRef(new URL(window.location.href).searchParams.has("query"));
 
   useEffect(() => {
     setView(data.view || "home");
   }, [data.view]);
 
+  useEffect(() => {
+    function syncQueryPresence() {
+      const hasQuery = new URL(window.location.href).searchParams.has("query");
+      const queryWasPresent = queryPresenceRef.current;
+      queryPresenceRef.current = hasQuery;
+      if (queryWasPresent && !hasQuery) {
+        setView("home");
+        setTriggerValue?.("reset", true);
+      }
+    }
+    window.addEventListener("popstate", syncQueryPresence);
+    return () => window.removeEventListener("popstate", syncQueryPresence);
+  }, [setTriggerValue]);
+
   function emitAction(type, value = null) {
     if (type === "home") {
-      setView("home");
+      queryPresenceRef.current = false;
       setTriggerValue?.("reset", true);
       return;
     }
@@ -447,6 +446,7 @@ export function App({ data = {}, setStateValue, setTriggerValue, assetBase = "./
   }
 
   function submitQuestion(value) {
+    if (value.trim()) queryPresenceRef.current = true;
     setView("chat");
     setTriggerValue?.("submit", { query: value });
   }
@@ -459,11 +459,11 @@ export function App({ data = {}, setStateValue, setTriggerValue, assetBase = "./
   return (
     <div className="app-root">
       {view === "chat" ? (
-        <ChatView data={data} assetBase={assetBase} setTriggerValue={setTriggerValue} onAction={emitAction} onHome={() => emitAction("home")} onAbout={openAbout} />
+        <ChatView data={data} profile={profile} assetBase={assetBase} setTriggerValue={setTriggerValue} onAction={emitAction} onHome={() => emitAction("home")} onAbout={openAbout} />
       ) : (
-        <HomeView assetBase={assetBase} onAction={emitAction} onAbout={openAbout} onOpenChat={submitQuestion} />
+        <HomeView profile={profile} assetBase={assetBase} onAction={emitAction} onAbout={openAbout} onOpenChat={submitQuestion} />
       )}
-      {aboutOpen && <AboutModal returnFocusRef={aboutReturnRef} onClose={() => setAboutOpen(false)} />}
+      {aboutOpen && <AboutModal profile={profile} returnFocusRef={aboutReturnRef} onClose={() => setAboutOpen(false)} />}
     </div>
   );
 }

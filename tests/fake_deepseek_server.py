@@ -52,6 +52,17 @@ class FakeDeepSeekHandler(BaseHTTPRequestHandler):
 
         if "slow" in lowered:
             time.sleep(1.2)
+        if "absolute-timeout" in lowered:
+            self._start_stream()
+            for _ in range(12):
+                try:
+                    self._write_event(
+                        json.dumps({"choices": [{"delta": {"content": "."}}]})
+                    )
+                except (BrokenPipeError, ConnectionAbortedError, ConnectionResetError):
+                    return
+                time.sleep(0.4)
+            return
         if "invalid" in lowered:
             self._start_stream()
             self._write_event("not-json")
@@ -81,6 +92,8 @@ class FakeDeepSeekHandler(BaseHTTPRequestHandler):
                 )
                 self.wfile.flush()
                 time.sleep(0.06)
+        if "delayed-done" in lowered:
+            time.sleep(0.8)
         self._write_event("[DONE]")
 
     def _start_stream(self) -> None:
@@ -119,4 +132,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

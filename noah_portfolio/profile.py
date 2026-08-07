@@ -6,13 +6,72 @@ private resume directory; the strings below are the reviewed public surface.
 
 from __future__ import annotations
 
-from typing import Final
+from typing import Any, Final
 
 
 UPWORK_URL: Final = "https://www.upwork.com/freelancers/~0119433c70074dd0d0?viewMode=1"
 GITHUB_URL: Final = "https://github.com/noahacgn"
 PORTFOLIO_REPO_URL: Final = "https://github.com/noahacgn/noah-ai-portfolio"
 EMAIL: Final = "noahacgn@gmail.com"
+
+# This is the single serialized public-data boundary shared by the server and
+# the browser component. It is intentionally hand-curated and resume-free.
+PUBLIC_PROFILE: Final[dict[str, Any]] = {
+    "name": "Noah Wang",
+    "githubHandle": "@noahacgn",
+    "focus": "Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery",
+    "heroSupporting": "Seven years of engineering context behind practical AI products. Based in China · UTC+8.",
+    "upworkUrl": UPWORK_URL,
+    "githubUrl": GITHUB_URL,
+    "portfolioRepoUrl": PORTFOLIO_REPO_URL,
+    "email": EMAIL,
+    "projects": [
+        {
+            "id": "knowledge-engine",
+            "title": "Knowledge Engine — Evidence-First Enterprise RAG Platform",
+            "description": (
+                "A production-oriented, source-available reference for grounded enterprise "
+                "knowledge workflows: LangGraph orchestration, hybrid retrieval, authorization "
+                "boundaries, controlled queries, and reliable ingestion."
+            ),
+            "href": "https://github.com/noahacgn/knowledge-engine",
+            "visual": "knowledge-grounded.webp",
+            "visualAlt": "Knowledge Engine grounded answer interface",
+        },
+        {
+            "id": "quad-agent",
+            "title": "Quad Agent — Full-Stack LangGraph AI Agent Workspace",
+            "description": (
+                "A full-stack workspace for practical agent workflows, including web search, "
+                "file RAG, presentation building, deep research, replayable streaming events, "
+                "and human-in-the-loop steps."
+            ),
+            "href": "https://github.com/noahacgn/quad-agent",
+            "visual": "quad-web-search.gif",
+            "visualAlt": "Quad Agent web search workspace",
+        },
+    ],
+    "skills": [
+        {
+            "title": "AI Systems",
+            "items": ["LangGraph", "LangChain", "RAG", "Hybrid Retrieval", "Agent Workflows"],
+        },
+        {
+            "title": "Backend / Data",
+            "items": ["Python", "FastAPI", "PostgreSQL/pgvector", "Elasticsearch", "Redis", "Neo4j"],
+        },
+        {
+            "title": "Product Delivery",
+            "items": ["React/TypeScript", "Streaming/SSE", "OpenTelemetry", "Docker", "Automated Testing"],
+        },
+    ],
+    "experience": [
+        {"company": "Merypto (CPcash)", "dates": "Aug 2024 – Jun 2026", "note": "Wallet and payment product engineering"},
+        {"company": "SandPay", "dates": "Oct 2021 – May 2024", "note": "Payment and banking backend systems"},
+        {"company": "Shanghai Jibeike", "dates": "Oct 2020 – Aug 2021", "note": "Digital goods marketplace systems"},
+        {"company": "Xiamen Ruanyun", "dates": "May 2019 – Jul 2020", "note": "Backend and distributed application delivery"},
+    ],
+}
 
 QUICK_RESPONSES: Final[dict[str, dict[str, str]]] = {
     "me": {
@@ -127,4 +186,3 @@ def quick_message(action: str) -> dict[str, str] | None:
 
     response = QUICK_RESPONSES.get(action)
     return dict(response) if response is not None else None
-

@@ -11,7 +11,7 @@ import streamlit as st
 
 from noah_portfolio import render_portfolio
 from noah_portfolio.deepseek import DeepSeekGateway, DeepSeekGatewayError
-from noah_portfolio.profile import quick_message
+from noah_portfolio.profile import PUBLIC_PROFILE, quick_message
 
 
 PAGE_TITLE = "Noah Wang — AI Portfolio"
@@ -57,8 +57,11 @@ def _ensure_state() -> None:
         "portfolio_streaming_text": "",
         "portfolio_error": None,
         "portfolio_show_upwork": False,
+        "portfolio_static_action": None,
         "portfolio_revision": 0,
         "portfolio_initial_query_handled": False,
+        "portfolio_initial_query": None,
+        "portfolio_url_query": None,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -80,6 +83,10 @@ def _clear_conversation(*, clear_query: bool = True) -> None:
     st.session_state.portfolio_streaming_text = ""
     st.session_state.portfolio_error = None
     st.session_state.portfolio_show_upwork = False
+    st.session_state.portfolio_static_action = None
+    st.session_state.portfolio_initial_query = None
+    st.session_state.portfolio_url_query = None
+    st.session_state.portfolio_initial_query_handled = False
     st.session_state.portfolio_revision += 1
     if clear_query:
         st.query_params.clear()
@@ -175,9 +182,12 @@ def _poll_stream_worker() -> bool:
 
 def _start_ai_query(query: str) -> None:
     query = query.strip()
+    if st.session_state.portfolio_pending_query is not None:
+        return
     st.session_state.portfolio_view = "chat"
     st.session_state.portfolio_error = None
     st.session_state.portfolio_show_upwork = False
+    st.session_state.portfolio_static_action = None
     if not query:
         st.session_state.portfolio_pending_query = None
         st.session_state.portfolio_worker_queue = None
@@ -193,7 +203,10 @@ def _start_ai_query(query: str) -> None:
     st.session_state.portfolio_pending_query = query
     st.session_state.portfolio_streaming_text = ""
     _start_stream_worker(list(st.session_state.portfolio_messages))
-    _set_query(query)
+    if st.session_state.portfolio_initial_query is None:
+        st.session_state.portfolio_initial_query = query
+        st.session_state.portfolio_initial_query_handled = True
+        _set_query(query)
 
 
 def _handle_static_action(action: str) -> None:
@@ -222,6 +235,7 @@ def _handle_static_action(action: str) -> None:
     st.session_state.portfolio_streaming_text = ""
     st.session_state.portfolio_error = None
     st.session_state.portfolio_show_upwork = action in {"contact", "cta", "process"}
+    st.session_state.portfolio_static_action = action
 
 
 def _trigger_value(result: Mapping[str, Any], key: str) -> Any:
@@ -282,12 +296,20 @@ def _should_show_upwork(query: str, answer: str) -> bool:
 
 
 def _handle_initial_query() -> None:
-    if st.session_state.portfolio_initial_query_handled:
-        return
-    st.session_state.portfolio_initial_query_handled = True
     raw_query = st.query_params.get("query")
-    if isinstance(raw_query, str) and raw_query.strip():
-        _start_ai_query(raw_query[:MAX_QUERY_LENGTH])
+    normalized_query = raw_query.strip() if isinstance(raw_query, str) and raw_query.strip() else None
+    previous_query = st.session_state.portfolio_url_query
+
+    if normalized_query:
+        st.session_state.portfolio_url_query = normalized_query
+        if not st.session_state.portfolio_initial_query_handled:
+            st.session_state.portfolio_initial_query = normalized_query[:MAX_QUERY_LENGTH]
+            st.session_state.portfolio_initial_query_handled = True
+            _start_ai_query(st.session_state.portfolio_initial_query)
+        return
+
+    if previous_query and st.session_state.portfolio_view == "chat":
+        _clear_conversation(clear_query=False)
 
 
 def _build_component_data() -> dict[str, Any]:
@@ -298,6 +320,8 @@ def _build_component_data() -> dict[str, Any]:
         "streamingText": st.session_state.portfolio_streaming_text,
         "error": st.session_state.portfolio_error,
         "showUpwork": bool(st.session_state.portfolio_show_upwork),
+        "staticAction": st.session_state.portfolio_static_action,
+        "profile": PUBLIC_PROFILE,
         "messageRevision": st.session_state.portfolio_revision,
     }
 

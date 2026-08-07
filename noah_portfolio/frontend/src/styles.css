@@ -374,6 +374,11 @@ button {
   color: #a1a1a1;
 }
 
+.question-input-row input:disabled {
+  cursor: wait;
+  color: #8e8e8e;
+}
+
 .send-button {
   display: grid;
   width: 38px;
@@ -389,6 +394,13 @@ button {
 .send-button:hover {
   background: #6f43d3;
   transform: translateY(-1px);
+}
+
+.send-button:disabled,
+.send-button:disabled:hover {
+  cursor: wait;
+  background: #b9b9b9;
+  transform: none;
 }
 
 .privacy-note {
@@ -863,6 +875,119 @@ button {
   cursor: pointer;
 }
 
+.static-details {
+  width: calc(100% - 63px);
+  margin-left: 63px;
+  padding: 17px;
+  border: 1px solid #e8e2f7;
+  border-radius: 18px;
+  background: linear-gradient(140deg, #fbf9ff, #fff);
+}
+
+.details-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: #5d37b7;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.skill-group {
+  padding: 13px;
+  border: 1px solid #ece9f4;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.skill-group h2,
+.experience-item h2 {
+  margin: 0;
+  color: #262229;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.skill-tags span {
+  padding: 4px 7px;
+  border-radius: 999px;
+  color: #635b6f;
+  background: #f5f3f8;
+  font-size: 10px;
+}
+
+.experience-list {
+  display: grid;
+  gap: 8px;
+}
+
+.experience-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 11px 12px;
+  border: 1px solid #ece9f4;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.experience-item p {
+  margin: 3px 0 0;
+  color: #85808b;
+  font-size: 11px;
+}
+
+.experience-item time {
+  flex: 0 0 auto;
+  color: #746b7d;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.contact-detail-links,
+.project-detail-links {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-detail-links a,
+.project-detail-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  border: 1px solid #ece9f4;
+  border-radius: 13px;
+  color: #2c2731;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.contact-detail-links a:hover,
+.project-detail-links a:hover {
+  border-color: #c9b7f4;
+  transform: translateY(-1px);
+}
+
 .typing-bubble {
   display: flex;
   align-items: center;
@@ -1245,6 +1370,21 @@ button {
   .message-bubble {
     max-width: calc(100% - 48px);
     font-size: 13px;
+  }
+
+  .static-details {
+    width: 100%;
+    margin-left: 0;
+    padding: 14px;
+  }
+
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-item {
+    flex-direction: column;
+    gap: 5px;
   }
 
   .chat-question {

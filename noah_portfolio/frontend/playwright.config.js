@@ -11,6 +11,7 @@ const e2eEnv = {
   ...process.env,
   DEEPSEEK_API_KEY: "test-only-key",
   DEEPSEEK_BASE_URL: "http://127.0.0.1:8765",
+  DEEPSEEK_REQUEST_TIMEOUT_SECONDS: "3",
 };
 
 export default defineConfig({

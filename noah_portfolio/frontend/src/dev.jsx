@@ -8,7 +8,6 @@ createRoot(document.getElementById("portfolio-root")).render(
     <App
       data={{ view: "home", messages: [], pending: false }}
       assetBase="/assets/"
-      setStateValue={() => {}}
       setTriggerValue={() => {}}
     />
   </React.StrictMode>,

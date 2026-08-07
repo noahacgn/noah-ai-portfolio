@@ -6,7 +6,7 @@ import "./styles.css";
 const roots = new WeakMap();
 
 export default function renderPortfolio(component) {
-  const { data, parentElement, setStateValue, setTriggerValue } = component;
+  const { data, parentElement, setTriggerValue } = component;
   const mountPoint = parentElement.querySelector("#portfolio-root");
   const assetBase = new URL(/* @vite-ignore */ "./assets/", import.meta.url).href;
   let root = roots.get(mountPoint);
@@ -19,7 +19,6 @@ export default function renderPortfolio(component) {
     <React.StrictMode>
       <App
         data={data}
-        setStateValue={setStateValue}
         setTriggerValue={setTriggerValue}
         assetBase={assetBase}
       />

@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import json
 import os
+import queue
+import threading
+import time
 from collections.abc import Iterator, Sequence
 from typing import Any
 
@@ -16,7 +19,22 @@ MODEL = "deepseek-v4-flash"
 DEFAULT_BASE_URL = "https://api.deepseek.com"
 MAX_CONTEXT_MESSAGES = 12
 MAX_OUTPUT_TOKENS = 700
-REQUEST_TIMEOUT_SECONDS = 30.0
+MAX_REQUEST_TIMEOUT_SECONDS = 30.0
+
+
+def _request_timeout_seconds() -> float:
+    """Allow tests to shorten the deadline without extending production past 30 seconds."""
+
+    raw_value = os.getenv("DEEPSEEK_REQUEST_TIMEOUT_SECONDS")
+    if not raw_value:
+        return MAX_REQUEST_TIMEOUT_SECONDS
+    try:
+        return min(MAX_REQUEST_TIMEOUT_SECONDS, max(0.1, float(raw_value)))
+    except ValueError:
+        return MAX_REQUEST_TIMEOUT_SECONDS
+
+
+REQUEST_TIMEOUT_SECONDS = _request_timeout_seconds()
 
 
 class DeepSeekGatewayError(RuntimeError):
@@ -85,6 +103,54 @@ class DeepSeekGateway:
             pool=10.0,
         )
 
+        events: queue.Queue[tuple[str, str | BaseException | None]] = queue.Queue()
+        cancelled = threading.Event()
+        producer = threading.Thread(
+            target=self._produce_stream_events,
+            args=(payload, headers, timeout, events, cancelled),
+            name="deepseek-http-stream",
+            daemon=True,
+        )
+        producer.start()
+
+        deadline = time.monotonic() + REQUEST_TIMEOUT_SECONDS
+        saw_content = False
+        try:
+            while True:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise _timeout_error()
+                try:
+                    kind, value = events.get(timeout=remaining)
+                except queue.Empty as exc:
+                    raise _timeout_error() from exc
+
+                if kind == "chunk" and isinstance(value, str):
+                    saw_content = True
+                    yield value
+                    continue
+                if kind == "done":
+                    break
+                if kind == "error" and isinstance(value, BaseException):
+                    raise _public_gateway_error(value) from value
+
+            if not saw_content:
+                raise DeepSeekGatewayError(
+                    "DeepSeek returned an empty answer. Please try again or continue on Upwork."
+                )
+        finally:
+            cancelled.set()
+
+    def _produce_stream_events(
+        self,
+        payload: dict[str, Any],
+        headers: dict[str, str],
+        timeout: httpx.Timeout,
+        events: queue.Queue[tuple[str, str | BaseException | None]],
+        cancelled: threading.Event,
+    ) -> None:
+        """Translate one blocking HTTP stream into internal, content-only events."""
+
         client = self._client
         owns_client = client is None
         if client is None:
@@ -101,8 +167,9 @@ class DeepSeekGateway:
                 if response.status_code >= 400:
                     raise DeepSeekGatewayError(_provider_status_message(response.status_code))
 
-                saw_content = False
                 for raw_line in response.iter_lines():
+                    if cancelled.is_set():
+                        return
                     line = raw_line.strip() if isinstance(raw_line, str) else raw_line.decode().strip()
                     if not line or not line.startswith("data:"):
                         continue
@@ -117,30 +184,36 @@ class DeepSeekGateway:
                         ) from exc
                     delta = _extract_delta(event)
                     if delta:
-                        saw_content = True
-                        yield delta
-
-                if not saw_content:
-                    raise DeepSeekGatewayError(
-                        "DeepSeek returned an empty answer. Please try again or continue on Upwork."
-                    )
-        except DeepSeekGatewayError:
-            raise
-        except (httpx.TimeoutException, TimeoutError) as exc:
-            raise DeepSeekGatewayError(
-                "That took longer than expected. You can browse the static portfolio or continue on Upwork."
-            ) from exc
-        except httpx.HTTPError as exc:
-            raise DeepSeekGatewayError(
-                "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse."
-            ) from exc
-        except Exception as exc:  # pragma: no cover - defensive provider boundary
-            raise DeepSeekGatewayError(
-                "I couldn’t get a response from DeepSeek. Please try again or continue on Upwork."
-            ) from exc
+                        events.put(("chunk", delta))
+        except BaseException as exc:  # Keep provider details inside the trusted process.
+            if not cancelled.is_set():
+                events.put(("error", exc))
+        else:
+            if not cancelled.is_set():
+                events.put(("done", None))
         finally:
             if owns_client:
                 client.close()
+
+
+def _timeout_error() -> DeepSeekGatewayError:
+    return DeepSeekGatewayError(
+        "That took longer than expected. You can browse the static portfolio or continue on Upwork."
+    )
+
+
+def _public_gateway_error(error: BaseException) -> DeepSeekGatewayError:
+    if isinstance(error, DeepSeekGatewayError):
+        return error
+    if isinstance(error, (httpx.TimeoutException, TimeoutError)):
+        return _timeout_error()
+    if isinstance(error, httpx.HTTPError):
+        return DeepSeekGatewayError(
+            "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse."
+        )
+    return DeepSeekGatewayError(
+        "I couldn’t get a response from DeepSeek. Please try again or continue on Upwork."
+    )
 
 
 def _extract_delta(event: object) -> str:
@@ -182,4 +255,3 @@ def _read_api_key() -> str | None:
     except Exception:
         secret_value = None
     return secret_value if isinstance(secret_value, str) and secret_value else None
-

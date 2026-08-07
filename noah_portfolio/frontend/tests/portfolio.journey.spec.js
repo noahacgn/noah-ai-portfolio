@@ -34,6 +34,34 @@ test.describe("public portfolio journey", () => {
     expect(new URL(page.url()).search).toBe("");
   });
 
+  test("skills, experience, and contact quick views expose complete public details", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Skills", exact: true }).click();
+    const skills = page.getByRole("region", { name: "Noah's grouped skills" });
+    await expect(skills).toContainText("AI Systems");
+    await expect(skills).toContainText("PostgreSQL/pgvector");
+    await expect(skills).toContainText("Automated Testing");
+
+    await page.getByRole("button", { name: /NW Noah Wang/ }).click();
+    await page.getByRole("button", { name: "Experience", exact: true }).click();
+    const experience = page.getByRole("region", { name: "Noah's public experience timeline" });
+    await expect(experience).toContainText("Merypto (CPcash)");
+    await expect(experience).toContainText("Aug 2024 – Jun 2026");
+    await expect(experience).toContainText("May 2019 – Jul 2020");
+
+    await page.getByRole("button", { name: /NW Noah Wang/ }).click();
+    await page.getByRole("button", { name: "Contact", exact: true }).click();
+    const contact = page.getByRole("region", { name: "Noah's public contact channels" });
+    await expect(contact.getByRole("link", { name: /noahacgn@gmail.com/ })).toHaveAttribute(
+      "href",
+      "mailto:noahacgn@gmail.com",
+    );
+    await expect(contact.getByRole("link", { name: /GitHub/ })).toHaveAttribute(
+      "href",
+      "https://github.com/noahacgn",
+    );
+  });
+
   test("About explains the AI boundary and keyboard close works", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "About", exact: true }).click();
@@ -77,6 +105,28 @@ test.describe("public portfolio journey", () => {
     await expect(page.getByRole("link", { name: /Continue on Upwork/ }).last()).toBeVisible();
   });
 
+  test("follow-ups retain the shareable first question and browser back clears the chat", async ({ page }) => {
+    await page.goto("/");
+    const firstQuestion = "delayed-done: How can Noah help with an AI project?";
+    await page.getByRole("textbox", { name: "Ask about Noah's work" }).fill(firstQuestion);
+    await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
+    await expect(page.getByText(/I’m the AI Portfolio, not Noah himself/)).toBeVisible({ timeout: 20_000 });
+
+    const followUpInput = page.getByRole("textbox", { name: "Ask the AI Portfolio" });
+    const sendButton = page.getByRole("button", { name: "Send question" });
+    await expect(followUpInput).toBeDisabled();
+    await expect(sendButton).toBeDisabled();
+    await expect(followUpInput).toBeEnabled({ timeout: 5_000 });
+    await followUpInput.fill("What about the stack?");
+    await sendButton.click();
+    await expect(page.getByText(/I’m the AI Portfolio, not Noah himself/)).toHaveCount(2, { timeout: 20_000 });
+    expect(new URL(page.url()).searchParams.get("query")).toBe(firstQuestion);
+
+    await page.goBack();
+    await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible({ timeout: 10_000 });
+    expect(new URL(page.url()).search).toBe("");
+  });
+
   test("provider failure leaves a usable static path", async ({ page }) => {
     await page.goto("/");
     const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
@@ -86,6 +136,19 @@ test.describe("public portfolio journey", () => {
     await page.getByRole("button", { name: /NW Noah Wang/ }).click();
     await expect(page.getByRole("heading", { name: /Knowledge Engine/ })).toBeVisible();
     await expect(page.getByRole("link", { name: /Continue on Upwork/ })).toBeVisible();
+  });
+
+  test("absolute timeout and invalid provider streams fail safely", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("textbox", { name: "Ask about Noah's work" }).fill("absolute-timeout");
+    await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
+    await expect(page.getByText(/took longer than expected/)).toBeVisible({ timeout: 10_000 });
+
+    await page.getByRole("button", { name: /NW Noah Wang/ }).click();
+    await page.getByRole("textbox", { name: "Ask about Noah's work" }).fill("invalid provider response");
+    await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
+    await expect(page.getByText(/invalid response/)).toBeVisible({ timeout: 10_000 });
+    await expect(page.getByRole("button", { name: /NW Noah Wang/ })).toBeVisible();
   });
 
   test("language follows the visitor and prompt-injection requests stay in scope", async ({ page }) => {
