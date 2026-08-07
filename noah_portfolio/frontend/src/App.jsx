@@ -3,13 +3,11 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   ChevronRight,
-  Clock3,
   Code2,
   Database,
   Github,
   Layers3,
   Mail,
-  MapPin,
   Menu,
   MessageCircle,
   Send,
@@ -207,29 +205,30 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
     <main className="portfolio-shell home-view">
       <div className="watermark" aria-hidden="true">Noah Wang</div>
       <header className="site-header">
-        <button className="brand-button" type="button" onClick={() => onAction("home")}>
+        <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat("How can Noah help with my AI project?")}>
+          <span className="opportunity-long">Looking for an AI engineer?</span>
+          <span className="opportunity-short">Available</span>
+        </button>
+        <button className="brand-button header-brand" type="button" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
-          <span>Noah Wang</span>
+          <span className="header-brand-name">Noah Wang</span>
         </button>
         <nav className="header-nav" aria-label="Portfolio navigation">
           <button type="button" className="header-link" onClick={onAbout}>
             About
           </button>
-          <a className="header-link" href={PORTFOLIO_REPO} target="_blank" rel="noreferrer">
+          <a className="header-link source-button" href={PORTFOLIO_REPO} target="_blank" rel="noreferrer">
             Source <ExternalArrow />
           </a>
-          <button type="button" className="header-cta" onClick={() => onOpenChat("How can Noah help with my AI project?")}>
-            Looking for an AI engineer? <ExternalArrow />
-          </button>
         </nav>
         <button className="mobile-menu" type="button" aria-label="Open navigation" onClick={onAbout}>
           <Icon icon={Menu} size={20} />
         </button>
       </header>
 
-      <section className="hero-section" aria-labelledby="hero-name">
-        <h2 className="eyebrow hero-eyebrow"><Sparkles aria-hidden="true" size={17} /> AI Portfolio</h2>
-        <h1 id="hero-name">Hey, I&apos;m Noah Wang <span aria-hidden="true">👋</span></h1>
+      <section className="hero-section" aria-labelledby="hero-title">
+        <p className="hero-intro">Hey, I&apos;m Noah Wang <span aria-hidden="true">👋</span></p>
+        <h1 id="hero-title">AI Portfolio</h1>
         <p className="hero-tagline">Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery</p>
         <p className="hero-supporting">
           Seven years of engineering context behind practical AI products. Based in China · UTC+8, available for 30+ hrs/week and contract-to-hire.
@@ -266,12 +265,6 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase }) {
             </button>
           ))}
         </div>
-      </section>
-
-      <section className="facts-strip" aria-label="Quick facts">
-        <div className="fact-item"><MapPin aria-hidden="true" size={17} /><span>China · UTC+8</span></div>
-        <div className="fact-item"><Clock3 aria-hidden="true" size={17} /><span>30+ hrs/week</span></div>
-        <div className="fact-item"><BriefcaseBusiness aria-hidden="true" size={17} /><span>Contract-to-hire welcome</span></div>
       </section>
 
       <section className="projects-section" aria-labelledby="projects-heading">
