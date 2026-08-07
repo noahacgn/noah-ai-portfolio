@@ -2,7 +2,9 @@
 
 面向 Upwork 潜在客户的公开 AI 作品集。首页无需模型即可浏览 Noah Wang 的定位、项目、合作入口与公开联系方式；自由提问由服务端调用 DeepSeek，并持续明确这是 AI Portfolio，而不是 Noah 本人。
 
-目标部署地址：<https://noah-ai-portfolio.streamlit.app>
+在线地址：<https://noah-ai-portfolio.streamlit.app>
+
+公开仓库：<https://github.com/noahacgn/noah-ai-portfolio>
 
 ## 本地运行
 
@@ -50,6 +52,8 @@ npm run test:e2e
 
 ## Streamlit Community Cloud
 
+当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。根目录的 `requirements.txt` 让 Community Cloud 使用 uv/pip 安装当前项目，依赖版本仍以 `pyproject.toml` 为唯一来源。
+
 1. 将公开仓库连接到 Streamlit Community Cloud。
 2. Main file path 选择 `streamlit_app.py`。
 3. 在 Advanced settings → Secrets 中配置：
@@ -68,4 +72,3 @@ npm run test:e2e
 - `docs/resumes/`、本地 Secrets、访客问题和模型回答不会进入公开部署产物或持久化数据库。
 - 浏览器只与 Streamlit 应用通信；DeepSeek Key 不会发送到前端。
 - 本仓库未提供许可证，因此页面使用 `Source Available`，不宣称 Open Source。
-
