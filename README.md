@@ -52,7 +52,7 @@ npm run test:e2e
 
 ## Streamlit Community Cloud
 
-当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。根目录的 `requirements.txt` 让 Community Cloud 使用 uv/pip 安装当前项目，依赖版本仍以 `pyproject.toml` 为唯一来源。
+当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。`requirements.txt` 是依赖版本的唯一来源；Community Cloud 直接用 uv/pip 读取它，setuptools 则通过 `pyproject.toml` 的动态依赖配置复用它。
 
 1. 将公开仓库连接到 Streamlit Community Cloud。
 2. Main file path 选择 `streamlit_app.py`。
