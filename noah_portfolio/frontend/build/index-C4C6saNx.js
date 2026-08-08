@@ -12432,7 +12432,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
         ((v == null ? void 0 : v.pending) || q) && !(v != null && v.streamingText) && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
           /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsxs("div", { className: "message-bubble typing-bubble", children: [
-            /* @__PURE__ */ m.jsx("span", { className: "typing-label", children: "Thinking with DeepSeek" }),
+            /* @__PURE__ */ m.jsx("span", { className: "typing-label", children: "Preparing a response" }),
             /* @__PURE__ */ m.jsxs("span", { className: "typing-dots", "aria-label": "Generating", children: [
               /* @__PURE__ */ m.jsx("i", {}),
               /* @__PURE__ */ m.jsx("i", {}),
@@ -12509,7 +12509,7 @@ function t0({ onClose: v, returnFocusRef: c, profile: s }) {
     /* @__PURE__ */ m.jsxs("p", { children: [
       "It uses a hand-curated set of ",
       o,
-      "'s public portfolio facts and DeepSeek to generate a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on ",
+      "'s public portfolio facts and an AI model to create a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on ",
       o,
       "'s behalf."
     ] }),

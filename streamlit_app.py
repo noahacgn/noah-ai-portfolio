@@ -126,7 +126,7 @@ def _run_stream_worker(
         events.put(
             (
                 "error",
-                "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse.",
+                "AI chat is temporarily unavailable. The static portfolio is still ready to browse.",
             )
         )
     else:
@@ -168,11 +168,11 @@ def _poll_stream_worker() -> bool:
             st.session_state.portfolio_show_upwork = _should_show_upwork(query, answer)
     elif kind == "done":
         st.session_state.portfolio_error = (
-            "DeepSeek returned an empty answer. Please try again or continue on Upwork."
+            "The AI service returned an empty answer. Please try again or continue on Upwork."
         )
     else:
         st.session_state.portfolio_error = value or (
-            "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse."
+            "AI chat is temporarily unavailable. The static portfolio is still ready to browse."
         )
         st.session_state.portfolio_show_upwork = False
 

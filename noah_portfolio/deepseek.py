@@ -72,7 +72,7 @@ class DeepSeekGateway:
 
         if not self._api_key:
             raise DeepSeekGatewayError(
-                "DeepSeek is not configured right now. You can still browse the portfolio, "
+                "AI chat is not available right now. You can still browse the portfolio, "
                 "or continue on Upwork to ask Noah directly."
             )
 
@@ -150,7 +150,7 @@ class DeepSeekGateway:
 
             if not saw_content:
                 raise DeepSeekGatewayError(
-                    "DeepSeek returned an empty answer. Please try again or continue on Upwork."
+                    "The AI service returned an empty answer. Please try again or continue on Upwork."
                 )
         finally:
             cancelled.set()
@@ -198,7 +198,7 @@ class DeepSeekGateway:
                         event = json.loads(data)
                     except json.JSONDecodeError as exc:
                         raise DeepSeekGatewayError(
-                            "DeepSeek returned an invalid response. Please try again or continue on Upwork."
+                            "The AI service returned an invalid response. Please try again or continue on Upwork."
                         ) from exc
                     delta = _extract_delta(event)
                     if delta:
@@ -231,10 +231,10 @@ def _public_gateway_error(error: BaseException) -> DeepSeekGatewayError:
         return _timeout_error()
     if isinstance(error, httpx.HTTPError):
         return DeepSeekGatewayError(
-            "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse."
+            "AI chat is temporarily unavailable. The static portfolio is still ready to browse."
         )
     return DeepSeekGatewayError(
-        "I couldn’t get a response from DeepSeek. Please try again or continue on Upwork."
+        "I couldn’t generate a response right now. Please try again or continue on Upwork."
     )
 
 
@@ -256,14 +256,14 @@ def _extract_delta(event: object) -> str:
 
 def _provider_status_message(status_code: int) -> str:
     if status_code in {401, 403}:
-        return "DeepSeek authentication needs attention. You can still browse the portfolio or continue on Upwork."
+        return "AI chat is temporarily unavailable. You can still browse the portfolio or continue on Upwork."
     if status_code == 402:
-        return "DeepSeek balance is unavailable right now. The static portfolio is still ready to browse."
+        return "AI chat is temporarily unavailable. The static portfolio is still ready to browse."
     if status_code == 429:
-        return "DeepSeek is busy right now. Please try again in a moment or continue on Upwork."
+        return "AI chat is busy right now. Please try again in a moment or continue on Upwork."
     if status_code >= 500:
-        return "DeepSeek is temporarily unavailable. The static portfolio is still ready to browse."
-    return "DeepSeek could not complete that answer. Please try again or continue on Upwork."
+        return "AI chat is temporarily unavailable. The static portfolio is still ready to browse."
+    return "AI chat could not complete that answer. Please try again or continue on Upwork."
 
 
 def _read_api_key() -> str | None:

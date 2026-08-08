@@ -74,7 +74,7 @@ test.describe("public portfolio journey", () => {
     await page.getByRole("button", { name: "About", exact: true }).click();
     const dialog = page.getByRole("dialog", { name: /This is an AI Portfolio/ });
     await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText("DeepSeek");
+    await expect(dialog).toContainText("an AI model");
     await expect(dialog).toContainText("not Noah");
     await expect(dialog).toContainText("Upwork");
     await page.keyboard.press("Escape");
@@ -101,7 +101,7 @@ test.describe("public portfolio journey", () => {
     const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
     await input.fill("slow: How can Noah help with my AI project?");
     const clickPromise = page.getByRole("button", { name: "Ask the AI Portfolio" }).click({ noWaitAfter: true });
-    await expect(page.getByText("Thinking with DeepSeek")).toBeVisible({ timeout: 8_000 });
+    await expect(page.getByText("Preparing a response")).toBeVisible({ timeout: 8_000 });
     await clickPromise;
     await expect(
       page.getByText(/I’m the AI Portfolio, not Noah himself/),
@@ -139,7 +139,7 @@ test.describe("public portfolio journey", () => {
     const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
     await input.fill("Please simulate a balance failure");
     await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
-    await expect(page.getByText(/DeepSeek balance is unavailable/)).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByText(/AI chat is temporarily unavailable/)).toBeVisible({ timeout: 20_000 });
     await page.getByRole("button", { name: "Portfolio home" }).click();
     await expect(page.getByRole("heading", { name: /Knowledge Engine/ })).toBeVisible();
     await expect(page.getByRole("link", { name: /Continue on Upwork/ })).toBeVisible();

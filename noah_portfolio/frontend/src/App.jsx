@@ -430,7 +430,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
           ))}
           {data?.staticAction && <StaticDetails action={data.staticAction} profile={profile} />}
           {data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble streaming-bubble"><MessageText>{data.streamingText}</MessageText><span className="streaming-caret" aria-label="Generating" /></div></div>}
-          {(data?.pending || localPending) && !data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble typing-bubble"><span className="typing-label">Thinking with DeepSeek</span><span className="typing-dots" aria-label="Generating"><i /><i /><i /></span></div></div>}
+          {(data?.pending || localPending) && !data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble typing-bubble"><span className="typing-label">Preparing a response</span><span className="typing-dots" aria-label="Generating"><i /><i /><i /></span></div></div>}
           {data?.error && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble error-bubble"><MessageText>{data.error}</MessageText><button className="inline-action" type="button" onClick={onHome}>Browse the static portfolio <ExternalArrow /></button></div></div>}
           {localNotice && <p className="input-notice" role="alert">{localNotice}</p>}
           <div ref={endRef} />
@@ -473,7 +473,7 @@ function AboutModal({ onClose, returnFocusRef, profile }) {
         <div className="modal-icon"><Sparkles size={22} /></div>
         <p className="section-kicker">A small note on this site</p>
         <h2 id="about-title">This is an AI Portfolio, not {firstName}.</h2>
-        <p>It uses a hand-curated set of {firstName}&apos;s public portfolio facts and DeepSeek to generate a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on {firstName}&apos;s behalf.</p>
+        <p>It uses a hand-curated set of {firstName}&apos;s public portfolio facts and an AI model to create a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on {firstName}&apos;s behalf.</p>
         <div className="modal-boundary"><ShieldCheck size={18} /><span>Use it to get oriented; confirm scope, timing, rate, and terms with {firstName} on Upwork.</span></div>
         <a className="upwork-button modal-action" href={profile.upworkUrl} target="_blank" rel="noreferrer">Open {firstName}&apos;s Upwork profile <ExternalArrow /></a>
       </section>
