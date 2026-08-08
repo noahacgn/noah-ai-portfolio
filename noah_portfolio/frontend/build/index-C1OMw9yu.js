@@ -12503,31 +12503,29 @@ function e0({ onClose: v, returnFocusRef: c, profile: s }) {
   }, children: /* @__PURE__ */ m.jsxs("section", { className: "about-modal", role: "dialog", "aria-modal": "true", "aria-labelledby": "about-title", children: [
     /* @__PURE__ */ m.jsx("button", { ref: f, className: "modal-close", type: "button", "aria-label": "Close About", onClick: v, children: /* @__PURE__ */ m.jsx(Yv, { size: 20 }) }),
     /* @__PURE__ */ m.jsx("div", { className: "modal-icon", children: /* @__PURE__ */ m.jsx(Vh, { size: 22 }) }),
-    /* @__PURE__ */ m.jsx("p", { className: "section-kicker", children: "A small note on this site" }),
+    /* @__PURE__ */ m.jsx("p", { className: "section-kicker", children: "About this portfolio" }),
     /* @__PURE__ */ m.jsxs("h2", { id: "about-title", children: [
-      "This is an AI Portfolio, not ",
+      "A conversational guide to ",
       o,
-      "."
+      "'s work."
     ] }),
     /* @__PURE__ */ m.jsxs("p", { children: [
-      "It uses a hand-curated set of ",
+      "Ask about ",
       o,
-      "'s public portfolio facts and an AI model to create a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on ",
-      o,
-      "'s behalf."
+      "'s projects, experience, technical decisions, and approach to building AI and backend systems. Answers are generated from a curated set of public information about his work."
     ] }),
     /* @__PURE__ */ m.jsxs("div", { className: "modal-boundary", children: [
       /* @__PURE__ */ m.jsx(Lv, { size: 18 }),
       /* @__PURE__ */ m.jsxs("span", { children: [
-        "Use it to get oriented; confirm scope, timing, rate, and terms with ",
+        "AI-generated answers may be incomplete. Confirm availability, scope, rates, and project terms directly with ",
         o,
-        " on Upwork."
+        "."
       ] })
     ] }),
     /* @__PURE__ */ m.jsxs("a", { className: "upwork-button modal-action", href: s.upworkUrl, target: "_blank", rel: "noreferrer", children: [
-      "Open ",
+      "Contact ",
       o,
-      "'s Upwork profile ",
+      " on Upwork ",
       /* @__PURE__ */ m.jsx(me, {})
     ] })
   ] }) });

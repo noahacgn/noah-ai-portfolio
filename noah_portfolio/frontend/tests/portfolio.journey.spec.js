@@ -72,11 +72,14 @@ test.describe("public portfolio journey", () => {
   test("About explains the AI boundary and keyboard close works", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "About", exact: true }).click();
-    const dialog = page.getByRole("dialog", { name: /This is an AI Portfolio/ });
+    const dialog = page.getByRole("dialog", { name: /A conversational guide to Noah's work/ });
     await expect(dialog).toBeVisible();
-    await expect(dialog).toContainText("an AI model");
-    await expect(dialog).toContainText("not Noah");
-    await expect(dialog).toContainText("Upwork");
+    await expect(dialog).toContainText("curated set of public information");
+    await expect(dialog).toContainText("AI-generated answers may be incomplete");
+    await expect(dialog.getByRole("link", { name: "Contact Noah on Upwork" })).toHaveAttribute(
+      "href",
+      UPWORK_URL,
+    );
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
   });

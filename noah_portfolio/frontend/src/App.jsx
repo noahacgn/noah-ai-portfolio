@@ -481,11 +481,11 @@ function AboutModal({ onClose, returnFocusRef, profile }) {
       <section className="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-title">
         <button ref={closeRef} className="modal-close" type="button" aria-label="Close About" onClick={onClose}><X size={20} /></button>
         <div className="modal-icon"><Sparkles size={22} /></div>
-        <p className="section-kicker">A small note on this site</p>
-        <h2 id="about-title">This is an AI Portfolio, not {firstName}.</h2>
-        <p>It uses a hand-curated set of {firstName}&apos;s public portfolio facts and an AI model to create a conversational introduction. It does not read private resumes, browse a hidden knowledge base, or make commitments on {firstName}&apos;s behalf.</p>
-        <div className="modal-boundary"><ShieldCheck size={18} /><span>Use it to get oriented; confirm scope, timing, rate, and terms with {firstName} on Upwork.</span></div>
-        <a className="upwork-button modal-action" href={profile.upworkUrl} target="_blank" rel="noreferrer">Open {firstName}&apos;s Upwork profile <ExternalArrow /></a>
+        <p className="section-kicker">About this portfolio</p>
+        <h2 id="about-title">A conversational guide to {firstName}&apos;s work.</h2>
+        <p>Ask about {firstName}&apos;s projects, experience, technical decisions, and approach to building AI and backend systems. Answers are generated from a curated set of public information about his work.</p>
+        <div className="modal-boundary"><ShieldCheck size={18} /><span>AI-generated answers may be incomplete. Confirm availability, scope, rates, and project terms directly with {firstName}.</span></div>
+        <a className="upwork-button modal-action" href={profile.upworkUrl} target="_blank" rel="noreferrer">Contact {firstName} on Upwork <ExternalArrow /></a>
       </section>
     </div>
   );
