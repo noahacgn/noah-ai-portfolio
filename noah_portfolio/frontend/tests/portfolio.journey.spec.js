@@ -16,6 +16,8 @@ test.describe("public portfolio journey", () => {
       /^data:image\/svg\+xml;base64,/,
     );
     await expect(page.locator(".site-header")).not.toContainText("Noah Wang");
+    await expect(page.getByRole("button", { name: "Looking for a talent?" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /^Source/ })).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Knowledge Engine/ })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Quad Agent/ })).toBeVisible();

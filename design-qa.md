@@ -16,7 +16,7 @@
 - 对话态明确显示 AI Portfolio 身份，保留自然的一问一答结构、固定输入入口以及返回首页的控制。
 - Skills、Experience、Contact 与 Projects 均在对话态补充结构化公开资料，同时继续由 `noah_portfolio/profile.py` 作为唯一资料源。
 - 移动端无水平溢出；头像与文字按断点缩小，输入框和主要快捷入口在首屏内可见。
-- About、Source、Upwork、邮箱、GitHub、项目卡片、快捷入口、品牌返回、键盘关闭和错误恢复均有自动化覆盖。
+- About、Upwork、邮箱、GitHub、项目卡片、快捷入口、品牌返回、键盘关闭和错误恢复均有自动化覆盖；顶部不再展示 Source 入口。
 - 页面图片均加载为真实资源；应用控制台未发现自身产生的 error 或 warning。
 - 生产地址已完成首页、Skills 快捷入口、连续 DeepSeek 对话和 GitHub 项目新标签页冒烟；浏览器请求未直接连接 DeepSeek 域名。
 

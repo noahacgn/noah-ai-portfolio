@@ -61,14 +61,14 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 39. As a 潜在客户, I want 作品集不把 Quad Agent 标记为 Local-first, so that 页面文案聚焦对客户更重要的交付价值
 40. As a 潜在客户, I want 点击 Ask About My Process 后在对话中看到五步合作流程, so that 我能理解 Noah 如何推进项目
 41. As a 潜在客户, I want 合作流程涵盖需求与数据、架构与风险、最小纵向切片、可靠性与测试、部署与交接, so that 我能预期一个具体的合作方式
-42. As a 潜在客户, I want 点击顶部 Looking for an AI engineer? 后先进入一条相关对话, so that 我可以在离开站点前理解 Noah 如何帮助我的 AI 项目
+42. As a 潜在客户, I want 点击顶部 Looking for a talent? 后先进入一条相关对话, so that 我可以在离开站点前理解 Noah 如何帮助我的 AI 项目
 43. As a 潜在客户, I want 在相关回答和页面底部看到明确的 Upwork 行动入口, so that 我能带着上下文回到 Upwork 联系 Noah
 44. As a 潜在客户, I want Upwork 是最突出的合作渠道, so that 我知道正式沟通应在哪里继续
 45. As a 潜在客户, I want 看到 `noahacgn@gmail.com` 作为辅助邮箱, so that 我有一个直接联系选项
 46. As a 潜在客户, I want 看到 Noah 的 GitHub 入口, so that 我可以继续浏览他的公开项目
 47. As a 潜在客户, I want 页面不展示电话和未经确认的社交账号, so that Noah 的私人信息不会被不必要地公开
-48. As a 潜在客户, I want 顶部 Source 按钮打开作品集自身的 GitHub 仓库, so that 我能查看这个 AI 作品集的源码
-49. As a 潜在客户, I want Source 按钮不展示 Star 数量, so that 页面不会依赖容易失败的 GitHub 计数请求
+48. As a 潜在客户, I want 顶部不展示 Source 按钮, so that 导航保持精简并聚焦 About
+49. As a 潜在客户, I want 桌面和平板宽度下仍能看到 About 入口, so that 精简导航后仍能了解 AI 作品集的边界
 50. As a 潜在客户, I want 对话页底部的 `@noahacgn` 打开 GitHub, so that 作者身份和公开源码入口保持一致
 51. As a 潜在客户, I want About 弹窗简洁说明 AI 属性、公开资料来源、DeepSeek 生成和承诺边界, so that 我能理解回答是如何产生的
 52. As a 潜在客户, I want 输入框附近看到不要提交秘密信息且消息会发送给 DeepSeek 的提示, so that 我能做出知情选择
@@ -120,8 +120,8 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - Hero 固定使用 `Hey, I'm Noah Wang 👋`、`AI Portfolio` 和 `Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery`。
 - 以 Noah 当前 Upwork 头像为人物依据，通过图像生成制作大号圆形 3D/Memoji 风格头像；头像只做轻微漂浮动画，并在对话视图复用较小版本。不得生成伪视频或暗示实时真人形象。
 - 首页快捷入口固定为 `Me / Projects / Skills / Experience / Contact`；目标站点的 Fun 被 Experience 替换，不出现 Fit。
-- 顶部黑色 GitHub 按钮改为 `Source`，打开 `https://github.com/noahacgn/noah-ai-portfolio`，不显示 Star 或计数。
-- 顶部 `Looking for an AI engineer?` 进入对话，并使用与“How can Noah help with my AI project?”含义一致的初始问题；它不直接把访客送离站点。
+- 顶部不展示 `Source` 按钮；作品集仓库地址仍可作为 AI 回答的公开资料。
+- 顶部 `Looking for a talent?` 进入对话，并使用与“How can Noah help with my AI project?”含义一致的初始问题；它不直接把访客送离站点。
 - 首页项目区只显示一行两列的两个项目卡片。卡片整体可点击、在新标签页打开 GitHub，并显示 `View on GitHub` 与 `Source Available`。
 - 项目区底部提供 `Ask About My Process`，点击后在对话中展示合作流程；首页不增加独立的静态流程区。
 - 页面底部保留明确的 Upwork CTA；对话答案可根据语境再次显示 Upwork CTA。
@@ -192,7 +192,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 
 ### 仓库与部署
 
-- 公开仓库目标为 `noahacgn/noah-ai-portfolio`，Source 按钮与聊天页作者链接必须指向该公开身份。
+- 公开仓库目标为 `noahacgn/noah-ai-portfolio`，聊天页作者链接必须指向该公开身份。
 - 仓库不添加许可证；页面因此不能自称 Open Source。
 - 私有简历必须继续被 Git 排除，并在推送前验证整个待推送历史不包含这些文件。
 - 使用 Streamlit Community Cloud 免费部署，期望公开地址为 `https://noah-ai-portfolio.streamlit.app`；若名称不可用，应保留最接近且清晰的替代地址并更新公开链接。
@@ -208,7 +208,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - 同一 seam 通过可编程假实现覆盖正常分块流式输出、慢响应、30 秒超时、余额不足、供应商错误、无效响应和提示注入场景。测试不能调用真实 DeepSeek 或依赖真实余额。
 - 在浏览器网络检查中验证前端只连接 Streamlit 应用，不向 DeepSeek 域名发请求，也不在 DOM、网络载荷、脚本、日志或查询参数中出现 `DEEPSEEK_API_KEY` 的值。
 - 静态作品面必须在未配置 DeepSeek、假实现报错和对话失败三种状态下保持完整可用。
-- 外链测试验证 Source、两个项目、Upwork、邮箱和 `@noahacgn` 的目标及新标签行为，但不把第三方页面的可用性作为应用测试成功条件。
+- 外链测试验证两个项目、Upwork、邮箱和 `@noahacgn` 的目标及新标签行为，并验证顶部不出现 Source 入口，但不把第三方页面的可用性作为应用测试成功条件。
 - 视觉验收属于同一浏览器旅程的人工设计 QA：分别在一致的桌面与移动端视口捕获目标站点和实现的相同状态，将两张图放入同一比较输入，检查字体、字重、留白、半径、边框、头像尺寸、卡片密度、裁切、动画稳定性和布局跳动，修正后再次比较。
 - 可访问性验收覆盖键盘导航、可见焦点、弹窗关闭与焦点返回、输入标签、链接语义和基本颜色对比。
 - 真实 DeepSeek 只提供显式、非默认的本地冒烟验收：在已经设置 `DEEPSEEK_API_KEY` 的环境中发送一个无敏感信息的短问题，确认选定模型能够流式返回。它不进入默认测试或 CI，不记录 Key、完整请求或完整响应，也不用于精确文本断言。

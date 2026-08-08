@@ -21,7 +21,6 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "githubHandle": "@noahacgn",
     "upworkUrl": UPWORK_URL,
     "githubUrl": GITHUB_URL,
-    "portfolioRepoUrl": PORTFOLIO_REPO_URL,
     "email": EMAIL,
     "projects": [
         {

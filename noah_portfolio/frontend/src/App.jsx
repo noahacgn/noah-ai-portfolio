@@ -36,7 +36,6 @@ const EMPTY_PROFILE = {
   githubHandle: "",
   upworkUrl: "#",
   githubUrl: "#",
-  portfolioRepoUrl: "#",
   email: "",
   projects: [],
   skills: [],
@@ -197,8 +196,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
     <main className="portfolio-shell home-view">
       <header className="site-header">
         <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my AI project?`)}>
-          <span className="opportunity-long">Looking for an AI engineer?</span>
-          <span className="opportunity-short">AI work?</span>
+          <span className="opportunity-long">Looking for a talent?</span>
+          <span className="opportunity-short">Talent?</span>
         </button>
         <button className="brand-button header-brand" type="button" aria-label="Portfolio home" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
@@ -207,9 +206,6 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
           <button type="button" className="header-link" onClick={onAbout}>
             About
           </button>
-          <a className="header-link source-button" href={profile.portfolioRepoUrl} target="_blank" rel="noreferrer">
-            Source <ExternalArrow />
-          </a>
         </nav>
         <button className="mobile-menu" type="button" aria-label="Open navigation" onClick={onAbout}>
           <Icon icon={Menu} size={20} />
