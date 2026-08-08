@@ -6,14 +6,23 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
   await expect(
     page.getByText(
-      "Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery",
+      "AI Systems Engineer · Agents, RAG & Full-Stack Delivery",
     ),
+  ).toBeVisible();
+  await expect(page.getByText(/Seven years of engineering context behind/)).toHaveCount(0);
+  await expect(page.getByRole("textbox", { name: "Ask about Noah's work" })).toHaveAttribute(
+    "placeholder",
+    "Ask about my work…",
+  );
+  await expect(
+    page.getByText("AI-generated · Don't share sensitive information", { exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: "Me", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Projects", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Skills", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Experience", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Contact", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Production AI Work" })).toBeVisible();
   await expect(
     page.getByRole("heading", { name: /Knowledge Engine/ }),
   ).toBeVisible();

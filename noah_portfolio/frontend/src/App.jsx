@@ -35,7 +35,6 @@ const EMPTY_PROFILE = {
   name: "Portfolio",
   githubHandle: "",
   focus: "AI Portfolio",
-  heroSupporting: "",
   upworkUrl: "#",
   githubUrl: "#",
   portfolioRepoUrl: "#",
@@ -224,7 +223,6 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
         <h1 id="hero-title">AI Portfolio</h1>
         <p className="hero-tagline">{profile.focus}</p>
-        <p className="hero-supporting">{profile.heroSupporting}</p>
         <div className="hero-avatar-wrap">
           <div className="avatar-orbit orbit-one" aria-hidden="true" />
           <div className="avatar-orbit orbit-two" aria-hidden="true" />
@@ -239,7 +237,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
                 value={question}
                 maxLength={2000}
                 onChange={(event) => setQuestion(event.target.value)}
-                placeholder="Ask me anything about projects, skills, or process…"
+                placeholder="Ask about my work…"
                 autoComplete="off"
               />
               <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
@@ -247,7 +245,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
               </button>
             </div>
             {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
-            <p className="privacy-note">AI-generated answers · Don&apos;t share secrets · Messages are sent to DeepSeek</p>
+            <p className="privacy-note">AI-generated · Don&apos;t share sensitive information</p>
           </form>
           <div className="quick-grid" aria-label="Quick portfolio views">
             {QUICK_ACTIONS.map(({ id, label, icon }) => (
@@ -269,10 +267,10 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         <div className="section-heading-row scroll-reveal" data-scroll-reveal>
           <div>
             <p className="section-kicker">Selected work</p>
-            <h2 id="projects-heading">Projects that show the whole delivery loop</h2>
+            <h2 id="projects-heading">Production AI Work</h2>
           </div>
           <button type="button" className="text-action" onClick={() => onAction("projects")}>
-            Ask about the projects <ExternalArrow />
+            Ask about projects <ExternalArrow />
           </button>
         </div>
         <div className="project-grid scroll-reveal" data-scroll-reveal>

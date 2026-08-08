@@ -11,7 +11,7 @@
 ## 结果
 
 - 桌面首屏保留了目标站点的白底、超大黑色标题、居中 3D 头像、圆角提问框、五个快捷卡片和淡色姓名水印。
-- Noah 的职业定位与工程背景比目标站点更完整，因此首屏在相同视觉语言下增加了两行必要文案；未复制目标站点的错误内容、无效 About 行为或不适合本项目的 Fun 入口。
+- Noah 的首屏保留一条精简职业定位，背景、地点与时区通过快捷入口和对话渐进披露；未复制目标站点的错误内容、无效 About 行为或不适合本项目的 Fun 入口。
 - 项目区使用 Knowledge Engine 与 Quad Agent 的真实界面截图，卡片整体可点击并在新标签页打开 GitHub。
 - 对话态明确显示 AI Portfolio 身份，保留自然的一问一答结构、固定输入入口以及返回首页的控制。
 - Skills、Experience、Contact 与 Projects 均在对话态补充结构化公开资料，同时继续由 `noah_portfolio/profile.py` 作为唯一资料源。
@@ -103,5 +103,26 @@
 - 修正后证据：`08-target-scroll-450.png` 与 `10-implementation-scroll-450.png` 在同一视口、同一滚动位置下呈现一致的中间态；自动化滚动断言和浏览器运行时数值均通过。
 - 第一张实现中间态截图 `09-implementation-scroll-450.png` 在入场动画稳定前截取，项目标题尚未绘制；确认元素已进入 `is-visible` 后等待 700ms 并重拍为 `10-implementation-scroll-450.png`，该问题仅属于证据捕捉时序，不是遗留实现缺陷。
 - 当前无可执行的 P0、P1 或 P2 问题，也无需要在本次交付前处理的 P3 抛光项。
+
+## 文案密度精简增量验收
+
+- 视觉事实来源：`.scratch/noah-ai-portfolio/artifacts/audit/text-density/02-target-kayverma-hero.png`、`.scratch/noah-ai-portfolio/artifacts/audit/text-density/04-target-kayverma-projects.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/source-target-mobile-390x844.png`。
+- 浏览器渲染实现：`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/implementation-pass1-desktop-1280x720.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/implementation-pass1-projects-1280x720.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/implementation-pass1-mobile-390x844.png`。
+- 合并对照证据：`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/comparison-pass1-desktop-1280x720.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/comparison-pass1-projects-1280x720.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/text-density/comparison-pass1-mobile-390x844.png`。
+- 视口与状态：桌面端 1280 × 720，分别对照首页静止态和点击 `Explore Projects` 后的项目区；移动端 390 × 844，对照首页静止态。
+- 全景对照：实现删除了七年背景、地点与时区的首屏说明，只保留一条职业定位；头像与输入框继续保持目标站点的核心纵向节奏。项目区改用 `Production AI Work`、`Knowledge Engine` 和 `Quad Agent` 短标题，卡片正文均压缩为一句话。
+- 聚焦对照：三张合并图以原始像素并排呈现，标题、定位、输入提示、安全说明、项目标题和卡片正文均可直接判读，因此不需要额外裁切局部图。
+- 字体与排版：沿用既有系统字体和字重；桌面职业定位保持单行，移动端自然换为两行，没有截断、重叠或水平溢出。项目标题不再发生不必要的两行换行。
+- 间距与布局：删除说明行后用头像上下留白恢复目标站点的呼吸感，桌面输入框仍与目标站点处于同一纵向区域；移动端标题、头像、输入框、安全说明和五个快捷入口均可在首屏内完整浏览。
+- 颜色与视觉变量：本次未改动颜色、渐变、阴影或交互状态变量；钴蓝头像、白底、紫色强调与滚动渐变保持不变。
+- 图片与资产：头像和两个真实项目截图未改动，裁切、清晰度、遮罩和加载状态均保持原实现，没有新增占位图、手绘图形或替代资产。
+- 文案与信息架构：首屏输入提示缩为 `Ask about my work…`，安全说明缩为 `AI-generated · Don't share sensitive information`；DeepSeek 提供商说明继续保留在 About 中，详情通过快捷入口和对话渐进披露。
+- 无障碍：精简可见文案时保留了输入框的隐藏标签、按钮语义、图片替代文本、键盘焦点路径和必要的安全提示；移动端 About 仍能说明 AI 身份与 DeepSeek 边界。
+- 交互与运行时：`Explore Projects`、Me 快捷入口、品牌返回、移动端 About 打开与关闭均在浏览器中通过；控制台日志为空。类型检查和 16 项端到端测试通过。
+
+## 文案密度精简比较历史
+
+- 第一轮同视口比较未发现可执行的 P0、P1 或 P2 问题，因此不需要视觉修正迭代。
+- [P3] 移动端职业定位会自然换为两行；它仍是唯一一条定位信息，且没有挤压主操作或导致溢出，因此作为 Noah 相对目标站点的必要个性化信息接受。
 
 final result: passed

@@ -301,20 +301,12 @@ button {
   line-height: 1.24;
 }
 
-.hero-supporting {
-  max-width: 1040px;
-  margin: 6px auto 0;
-  color: #777;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
 .hero-avatar-wrap {
   position: relative;
   display: grid;
   width: min(340px, 71vw);
   aspect-ratio: 1;
-  margin: 10px auto 12px;
+  margin: 16px auto 34px;
   place-items: center;
 }
 
@@ -1382,17 +1374,10 @@ button {
     line-height: 1.25;
   }
 
-  .hero-supporting {
-    max-width: 350px;
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
   .hero-avatar-wrap {
     width: min(250px, 68vw);
     margin-top: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 24px;
   }
 
   .question-input-row {

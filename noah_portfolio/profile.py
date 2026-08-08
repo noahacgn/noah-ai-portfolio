@@ -19,8 +19,7 @@ EMAIL: Final = "noahacgn@gmail.com"
 PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "name": "Noah Wang",
     "githubHandle": "@noahacgn",
-    "focus": "Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery",
-    "heroSupporting": "Seven years of engineering context behind practical AI products. Based in China · UTC+8.",
+    "focus": "AI Systems Engineer · Agents, RAG & Full-Stack Delivery",
     "upworkUrl": UPWORK_URL,
     "githubUrl": GITHUB_URL,
     "portfolioRepoUrl": PORTFOLIO_REPO_URL,
@@ -28,11 +27,10 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "projects": [
         {
             "id": "knowledge-engine",
-            "title": "Knowledge Engine — Evidence-First Enterprise RAG Platform",
+            "title": "Knowledge Engine",
             "description": (
-                "A production-oriented, source-available reference for grounded enterprise "
-                "knowledge workflows: LangGraph orchestration, hybrid retrieval, authorization "
-                "boundaries, controlled queries, and reliable ingestion."
+                "A source-available enterprise RAG reference for grounded answers, "
+                "authorization boundaries, and reliable ingestion."
             ),
             "href": "https://github.com/noahacgn/knowledge-engine",
             "visual": "knowledge-grounded.webp",
@@ -40,11 +38,10 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
         },
         {
             "id": "quad-agent",
-            "title": "Quad Agent — Full-Stack LangGraph AI Agent Workspace",
+            "title": "Quad Agent",
             "description": (
-                "A full-stack workspace for practical agent workflows, including web search, "
-                "file RAG, presentation building, deep research, replayable streaming events, "
-                "and human-in-the-loop steps."
+                "A full-stack LangGraph workspace for web search, file RAG, presentations, "
+                "deep research, and human review."
             ),
             "href": "https://github.com/noahacgn/quad-agent",
             "visual": "quad-web-search.gif",
@@ -166,7 +163,7 @@ Name: Noah Wang
 Location/timezone: China · UTC+8
 Experience: 7 years of engineering experience
 Availability: 30+ hrs/week; contract-to-hire welcome; public starting rate $25/hr when asked
-Focus: Production AI Systems Engineer — Agents, RAG, and Full-Stack Delivery
+Focus: AI Systems Engineer · Agents, RAG & Full-Stack Delivery
 Background: payments, wallets, blockchain, e-commerce, and banking backends
 Supplementary engineering background: Java, Spring, Redis, RabbitMQ, concurrency, distributed systems
 Employers: Merypto (CPcash), Aug 2024–Jun 2026; SandPay, Oct 2021–May 2024; Shanghai Jibeike, Oct 2020–Aug 2021; Xiamen Ruanyun, May 2019–Jul 2020

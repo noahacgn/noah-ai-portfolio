@@ -12068,7 +12068,6 @@ const Fv = [
   name: "Portfolio",
   githubHandle: "",
   focus: "AI Portfolio",
-  heroSupporting: "",
   upworkUrl: "#",
   githubUrl: "#",
   portfolioRepoUrl: "#",
@@ -12215,7 +12214,6 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
       ] }),
       /* @__PURE__ */ m.jsx("h1", { id: "hero-title", children: "AI Portfolio" }),
       /* @__PURE__ */ m.jsx("p", { className: "hero-tagline", children: o.focus }),
-      /* @__PURE__ */ m.jsx("p", { className: "hero-supporting", children: o.heroSupporting }),
       /* @__PURE__ */ m.jsxs("div", { className: "hero-avatar-wrap", children: [
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-one", "aria-hidden": "true" }),
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-two", "aria-hidden": "true" }),
@@ -12236,7 +12234,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
                 value: g,
                 maxLength: 2e3,
                 onChange: (q) => x(q.target.value),
-                placeholder: "Ask me anything about projects, skills, or process…",
+                placeholder: "Ask about my work…",
                 autoComplete: "off"
               }
             ),
@@ -12246,7 +12244,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
             g.length.toLocaleString(),
             " / 2,000"
           ] }),
-          /* @__PURE__ */ m.jsx("p", { className: "privacy-note", children: "AI-generated answers · Don't share secrets · Messages are sent to DeepSeek" })
+          /* @__PURE__ */ m.jsx("p", { className: "privacy-note", children: "AI-generated · Don't share sensitive information" })
         ] }),
         /* @__PURE__ */ m.jsx("div", { className: "quick-grid", "aria-label": "Quick portfolio views", children: Fv.map(({ id: q, label: $, icon: st }) => /* @__PURE__ */ m.jsxs("button", { className: "quick-card", type: "button", onClick: () => v(q), children: [
           /* @__PURE__ */ m.jsx(Ua, { icon: st, size: 19 }),
@@ -12263,10 +12261,10 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
       /* @__PURE__ */ m.jsxs("div", { className: "section-heading-row scroll-reveal", "data-scroll-reveal": !0, children: [
         /* @__PURE__ */ m.jsxs("div", { children: [
           /* @__PURE__ */ m.jsx("p", { className: "section-kicker", children: "Selected work" }),
-          /* @__PURE__ */ m.jsx("h2", { id: "projects-heading", children: "Projects that show the whole delivery loop" })
+          /* @__PURE__ */ m.jsx("h2", { id: "projects-heading", children: "Production AI Work" })
         ] }),
         /* @__PURE__ */ m.jsxs("button", { type: "button", className: "text-action", onClick: () => v("projects"), children: [
-          "Ask about the projects ",
+          "Ask about projects ",
           /* @__PURE__ */ m.jsx(ae, {})
         ] })
       ] }),
