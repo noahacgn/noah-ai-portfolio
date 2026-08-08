@@ -1,6 +1,7 @@
 import {
   ArrowLeft,
   ArrowUpRight,
+  Bot,
   BriefcaseBusiness,
   ChevronDown,
   ChevronRight,
@@ -10,7 +11,6 @@ import {
   Mail,
   Menu,
   MessageCircle,
-  Send,
   ShieldCheck,
   Sparkles,
   Workflow,
@@ -238,7 +238,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
                 autoComplete="off"
               />
               <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
-                <Icon icon={Send} size={18} />
+                <Icon icon={Bot} size={20} strokeWidth={1.9} />
               </button>
             </div>
             {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
@@ -444,7 +444,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
         <label htmlFor="chat-question">Ask the AI Portfolio</label>
         <div className="question-input-row">
           <input id="chat-question" value={question} maxLength={2000} onChange={(event) => setQuestion(event.target.value)} placeholder={isBusy ? "Waiting for this answer…" : "Ask a follow-up…"} autoComplete="off" disabled={isBusy} />
-          <button type="submit" className="send-button" aria-label="Send question" disabled={isBusy}><Icon icon={Send} size={18} /></button>
+          <button type="submit" className="send-button" aria-label="Send question" disabled={isBusy}><Icon icon={Bot} size={20} strokeWidth={1.9} /></button>
         </div>
         {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
         <p className="privacy-note">AI-generated · Don&apos;t share secrets · Final scope and terms are confirmed by {firstName} on Upwork</p>

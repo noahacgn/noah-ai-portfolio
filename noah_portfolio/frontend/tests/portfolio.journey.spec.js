@@ -117,6 +117,7 @@ test.describe("public portfolio journey", () => {
     await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
     const followUpInput = page.getByRole("textbox", { name: "Ask the AI Portfolio" });
     const sendButton = page.getByRole("button", { name: "Send question" });
+    await expect(sendButton.locator(".lucide-bot")).toBeVisible();
     await expect(followUpInput).toBeDisabled();
     await expect(sendButton).toBeDisabled();
     await expect(page.getByText(/I’m the AI Portfolio, not Noah himself/)).toBeVisible({ timeout: 20_000 });

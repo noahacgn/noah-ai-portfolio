@@ -14,6 +14,7 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
     "placeholder",
     "Ask about my work…",
   );
+  await expect(page.getByRole("button", { name: "Ask the AI Portfolio" }).locator(".lucide-bot")).toBeVisible();
   await expect(
     page.getByText("AI-generated · Don't share sensitive information", { exact: true }),
   ).toBeVisible();

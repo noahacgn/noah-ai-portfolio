@@ -10701,7 +10701,21 @@ const Mv = Zt("ArrowUpRight", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Yh = Zt("BriefcaseBusiness", [
+const Yh = Zt("Bot", [
+  ["path", { d: "M12 8V4H8", key: "hb8ula" }],
+  ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
+  ["path", { d: "M2 14h2", key: "vft8re" }],
+  ["path", { d: "M20 14h2", key: "4cs60a" }],
+  ["path", { d: "M15 13v2", key: "1xurst" }],
+  ["path", { d: "M9 13v2", key: "rq6x2g" }]
+]);
+/**
+ * @license lucide-react v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Gh = Zt("BriefcaseBusiness", [
   ["path", { d: "M12 12h.01", key: "1mp3jc" }],
   ["path", { d: "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2", key: "1ksdt3" }],
   ["path", { d: "M22 13a18.15 18.15 0 0 1-20 0", key: "12hx5q" }],
@@ -10731,7 +10745,7 @@ const jv = Zt("ChevronRight", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Gh = Zt("CodeXml", [
+const qh = Zt("CodeXml", [
   ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
   ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
   ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
@@ -10742,7 +10756,7 @@ const Gh = Zt("CodeXml", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const qh = Zt("Github", [
+const Xh = Zt("Github", [
   [
     "path",
     {
@@ -10758,7 +10772,7 @@ const qh = Zt("Github", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Xh = Zt("Layers", [
+const wh = Zt("Layers", [
   [
     "path",
     {
@@ -10787,7 +10801,7 @@ const Xh = Zt("Layers", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const wh = Zt("Mail", [
+const Qh = Zt("Mail", [
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }],
   ["path", { d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7", key: "1ocrg3" }]
 ]);
@@ -10810,22 +10824,6 @@ const Bv = Zt("Menu", [
  */
 const Cv = Zt("MessageCircle", [
   ["path", { d: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z", key: "vv11sd" }]
-]);
-/**
- * @license lucide-react v0.468.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const Qh = Zt("Send", [
-  [
-    "path",
-    {
-      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
-      key: "1ffxy3"
-    }
-  ],
-  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ]);
 /**
  * @license lucide-react v0.468.0 - ISC
@@ -12060,9 +12058,9 @@ function Zh(v, c) {
 }
 const Fv = [
   { id: "me", label: "Me", icon: Vh },
-  { id: "projects", label: "Projects", icon: Xh },
-  { id: "skills", label: "Skills", icon: Gh },
-  { id: "experience", label: "Experience", icon: Yh },
+  { id: "projects", label: "Projects", icon: wh },
+  { id: "skills", label: "Skills", icon: qh },
+  { id: "experience", label: "Experience", icon: Gh },
   { id: "contact", label: "Contact", icon: Cv }
 ], kv = {
   name: "Portfolio",
@@ -12120,7 +12118,7 @@ function Wv({ project: v, assetBase: c }) {
           /* @__PURE__ */ m.jsx("h3", { children: v.title }),
           /* @__PURE__ */ m.jsx("p", { children: v.description }),
           /* @__PURE__ */ m.jsxs("span", { className: "project-link-label", children: [
-            /* @__PURE__ */ m.jsx(qh, { "aria-hidden": "true", size: 16 }),
+            /* @__PURE__ */ m.jsx(Xh, { "aria-hidden": "true", size: 16 }),
             " View on GitHub"
           ] })
         ] })
@@ -12233,7 +12231,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
                 autoComplete: "off"
               }
             ),
-            /* @__PURE__ */ m.jsx("button", { type: "submit", className: "send-button", "aria-label": "Ask the AI Portfolio", children: /* @__PURE__ */ m.jsx(Ua, { icon: Qh, size: 18 }) })
+            /* @__PURE__ */ m.jsx("button", { type: "submit", className: "send-button", "aria-label": "Ask the AI Portfolio", children: /* @__PURE__ */ m.jsx(Ua, { icon: Yh, size: 20, strokeWidth: 1.9 }) })
           ] }),
           g.length >= 1800 && /* @__PURE__ */ m.jsxs("p", { className: "input-counter", children: [
             g.length.toLocaleString(),
@@ -12293,12 +12291,12 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
       ] }),
       /* @__PURE__ */ m.jsxs("div", { className: "footer-links", children: [
         /* @__PURE__ */ m.jsxs("a", { href: `mailto:${o.email}`, children: [
-          /* @__PURE__ */ m.jsx(wh, { "aria-hidden": "true", size: 16 }),
+          /* @__PURE__ */ m.jsx(Qh, { "aria-hidden": "true", size: 16 }),
           " ",
           o.email
         ] }),
         /* @__PURE__ */ m.jsxs("a", { href: o.githubUrl, target: "_blank", rel: "noreferrer", children: [
-          /* @__PURE__ */ m.jsx(qh, { "aria-hidden": "true", size: 16 }),
+          /* @__PURE__ */ m.jsx(Xh, { "aria-hidden": "true", size: 16 }),
           " ",
           o.githubHandle
         ] })
@@ -12310,7 +12308,7 @@ function Iv({ action: v, profile: c }) {
   const s = Ji(c);
   return v === "skills" ? /* @__PURE__ */ m.jsxs("section", { className: "static-details", "aria-label": `${s}'s grouped skills`, children: [
     /* @__PURE__ */ m.jsxs("div", { className: "details-heading", children: [
-      /* @__PURE__ */ m.jsx(Gh, { "aria-hidden": "true", size: 17 }),
+      /* @__PURE__ */ m.jsx(qh, { "aria-hidden": "true", size: 17 }),
       /* @__PURE__ */ m.jsx("strong", { children: "Core skills" })
     ] }),
     /* @__PURE__ */ m.jsx("div", { className: "skill-groups", children: c.skills.map((f) => /* @__PURE__ */ m.jsxs("div", { className: "skill-group", children: [
@@ -12319,7 +12317,7 @@ function Iv({ action: v, profile: c }) {
     ] }, f.title)) })
   ] }) : v === "experience" ? /* @__PURE__ */ m.jsxs("section", { className: "static-details", "aria-label": `${s}'s public experience timeline`, children: [
     /* @__PURE__ */ m.jsxs("div", { className: "details-heading", children: [
-      /* @__PURE__ */ m.jsx(Yh, { "aria-hidden": "true", size: 17 }),
+      /* @__PURE__ */ m.jsx(Gh, { "aria-hidden": "true", size: 17 }),
       /* @__PURE__ */ m.jsx("strong", { children: "Public experience timeline" })
     ] }),
     /* @__PURE__ */ m.jsx("div", { className: "experience-list", children: c.experience.map((f) => /* @__PURE__ */ m.jsxs("article", { className: "experience-item", children: [
@@ -12331,7 +12329,7 @@ function Iv({ action: v, profile: c }) {
     ] }, f.company)) })
   ] }) : v === "contact" ? /* @__PURE__ */ m.jsxs("section", { className: "static-details contact-details", "aria-label": `${s}'s public contact channels`, children: [
     /* @__PURE__ */ m.jsxs("div", { className: "details-heading", children: [
-      /* @__PURE__ */ m.jsx(wh, { "aria-hidden": "true", size: 17 }),
+      /* @__PURE__ */ m.jsx(Qh, { "aria-hidden": "true", size: 17 }),
       /* @__PURE__ */ m.jsx("strong", { children: "Public contact channels" })
     ] }),
     /* @__PURE__ */ m.jsxs("div", { className: "contact-detail-links", children: [
@@ -12353,7 +12351,7 @@ function Iv({ action: v, profile: c }) {
     ] })
   ] }) : v === "projects" ? /* @__PURE__ */ m.jsxs("section", { className: "static-details", "aria-label": `${s}'s project links`, children: [
     /* @__PURE__ */ m.jsxs("div", { className: "details-heading", children: [
-      /* @__PURE__ */ m.jsx(Xh, { "aria-hidden": "true", size: 17 }),
+      /* @__PURE__ */ m.jsx(wh, { "aria-hidden": "true", size: 17 }),
       /* @__PURE__ */ m.jsx("strong", { children: "Open the source" })
     ] }),
     /* @__PURE__ */ m.jsx("div", { className: "project-detail-links", children: c.projects.map((f) => /* @__PURE__ */ m.jsxs("a", { href: f.href, target: "_blank", rel: "noreferrer", children: [
@@ -12467,7 +12465,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
       /* @__PURE__ */ m.jsx("label", { htmlFor: "chat-question", children: "Ask the AI Portfolio" }),
       /* @__PURE__ */ m.jsxs("div", { className: "question-input-row", children: [
         /* @__PURE__ */ m.jsx("input", { id: "chat-question", value: x, maxLength: 2e3, onChange: (I) => z(I.target.value), placeholder: K ? "Waiting for this answer…" : "Ask a follow-up…", autoComplete: "off", disabled: K }),
-        /* @__PURE__ */ m.jsx("button", { type: "submit", className: "send-button", "aria-label": "Send question", disabled: K, children: /* @__PURE__ */ m.jsx(Ua, { icon: Qh, size: 18 }) })
+        /* @__PURE__ */ m.jsx("button", { type: "submit", className: "send-button", "aria-label": "Send question", disabled: K, children: /* @__PURE__ */ m.jsx(Ua, { icon: Yh, size: 20, strokeWidth: 1.9 }) })
       ] }),
       x.length >= 1800 && /* @__PURE__ */ m.jsxs("p", { className: "input-counter", children: [
         x.length.toLocaleString(),
