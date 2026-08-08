@@ -49,6 +49,8 @@ st.html(
     """
 )
 
+st.html('<span id="deployment-probe" hidden>deploy-probe-20260808-1</span>')
+
 
 def _ensure_state() -> None:
     defaults: dict[str, Any] = {
