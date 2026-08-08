@@ -5,6 +5,7 @@ from __future__ import annotations
 import queue
 import threading
 from collections.abc import Mapping
+from pathlib import Path
 from typing import Any
 
 import streamlit as st
@@ -15,13 +16,14 @@ from noah_portfolio.profile import PUBLIC_PROFILE, quick_message
 
 
 PAGE_TITLE = "Noah Wang — AI Portfolio"
+PAGE_ICON = Path(__file__).parent / "noah_portfolio" / "frontend" / "build" / "favicon.svg"
 COMPONENT_KEY = "noah-ai-portfolio"
 MAX_QUERY_LENGTH = 2_000
 
 
 st.set_page_config(
     page_title=PAGE_TITLE,
-    page_icon="👋",
+    page_icon=PAGE_ICON,
     layout="wide",
     initial_sidebar_state="collapsed",
 )

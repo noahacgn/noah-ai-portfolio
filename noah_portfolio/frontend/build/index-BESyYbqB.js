@@ -17,16 +17,16 @@ function yv() {
   Rh = 1;
   var v = Symbol.for("react.transitional.element"), c = Symbol.for("react.fragment");
   function s(f, o, g) {
-    var x = null;
-    if (g !== void 0 && (x = "" + g), o.key !== void 0 && (x = "" + o.key), "key" in o) {
+    var A = null;
+    if (g !== void 0 && (A = "" + g), o.key !== void 0 && (A = "" + o.key), "key" in o) {
       g = {};
-      for (var A in o)
-        A !== "key" && (g[A] = o[A]);
+      for (var x in o)
+        x !== "key" && (g[x] = o[x]);
     } else g = o;
     return o = g.ref, {
       $$typeof: v,
       type: f,
-      key: x,
+      key: A,
       ref: o !== void 0 ? o : null,
       props: g
     };
@@ -51,7 +51,7 @@ var _h;
 function Sv() {
   if (_h) return Q;
   _h = 1;
-  var v = Symbol.for("react.transitional.element"), c = Symbol.for("react.portal"), s = Symbol.for("react.fragment"), f = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), g = Symbol.for("react.consumer"), x = Symbol.for("react.context"), A = Symbol.for("react.forward_ref"), z = Symbol.for("react.suspense"), b = Symbol.for("react.memo"), B = Symbol.for("react.lazy"), C = Symbol.for("react.activity"), W = Symbol.iterator;
+  var v = Symbol.for("react.transitional.element"), c = Symbol.for("react.portal"), s = Symbol.for("react.fragment"), f = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), g = Symbol.for("react.consumer"), A = Symbol.for("react.context"), x = Symbol.for("react.forward_ref"), z = Symbol.for("react.suspense"), b = Symbol.for("react.memo"), B = Symbol.for("react.lazy"), C = Symbol.for("react.activity"), W = Symbol.iterator;
   function q(y) {
     return y === null || typeof y != "object" ? null : (y = W && y[W] || y["@@iterator"], typeof y == "function" ? y : null);
   }
@@ -308,7 +308,7 @@ function Sv() {
     return ze(y.type, J, H);
   }, Q.createContext = function(y) {
     return y = {
-      $$typeof: x,
+      $$typeof: A,
       _currentValue: y,
       _currentValue2: y,
       _threadCount: 0,
@@ -337,7 +337,7 @@ function Sv() {
   }, Q.createRef = function() {
     return { current: null };
   }, Q.forwardRef = function(y) {
-    return { $$typeof: A, render: y };
+    return { $$typeof: x, render: y };
   }, Q.isValidElement = Oe, Q.lazy = function(y) {
     return {
       $$typeof: B,
@@ -464,9 +464,9 @@ function pv() {
         return g.now();
       };
     } else {
-      var x = Date, A = x.now();
+      var A = Date, x = A.now();
       v.unstable_now = function() {
-        return x.now() - A;
+        return A.now() - x;
       };
     }
     var z = [], b = [], B = 1, C = null, W = 3, q = !1, $ = !1, st = !1, Rt = !1, dt = typeof setTimeout == "function" ? setTimeout : null, Z = typeof clearTimeout == "function" ? clearTimeout : null, K = typeof setImmediate < "u" ? setImmediate : null;
@@ -699,8 +699,8 @@ function Ev() {
       implementation: B
     };
   }
-  var x = v.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
-  function A(z, b) {
+  var A = v.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+  function x(z, b) {
     if (z === "font") return "";
     if (typeof b == "string")
       return b === "use-credentials" ? b : "";
@@ -711,11 +711,11 @@ function Ev() {
       throw Error(c(299));
     return g(z, b, null, B);
   }, Vt.flushSync = function(z) {
-    var b = x.T, B = f.p;
+    var b = A.T, B = f.p;
     try {
-      if (x.T = null, f.p = 2, z) return z();
+      if (A.T = null, f.p = 2, z) return z();
     } finally {
-      x.T = b, f.p = B, f.d.f();
+      A.T = b, f.p = B, f.d.f();
     }
   }, Vt.preconnect = function(z, b) {
     typeof z == "string" && (b ? (b = b.crossOrigin, b = typeof b == "string" ? b === "use-credentials" ? b : "" : void 0) : b = null, f.d.C(z, b));
@@ -723,7 +723,7 @@ function Ev() {
     typeof z == "string" && f.d.D(z);
   }, Vt.preinit = function(z, b) {
     if (typeof z == "string" && b && typeof b.as == "string") {
-      var B = b.as, C = A(B, b.crossOrigin), W = typeof b.integrity == "string" ? b.integrity : void 0, q = typeof b.fetchPriority == "string" ? b.fetchPriority : void 0;
+      var B = b.as, C = x(B, b.crossOrigin), W = typeof b.integrity == "string" ? b.integrity : void 0, q = typeof b.fetchPriority == "string" ? b.fetchPriority : void 0;
       B === "style" ? f.d.S(
         z,
         typeof b.precedence == "string" ? b.precedence : void 0,
@@ -743,7 +743,7 @@ function Ev() {
     if (typeof z == "string")
       if (typeof b == "object" && b !== null) {
         if (b.as == null || b.as === "script") {
-          var B = A(
+          var B = x(
             b.as,
             b.crossOrigin
           );
@@ -756,7 +756,7 @@ function Ev() {
       } else b == null && f.d.M(z);
   }, Vt.preload = function(z, b) {
     if (typeof z == "string" && typeof b == "object" && b !== null && typeof b.as == "string") {
-      var B = b.as, C = A(B, b.crossOrigin);
+      var B = b.as, C = x(B, b.crossOrigin);
       f.d.L(z, B, {
         crossOrigin: C,
         integrity: typeof b.integrity == "string" ? b.integrity : void 0,
@@ -772,7 +772,7 @@ function Ev() {
   }, Vt.preloadModule = function(z, b) {
     if (typeof z == "string")
       if (b) {
-        var B = A(b.as, b.crossOrigin);
+        var B = x(b.as, b.crossOrigin);
         f.d.m(z, {
           as: typeof b.as == "string" && b.as !== "script" ? b.as : void 0,
           crossOrigin: B,
@@ -784,9 +784,9 @@ function Ev() {
   }, Vt.unstable_batchedUpdates = function(z, b) {
     return z(b);
   }, Vt.useFormState = function(z, b, B) {
-    return x.H.useFormState(z, b, B);
+    return A.H.useFormState(z, b, B);
   }, Vt.useFormStatus = function() {
-    return x.H.useHostTransitionStatus();
+    return A.H.useHostTransitionStatus();
   }, Vt.version = "19.2.0", Vt;
 }
 var Nh;
@@ -840,14 +840,14 @@ function Av() {
     }
     return e.tag === 3 ? l : null;
   }
-  function x(t) {
+  function A(t) {
     if (t.tag === 13) {
       var e = t.memoizedState;
       if (e === null && (t = t.alternate, t !== null && (e = t.memoizedState)), e !== null) return e.dehydrated;
     }
     return null;
   }
-  function A(t) {
+  function x(t) {
     if (t.tag === 31) {
       var e = t.memoizedState;
       if (e === null && (t = t.alternate, t !== null && (e = t.memoizedState)), e !== null) return e.dehydrated;
@@ -10147,10 +10147,10 @@ Error generating stack: ` + a.message + `
       else {
         var l = e.tag;
         if (l === 13) {
-          if (t = x(e), t !== null) return t;
+          if (t = A(e), t !== null) return t;
           t = null;
         } else if (l === 31) {
-          if (t = A(e), t !== null) return t;
+          if (t = x(e), t !== null) return t;
           t = null;
         } else if (l === 3) {
           if (e.stateNode.current.memoizedState.isDehydrated)
@@ -10352,14 +10352,14 @@ Error generating stack: ` + a.message + `
       var l = g(e);
       if (l !== null) {
         if (e = l.tag, e === 13) {
-          if (e = x(l), e !== null) {
+          if (e = A(l), e !== null) {
             t.blockedOn = e, jf(t.priority, function() {
               gh(l);
             });
             return;
           }
         } else if (e === 31) {
-          if (e = A(l), e !== null) {
+          if (e = x(l), e !== null) {
             t.blockedOn = e, jf(t.priority, function() {
               gh(l);
             });
@@ -10638,8 +10638,8 @@ const Ov = nt.forwardRef(
     absoluteStrokeWidth: f,
     className: o = "",
     children: g,
-    iconNode: x,
-    ...A
+    iconNode: A,
+    ...x
   }, z) => nt.createElement(
     "svg",
     {
@@ -10650,10 +10650,10 @@ const Ov = nt.forwardRef(
       stroke: v,
       strokeWidth: f ? Number(s) * 24 / Number(c) : s,
       className: Hh("lucide", o),
-      ...A
+      ...x
     },
     [
-      ...x.map(([b, B]) => nt.createElement(b, B)),
+      ...A.map(([b, B]) => nt.createElement(b, B)),
       ...Array.isArray(g) ? g : [g]
     ]
   )
@@ -10956,8 +10956,8 @@ class qv {
   getUniforms(c, s) {
     let f = {}, o = c.getProgramParameter(s, c.ACTIVE_UNIFORMS);
     for (let g = 0; g < o; g++) {
-      let x = c.getActiveUniform(s, g).name;
-      f[x] = c.getUniformLocation(s, x);
+      let A = c.getActiveUniform(s, g).name;
+      f[A] = c.getUniformLocation(s, A);
     }
     return f;
   }
@@ -10976,8 +10976,8 @@ class Qt {
   getUniforms(c, s) {
     let f = {}, o = c.getProgramParameter(s, c.ACTIVE_UNIFORMS);
     for (let g = 0; g < o; g++) {
-      let x = c.getActiveUniform(s, g).name;
-      f[x] = c.getUniformLocation(s, x);
+      let A = c.getActiveUniform(s, g).name;
+      f[A] = c.getUniformLocation(s, A);
     }
     return f;
   }
@@ -10988,41 +10988,41 @@ class Xv {
       const g = this.calcDeltaTime();
       this.resizeCanvas() && this.initFramebuffers(), this.updateColors(g), this.applyInputs(), this.config.PAUSED || this.step(g), this.render(null), this.animationId = requestAnimationFrame(this.update);
     }, this.handleMouseDown = (g) => {
-      let x = this.scaleByPixelRatio(g.offsetX), A = this.scaleByPixelRatio(g.offsetY), z = this.pointers.find((b) => b.id == -1);
-      z == null && (z = this.createPointer(), this.pointers.push(z)), this.updatePointerDownData(z, -1, x, A);
+      let A = this.scaleByPixelRatio(g.offsetX), x = this.scaleByPixelRatio(g.offsetY), z = this.pointers.find((b) => b.id == -1);
+      z == null && (z = this.createPointer(), this.pointers.push(z)), this.updatePointerDownData(z, -1, A, x);
     }, this.handleMouseMove = (g) => {
-      let x = this.pointers[0];
-      if (!x.down)
+      let A = this.pointers[0];
+      if (!A.down)
         return;
-      let A = this.scaleByPixelRatio(g.offsetX), z = this.scaleByPixelRatio(g.offsetY);
-      this.updatePointerMoveData(x, A, z);
+      let x = this.scaleByPixelRatio(g.offsetX), z = this.scaleByPixelRatio(g.offsetY);
+      this.updatePointerMoveData(A, x, z);
     }, this.handleMouseUp = () => {
       this.updatePointerUpData(this.pointers[0]);
     }, this.handleTouchStart = (g) => {
       g.preventDefault();
-      const x = g.targetTouches;
-      for (; x.length >= this.pointers.length; )
+      const A = g.targetTouches;
+      for (; A.length >= this.pointers.length; )
         this.pointers.push(this.createPointer());
-      for (let A = 0; A < x.length; A++) {
+      for (let x = 0; x < A.length; x++) {
         const z = this.canvas.getBoundingClientRect();
-        let b = this.scaleByPixelRatio(x[A].clientX - z.left), B = this.scaleByPixelRatio(x[A].clientY - z.top);
-        this.updatePointerDownData(this.pointers[A + 1], x[A].identifier, b, B);
+        let b = this.scaleByPixelRatio(A[x].clientX - z.left), B = this.scaleByPixelRatio(A[x].clientY - z.top);
+        this.updatePointerDownData(this.pointers[x + 1], A[x].identifier, b, B);
       }
     }, this.handleTouchMove = (g) => {
       g.preventDefault();
-      const x = g.targetTouches;
-      for (let A = 0; A < x.length; A++) {
-        let z = this.pointers[A + 1];
+      const A = g.targetTouches;
+      for (let x = 0; x < A.length; x++) {
+        let z = this.pointers[x + 1];
         if (!z.down)
           continue;
         const b = this.canvas.getBoundingClientRect();
-        let B = this.scaleByPixelRatio(x[A].clientX - b.left), C = this.scaleByPixelRatio(x[A].clientY - b.top);
+        let B = this.scaleByPixelRatio(A[x].clientX - b.left), C = this.scaleByPixelRatio(A[x].clientY - b.top);
         this.updatePointerMoveData(z, B, C);
       }
     }, this.handleTouchEnd = (g) => {
-      const x = g.changedTouches;
-      for (let A = 0; A < x.length; A++) {
-        let z = this.pointers.find((b) => b.id == x[A].identifier);
+      const A = g.changedTouches;
+      for (let x = 0; x < A.length; x++) {
+        let z = this.pointers.find((b) => b.id == A[x].identifier);
         z != null && this.updatePointerUpData(z);
       }
     }, this.handleKeyDown = (g) => {
@@ -11071,18 +11071,18 @@ class Xv {
     let f = c.getContext("webgl2", s);
     const o = !!f;
     o || (f = c.getContext("webgl", s) || c.getContext("experimental-webgl", s));
-    let g, x;
-    o ? (f.getExtension("EXT_color_buffer_float"), x = f.getExtension("OES_texture_float_linear")) : (g = f.getExtension("OES_texture_half_float"), x = f.getExtension("OES_texture_half_float_linear")), f.clearColor(0, 0, 0, 1);
-    const A = o ? f.HALF_FLOAT : g.HALF_FLOAT_OES;
+    let g, A;
+    o ? (f.getExtension("EXT_color_buffer_float"), A = f.getExtension("OES_texture_float_linear")) : (g = f.getExtension("OES_texture_half_float"), A = f.getExtension("OES_texture_half_float_linear")), f.clearColor(0, 0, 0, 1);
+    const x = o ? f.HALF_FLOAT : g.HALF_FLOAT_OES;
     let z, b, B;
-    return o ? (z = this.getSupportedFormat(f, f.RGBA16F, f.RGBA, A), b = this.getSupportedFormat(f, f.RG16F, f.RG, A), B = this.getSupportedFormat(f, f.R16F, f.RED, A)) : (z = this.getSupportedFormat(f, f.RGBA, f.RGBA, A), b = this.getSupportedFormat(f, f.RGBA, f.RGBA, A), B = this.getSupportedFormat(f, f.RGBA, f.RGBA, A)), {
+    return o ? (z = this.getSupportedFormat(f, f.RGBA16F, f.RGBA, x), b = this.getSupportedFormat(f, f.RG16F, f.RG, x), B = this.getSupportedFormat(f, f.R16F, f.RED, x)) : (z = this.getSupportedFormat(f, f.RGBA, f.RGBA, x), b = this.getSupportedFormat(f, f.RGBA, f.RGBA, x), B = this.getSupportedFormat(f, f.RGBA, f.RGBA, x)), {
       gl: f,
       ext: {
         formatRGBA: z,
         formatRG: b,
         formatR: B,
-        halfFloatTexType: A,
-        supportLinearFiltering: !!x
+        halfFloatTexType: x,
+        supportLinearFiltering: !!A
       }
     };
   }
@@ -11101,8 +11101,8 @@ class Xv {
   supportRenderTextureFormat(c, s, f, o) {
     let g = c.createTexture();
     c.bindTexture(c.TEXTURE_2D, g), c.texParameteri(c.TEXTURE_2D, c.TEXTURE_MIN_FILTER, c.NEAREST), c.texParameteri(c.TEXTURE_2D, c.TEXTURE_MAG_FILTER, c.NEAREST), c.texParameteri(c.TEXTURE_2D, c.TEXTURE_WRAP_S, c.CLAMP_TO_EDGE), c.texParameteri(c.TEXTURE_2D, c.TEXTURE_WRAP_T, c.CLAMP_TO_EDGE), c.texImage2D(c.TEXTURE_2D, 0, s, 4, 4, 0, f, o, null);
-    let x = c.createFramebuffer();
-    return c.bindFramebuffer(c.FRAMEBUFFER, x), c.framebufferTexture2D(c.FRAMEBUFFER, c.COLOR_ATTACHMENT0, c.TEXTURE_2D, g, 0), c.checkFramebufferStatus(c.FRAMEBUFFER) == c.FRAMEBUFFER_COMPLETE;
+    let A = c.createFramebuffer();
+    return c.bindFramebuffer(c.FRAMEBUFFER, A), c.framebufferTexture2D(c.FRAMEBUFFER, c.COLOR_ATTACHMENT0, c.TEXTURE_2D, g, 0), c.checkFramebufferStatus(c.FRAMEBUFFER) == c.FRAMEBUFFER_COMPLETE;
   }
   initPointers() {
     this.pointers = [], this.pointers.push(this.createPointer());
@@ -11205,7 +11205,7 @@ class Xv {
       void main () {
           gl_FragColor = color;
       }
-    `), x = this.compileShader(c.FRAGMENT_SHADER, `
+    `), A = this.compileShader(c.FRAGMENT_SHADER, `
       precision highp float;
       precision highp sampler2D;
 
@@ -11221,7 +11221,7 @@ class Xv {
           v = v * 0.1 + 0.8;
           gl_FragColor = vec4(vec3(v), 1.0);
       }
-    `), A = `
+    `), x = `
       precision highp float;
       precision highp sampler2D;
 
@@ -11285,7 +11285,7 @@ class Xv {
           gl_FragColor = vec4(c, a);
       }
     `;
-    this.blurProgram = new Qt(c, this.blurVertexShader, s), this.copyProgram = new Qt(c, this.baseVertexShader, f), this.clearProgram = new Qt(c, this.baseVertexShader, o), this.colorProgram = new Qt(c, this.baseVertexShader, g), this.checkerboardProgram = new Qt(c, this.baseVertexShader, x), this.displayMaterial = new qv(this.baseVertexShader, A), this.initRemainingPrograms();
+    this.blurProgram = new Qt(c, this.blurVertexShader, s), this.copyProgram = new Qt(c, this.baseVertexShader, f), this.clearProgram = new Qt(c, this.baseVertexShader, o), this.colorProgram = new Qt(c, this.baseVertexShader, g), this.checkerboardProgram = new Qt(c, this.baseVertexShader, A), this.displayMaterial = new qv(this.baseVertexShader, x), this.initRemainingPrograms();
   }
   initRemainingPrograms() {
     const c = this.gl, s = this.compileShader(c.FRAGMENT_SHADER, `
@@ -11357,7 +11357,7 @@ class Xv {
           c.a = 1.0 - min(max(br * 20.0, 0.0), 0.8);
           gl_FragColor = c;
       }
-    `), x = this.compileShader(c.FRAGMENT_SHADER, `
+    `), A = this.compileShader(c.FRAGMENT_SHADER, `
       precision highp float;
       precision highp sampler2D;
 
@@ -11390,7 +11390,7 @@ class Xv {
 
           gl_FragColor = vec4(color * Exposure, 0.0, 0.0, 1.0);
       }
-    `), A = this.compileShader(c.FRAGMENT_SHADER, `
+    `), x = this.compileShader(c.FRAGMENT_SHADER, `
       precision highp float;
       precision highp sampler2D;
 
@@ -11565,16 +11565,16 @@ class Xv {
           gl_FragColor = vec4(velocity, 0.0, 1.0);
       }
     `);
-    this.bloomPrefilterProgram = new Qt(c, this.baseVertexShader, s), this.bloomBlurProgram = new Qt(c, this.baseVertexShader, f), this.bloomFinalProgram = new Qt(c, this.baseVertexShader, o), this.sunraysMaskProgram = new Qt(c, this.baseVertexShader, g), this.sunraysProgram = new Qt(c, this.baseVertexShader, x), this.splatProgram = new Qt(c, this.baseVertexShader, A), this.advectionProgram = new Qt(c, this.baseVertexShader, z), this.divergenceProgram = new Qt(c, this.baseVertexShader, b), this.curlProgram = new Qt(c, this.baseVertexShader, B), this.vorticityProgram = new Qt(c, this.baseVertexShader, C), this.pressureProgram = new Qt(c, this.baseVertexShader, W), this.gradienSubtractProgram = new Qt(c, this.baseVertexShader, q);
+    this.bloomPrefilterProgram = new Qt(c, this.baseVertexShader, s), this.bloomBlurProgram = new Qt(c, this.baseVertexShader, f), this.bloomFinalProgram = new Qt(c, this.baseVertexShader, o), this.sunraysMaskProgram = new Qt(c, this.baseVertexShader, g), this.sunraysProgram = new Qt(c, this.baseVertexShader, A), this.splatProgram = new Qt(c, this.baseVertexShader, x), this.advectionProgram = new Qt(c, this.baseVertexShader, z), this.divergenceProgram = new Qt(c, this.baseVertexShader, b), this.curlProgram = new Qt(c, this.baseVertexShader, B), this.vorticityProgram = new Qt(c, this.baseVertexShader, C), this.pressureProgram = new Qt(c, this.baseVertexShader, W), this.gradienSubtractProgram = new Qt(c, this.baseVertexShader, q);
   }
   compileShader(c, s, f) {
     const o = this.gl;
     if (f) {
-      let x = "";
-      f.forEach((A) => {
-        x += "#define " + A + `
+      let A = "";
+      f.forEach((x) => {
+        A += "#define " + x + `
 `;
-      }), s = x + s;
+      }), s = A + s;
     }
     const g = o.createShader(c);
     return o.shaderSource(g, s), o.compileShader(g), o.getShaderParameter(g, o.COMPILE_STATUS) || console.trace(o.getShaderInfoLog(g)), g;
@@ -11587,18 +11587,18 @@ class Xv {
   }
   initFramebuffers() {
     let c = this.getResolution(this.config.SIM_RESOLUTION), s = this.getResolution(this.config.DYE_RESOLUTION);
-    const f = this.ext.halfFloatTexType, o = this.ext.formatRGBA, g = this.ext.formatRG, x = this.ext.formatR, A = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
-    this.gl.disable(this.gl.BLEND), this.dye == null ? this.dye = this.createDoubleFBO(s.width, s.height, o.internalFormat, o.format, f, A) : this.dye = this.resizeDoubleFBO(this.dye, s.width, s.height, o.internalFormat, o.format, f, A), this.velocity == null ? this.velocity = this.createDoubleFBO(c.width, c.height, g.internalFormat, g.format, f, A) : this.velocity = this.resizeDoubleFBO(this.velocity, c.width, c.height, g.internalFormat, g.format, f, A), this.divergence = this.createFBO(c.width, c.height, x.internalFormat, x.format, f, this.gl.NEAREST), this.curl = this.createFBO(c.width, c.height, x.internalFormat, x.format, f, this.gl.NEAREST), this.pressure = this.createDoubleFBO(c.width, c.height, x.internalFormat, x.format, f, this.gl.NEAREST), this.initBloomFramebuffers(), this.initSunraysFramebuffers();
+    const f = this.ext.halfFloatTexType, o = this.ext.formatRGBA, g = this.ext.formatRG, A = this.ext.formatR, x = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
+    this.gl.disable(this.gl.BLEND), this.dye == null ? this.dye = this.createDoubleFBO(s.width, s.height, o.internalFormat, o.format, f, x) : this.dye = this.resizeDoubleFBO(this.dye, s.width, s.height, o.internalFormat, o.format, f, x), this.velocity == null ? this.velocity = this.createDoubleFBO(c.width, c.height, g.internalFormat, g.format, f, x) : this.velocity = this.resizeDoubleFBO(this.velocity, c.width, c.height, g.internalFormat, g.format, f, x), this.divergence = this.createFBO(c.width, c.height, A.internalFormat, A.format, f, this.gl.NEAREST), this.curl = this.createFBO(c.width, c.height, A.internalFormat, A.format, f, this.gl.NEAREST), this.pressure = this.createDoubleFBO(c.width, c.height, A.internalFormat, A.format, f, this.gl.NEAREST), this.initBloomFramebuffers(), this.initSunraysFramebuffers();
   }
   initBloomFramebuffers() {
     let c = this.getResolution(this.config.BLOOM_RESOLUTION);
     const s = this.ext.halfFloatTexType, f = this.ext.formatRGBA, o = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
     this.bloom = this.createFBO(c.width, c.height, f.internalFormat, f.format, s, o), this.bloomFramebuffers.length = 0;
     for (let g = 0; g < this.config.BLOOM_ITERATIONS; g++) {
-      let x = c.width >> g + 1, A = c.height >> g + 1;
-      if (x < 2 || A < 2)
+      let A = c.width >> g + 1, x = c.height >> g + 1;
+      if (A < 2 || x < 2)
         break;
-      let z = this.createFBO(x, A, f.internalFormat, f.format, s, o);
+      let z = this.createFBO(A, x, f.internalFormat, f.format, s, o);
       this.bloomFramebuffers.push(z);
     }
   }
@@ -11607,13 +11607,13 @@ class Xv {
     const s = this.ext.halfFloatTexType, f = this.ext.formatR, o = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
     this.sunrays = this.createFBO(c.width, c.height, f.internalFormat, f.format, s, o), this.sunraysTemp = this.createFBO(c.width, c.height, f.internalFormat, f.format, s, o);
   }
-  createFBO(c, s, f, o, g, x) {
-    const A = this.gl;
-    A.activeTexture(A.TEXTURE0);
-    let z = A.createTexture();
-    A.bindTexture(A.TEXTURE_2D, z), A.texParameteri(A.TEXTURE_2D, A.TEXTURE_MIN_FILTER, x), A.texParameteri(A.TEXTURE_2D, A.TEXTURE_MAG_FILTER, x), A.texParameteri(A.TEXTURE_2D, A.TEXTURE_WRAP_S, A.CLAMP_TO_EDGE), A.texParameteri(A.TEXTURE_2D, A.TEXTURE_WRAP_T, A.CLAMP_TO_EDGE), A.texImage2D(A.TEXTURE_2D, 0, f, c, s, 0, o, g, null);
-    let b = A.createFramebuffer();
-    A.bindFramebuffer(A.FRAMEBUFFER, b), A.framebufferTexture2D(A.FRAMEBUFFER, A.COLOR_ATTACHMENT0, A.TEXTURE_2D, z, 0), A.viewport(0, 0, c, s), A.clear(A.COLOR_BUFFER_BIT);
+  createFBO(c, s, f, o, g, A) {
+    const x = this.gl;
+    x.activeTexture(x.TEXTURE0);
+    let z = x.createTexture();
+    x.bindTexture(x.TEXTURE_2D, z), x.texParameteri(x.TEXTURE_2D, x.TEXTURE_MIN_FILTER, A), x.texParameteri(x.TEXTURE_2D, x.TEXTURE_MAG_FILTER, A), x.texParameteri(x.TEXTURE_2D, x.TEXTURE_WRAP_S, x.CLAMP_TO_EDGE), x.texParameteri(x.TEXTURE_2D, x.TEXTURE_WRAP_T, x.CLAMP_TO_EDGE), x.texImage2D(x.TEXTURE_2D, 0, f, c, s, 0, o, g, null);
+    let b = x.createFramebuffer();
+    x.bindFramebuffer(x.FRAMEBUFFER, b), x.framebufferTexture2D(x.FRAMEBUFFER, x.COLOR_ATTACHMENT0, x.TEXTURE_2D, z, 0), x.viewport(0, 0, c, s), x.clear(x.COLOR_BUFFER_BIT);
     let B = 1 / c, C = 1 / s;
     return {
       texture: z,
@@ -11623,22 +11623,22 @@ class Xv {
       texelSizeX: B,
       texelSizeY: C,
       attach(W) {
-        return A.activeTexture(A.TEXTURE0 + W), A.bindTexture(A.TEXTURE_2D, z), W;
+        return x.activeTexture(x.TEXTURE0 + W), x.bindTexture(x.TEXTURE_2D, z), W;
       }
     };
   }
-  createDoubleFBO(c, s, f, o, g, x) {
-    let A = this.createFBO(c, s, f, o, g, x), z = this.createFBO(c, s, f, o, g, x);
+  createDoubleFBO(c, s, f, o, g, A) {
+    let x = this.createFBO(c, s, f, o, g, A), z = this.createFBO(c, s, f, o, g, A);
     return {
       width: c,
       height: s,
-      texelSizeX: A.texelSizeX,
-      texelSizeY: A.texelSizeY,
+      texelSizeX: x.texelSizeX,
+      texelSizeY: x.texelSizeY,
       get read() {
-        return A;
+        return x;
       },
       set read(b) {
-        A = b;
+        x = b;
       },
       get write() {
         return z;
@@ -11647,17 +11647,17 @@ class Xv {
         z = b;
       },
       swap() {
-        let b = A;
-        A = z, z = b;
+        let b = x;
+        x = z, z = b;
       }
     };
   }
-  resizeFBO(c, s, f, o, g, x, A) {
-    let z = this.createFBO(s, f, o, g, x, A);
+  resizeFBO(c, s, f, o, g, A, x) {
+    let z = this.createFBO(s, f, o, g, A, x);
     return this.copyProgram.bind(this.gl), this.gl.uniform1i(this.copyProgram.uniforms.uTexture, c.attach(0)), this.blit(z), z;
   }
-  resizeDoubleFBO(c, s, f, o, g, x, A) {
-    return c.width == s && c.height == f || (c.read = this.resizeFBO(c.read, s, f, o, g, x, A), c.write = this.createFBO(s, f, o, g, x, A), c.width = s, c.height = f, c.texelSizeX = 1 / s, c.texelSizeY = 1 / f), c;
+  resizeDoubleFBO(c, s, f, o, g, A, x) {
+    return c.width == s && c.height == f || (c.read = this.resizeFBO(c.read, s, f, o, g, A, x), c.write = this.createFBO(s, f, o, g, A, x), c.width = s, c.height = f, c.texelSizeX = 1 / s, c.texelSizeY = 1 / f), c;
   }
   createTextureAsync(c) {
     const s = this.gl;
@@ -11667,8 +11667,8 @@ class Xv {
       texture: f,
       width: 1,
       height: 1,
-      attach(x) {
-        return s.activeTexture(s.TEXTURE0 + x), s.bindTexture(s.TEXTURE_2D, f), x;
+      attach(A) {
+        return s.activeTexture(s.TEXTURE0 + A), s.bindTexture(s.TEXTURE_2D, f), A;
       }
     }, g = new Image();
     return g.onload = () => {
@@ -11733,8 +11733,8 @@ class Xv {
     const f = this.gl;
     let o = s;
     f.disable(f.BLEND), this.bloomPrefilterProgram.bind(f);
-    let g = this.config.BLOOM_THRESHOLD * this.config.BLOOM_SOFT_KNEE + 1e-4, x = this.config.BLOOM_THRESHOLD - g, A = g * 2, z = 0.25 / g;
-    f.uniform3f(this.bloomPrefilterProgram.uniforms.curve, x, A, z), f.uniform1f(this.bloomPrefilterProgram.uniforms.threshold, this.config.BLOOM_THRESHOLD), f.uniform1i(this.bloomPrefilterProgram.uniforms.uTexture, c.attach(0)), this.blit(o), this.bloomBlurProgram.bind(f);
+    let g = this.config.BLOOM_THRESHOLD * this.config.BLOOM_SOFT_KNEE + 1e-4, A = this.config.BLOOM_THRESHOLD - g, x = g * 2, z = 0.25 / g;
+    f.uniform3f(this.bloomPrefilterProgram.uniforms.curve, A, x, z), f.uniform1f(this.bloomPrefilterProgram.uniforms.threshold, this.config.BLOOM_THRESHOLD), f.uniform1i(this.bloomPrefilterProgram.uniforms.uTexture, c.attach(0)), this.blit(o), this.bloomBlurProgram.bind(f);
     for (let b = 0; b < this.bloomFramebuffers.length; b++) {
       let B = this.bloomFramebuffers[b];
       f.uniform2f(this.bloomBlurProgram.uniforms.texelSize, o.texelSizeX, o.texelSizeY), f.uniform1i(this.bloomBlurProgram.uniforms.uTexture, o.attach(0)), this.blit(B), o = B;
@@ -11768,13 +11768,13 @@ class Xv {
     for (let s = 0; s < c; s++) {
       const f = this.generateColor();
       f.r *= 10, f.g *= 10, f.b *= 10;
-      const o = Math.random(), g = Math.random(), x = 1e3 * (Math.random() - 0.5), A = 1e3 * (Math.random() - 0.5);
-      this.splatInternal(o, g, x, A, f);
+      const o = Math.random(), g = Math.random(), A = 1e3 * (Math.random() - 0.5), x = 1e3 * (Math.random() - 0.5);
+      this.splatInternal(o, g, A, x, f);
     }
   }
   splatInternal(c, s, f, o, g) {
-    const x = this.gl;
-    this.splatProgram.bind(x), x.uniform1i(this.splatProgram.uniforms.uTarget, this.velocity.read.attach(0)), x.uniform1f(this.splatProgram.uniforms.aspectRatio, this.canvas.width / this.canvas.height), x.uniform2f(this.splatProgram.uniforms.point, c, s), x.uniform3f(this.splatProgram.uniforms.color, f, o, 0), x.uniform1f(this.splatProgram.uniforms.radius, this.correctRadius(this.config.SPLAT_RADIUS / 100)), this.blit(this.velocity.write), this.velocity.swap(), x.uniform1i(this.splatProgram.uniforms.uTarget, this.dye.read.attach(0)), x.uniform3f(this.splatProgram.uniforms.color, g.r, g.g, g.b), this.blit(this.dye.write), this.dye.swap();
+    const A = this.gl;
+    this.splatProgram.bind(A), A.uniform1i(this.splatProgram.uniforms.uTarget, this.velocity.read.attach(0)), A.uniform1f(this.splatProgram.uniforms.aspectRatio, this.canvas.width / this.canvas.height), A.uniform2f(this.splatProgram.uniforms.point, c, s), A.uniform3f(this.splatProgram.uniforms.color, f, o, 0), A.uniform1f(this.splatProgram.uniforms.radius, this.correctRadius(this.config.SPLAT_RADIUS / 100)), this.blit(this.velocity.write), this.velocity.swap(), A.uniform1i(this.splatProgram.uniforms.uTarget, this.dye.read.attach(0)), A.uniform3f(this.splatProgram.uniforms.color, g.r, g.g, g.b), this.blit(this.dye.write), this.dye.swap();
   }
   correctRadius(c) {
     let s = this.canvas.width / this.canvas.height;
@@ -11788,9 +11788,9 @@ class Xv {
   }
   normalizeTexture(c, s, f) {
     let o = new Uint8Array(c.length), g = 0;
-    for (let x = f - 1; x >= 0; x--)
-      for (let A = 0; A < s; A++) {
-        let z = x * s * 4 + A * 4;
+    for (let A = f - 1; A >= 0; A--)
+      for (let x = 0; x < s; x++) {
+        let z = A * s * 4 + x * 4;
         o[z + 0] = this.clamp01(c[g + 0]) * 255, o[z + 1] = this.clamp01(c[g + 1]) * 255, o[z + 2] = this.clamp01(c[g + 2]) * 255, o[z + 3] = this.clamp01(c[g + 3]) * 255, g += 4;
       }
     return o;
@@ -11801,38 +11801,38 @@ class Xv {
   textureToCanvas(c, s, f) {
     let o = document.createElement("canvas"), g = o.getContext("2d");
     o.width = s, o.height = f;
-    let x = g.createImageData(s, f);
-    return x.data.set(c), g.putImageData(x, 0, 0), o;
+    let A = g.createImageData(s, f);
+    return A.data.set(c), g.putImageData(A, 0, 0), o;
   }
   generateColor() {
     let c = this.HSVtoRGB(Math.random(), 1, 1);
     return c.r *= 0.15, c.g *= 0.15, c.b *= 0.15, c;
   }
   HSVtoRGB(c, s, f) {
-    let o, g, x, A, z, b, B, C;
-    switch (A = Math.floor(c * 6), z = c * 6 - A, b = f * (1 - s), B = f * (1 - z * s), C = f * (1 - (1 - z) * s), A % 6) {
+    let o, g, A, x, z, b, B, C;
+    switch (x = Math.floor(c * 6), z = c * 6 - x, b = f * (1 - s), B = f * (1 - z * s), C = f * (1 - (1 - z) * s), x % 6) {
       case 0:
-        o = f, g = C, x = b;
+        o = f, g = C, A = b;
         break;
       case 1:
-        o = B, g = f, x = b;
+        o = B, g = f, A = b;
         break;
       case 2:
-        o = b, g = f, x = C;
+        o = b, g = f, A = C;
         break;
       case 3:
-        o = b, g = B, x = f;
+        o = b, g = B, A = f;
         break;
       case 4:
-        o = C, g = b, x = f;
+        o = C, g = b, A = f;
         break;
       case 5:
-        o = f, g = b, x = B;
+        o = f, g = b, A = B;
         break;
       default:
-        o = 0, g = 0, x = 0;
+        o = 0, g = 0, A = 0;
     }
-    return { r: o, g, b: x };
+    return { r: o, g, b: A };
   }
   normalizeColor(c) {
     return {
@@ -11961,7 +11961,7 @@ function Jv() {
   return nt.useEffect(() => {
     const s = v.current;
     if (!s || c) return;
-    let f = !1, o = null, g = 0, x = 0, A = 0, z = !1;
+    let f = !1, o = null, g = 0, A = 0, x = 0, z = !1;
     const b = /* @__PURE__ */ new Map(), B = /* @__PURE__ */ new Map();
     function C() {
       !o || z || (z = !0, o.resume(), o.start(), s.dataset.fluidState = "active");
@@ -11984,7 +11984,7 @@ function Jv() {
       ), b.set(Z, { ...it, x: K.x, y: K.y });
     }
     function q(Z) {
-      if (x = 0, !(!o || f)) {
+      if (A = 0, !(!o || f)) {
         for (const [K, Tt] of B)
           W(K, Tt.point, Tt.pointerType, Z);
         B.clear();
@@ -11994,7 +11994,7 @@ function Jv() {
       o && (C(), B.set(Z.pointerId, {
         point: Lh(Z),
         pointerType: Z.pointerType
-      }), x || (x = window.requestAnimationFrame(q)));
+      }), A || (A = window.requestAnimationFrame(q)));
     }
     function st(Z) {
       if (!o) return;
@@ -12032,7 +12032,7 @@ function Jv() {
             VELOCITY_DISSIPATION: 160,
             CURL: 0,
             PAUSED: !1
-          }), A = window.setTimeout(() => {
+          }), x = window.setTimeout(() => {
             f || !o || (Kv(s, o), s.dataset.fluidState = "idle", window.addEventListener("pointermove", $, { passive: !0 }), window.addEventListener("pointerdown", st, { passive: !0 }), window.addEventListener("pointerup", Rt, { passive: !0 }), window.addEventListener("pointercancel", Rt, { passive: !0 }), document.addEventListener("visibilitychange", dt));
           }, Qv);
         } catch {
@@ -12040,7 +12040,7 @@ function Jv() {
         }
     }), () => {
       var K;
-      f = !0, window.cancelAnimationFrame(g), window.cancelAnimationFrame(x), window.clearTimeout(A), window.removeEventListener("pointermove", $), window.removeEventListener("pointerdown", st), window.removeEventListener("pointerup", Rt), window.removeEventListener("pointercancel", Rt), document.removeEventListener("visibilitychange", dt), o == null || o.stop();
+      f = !0, window.cancelAnimationFrame(g), window.cancelAnimationFrame(A), window.clearTimeout(x), window.removeEventListener("pointermove", $), window.removeEventListener("pointerdown", st), window.removeEventListener("pointerup", Rt), window.removeEventListener("pointercancel", Rt), document.removeEventListener("visibilitychange", dt), o == null || o.stop();
       const Z = s.getContext("webgl2") || s.getContext("webgl");
       (K = Z == null ? void 0 : Z.getExtension("WEBGL_lose_context")) == null || K.loseContext();
     };
@@ -12129,9 +12129,9 @@ function Wv({ project: v, assetBase: c }) {
   );
 }
 function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }) {
-  const [g, x] = nt.useState(""), A = nt.useRef(null), z = nt.useRef(null), b = nt.useRef(null), B = Ji(o);
+  const [g, A] = nt.useState(""), x = nt.useRef(null), z = nt.useRef(null), b = nt.useRef(null), B = Ji(o);
   nt.useEffect(() => {
-    const q = A.current, $ = z.current;
+    const q = x.current, $ = z.current;
     if (!q || !$ || !("IntersectionObserver" in window))
       return;
     const st = window.matchMedia("(prefers-reduced-motion: reduce)"), Rt = q.getBoundingClientRect().top;
@@ -12177,7 +12177,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
       s("");
       return;
     }
-    s($), x("");
+    s($), A("");
   }
   function W() {
     var $;
@@ -12190,10 +12190,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
         /* @__PURE__ */ m.jsx("span", { className: "opportunity-long", children: "Looking for an AI engineer?" }),
         /* @__PURE__ */ m.jsx("span", { className: "opportunity-short", children: "AI work?" })
       ] }),
-      /* @__PURE__ */ m.jsxs("button", { className: "brand-button header-brand", type: "button", onClick: () => v("home"), children: [
-        /* @__PURE__ */ m.jsx("span", { className: "brand-mark", children: "NW" }),
-        /* @__PURE__ */ m.jsx("span", { className: "header-brand-name", children: o.name })
-      ] }),
+      /* @__PURE__ */ m.jsx("button", { className: "brand-button header-brand", type: "button", "aria-label": "Portfolio home", onClick: () => v("home"), children: /* @__PURE__ */ m.jsx("span", { className: "brand-mark", children: "NW" }) }),
       /* @__PURE__ */ m.jsxs("nav", { className: "header-nav", "aria-label": "Portfolio navigation", children: [
         /* @__PURE__ */ m.jsx("button", { type: "button", className: "header-link", onClick: c, children: "About" }),
         /* @__PURE__ */ m.jsxs("a", { className: "header-link source-button", href: o.portfolioRepoUrl, target: "_blank", rel: "noreferrer", children: [
@@ -12203,7 +12200,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
       ] }),
       /* @__PURE__ */ m.jsx("button", { className: "mobile-menu", type: "button", "aria-label": "Open navigation", onClick: c, children: /* @__PURE__ */ m.jsx(Ua, { icon: Bv, size: 20 }) })
     ] }),
-    /* @__PURE__ */ m.jsxs("section", { ref: A, className: "hero-section", "aria-labelledby": "hero-title", children: [
+    /* @__PURE__ */ m.jsxs("section", { ref: x, className: "hero-section", "aria-labelledby": "hero-title", children: [
       /* @__PURE__ */ m.jsx("div", { className: "watermark", "aria-hidden": "true", children: /* @__PURE__ */ m.jsx("span", { children: o.name }) }),
       /* @__PURE__ */ m.jsxs("p", { className: "hero-intro", children: [
         "Hey, I'm ",
@@ -12231,7 +12228,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
                 id: "hero-question",
                 value: g,
                 maxLength: 2e3,
-                onChange: (q) => x(q.target.value),
+                onChange: (q) => A(q.target.value),
                 placeholder: "Ask about my work…",
                 autoComplete: "off"
               }
@@ -12365,8 +12362,8 @@ function Iv({ action: v, profile: c }) {
     ] }, f.id)) })
   ] }) : null;
 }
-function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTriggerValue: g, profile: x }) {
-  const [A, z] = nt.useState(""), [b, B] = nt.useState([]), [C, W] = nt.useState(""), [q, $] = nt.useState(!1), st = nt.useRef(null), Rt = Ji(x), dt = Array.isArray(v == null ? void 0 : v.messages) ? v.messages : [], Z = nt.useMemo(() => [...dt, ...b], [dt, b]), K = !!(v != null && v.pending || q);
+function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTriggerValue: g, profile: A }) {
+  const [x, z] = nt.useState(""), [b, B] = nt.useState([]), [C, W] = nt.useState(""), [q, $] = nt.useState(!1), st = nt.useRef(null), Rt = Ji(A), dt = Array.isArray(v == null ? void 0 : v.messages) ? v.messages : [], Z = nt.useMemo(() => [...dt, ...b], [dt, b]), K = !!(v != null && v.pending || q);
   nt.useEffect(() => {
     B([]), W(""), v != null && v.pending || $(!1);
   }, [v == null ? void 0 : v.messageRevision, v == null ? void 0 : v.view, v == null ? void 0 : v.error, v == null ? void 0 : v.pending]), nt.useEffect(() => {
@@ -12381,7 +12378,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
   }, [v == null ? void 0 : v.pending, g]);
   function Tt(I) {
     if (I.preventDefault(), K) return;
-    const it = A.trim();
+    const it = x.trim();
     if (it) {
       if (it.length > 2e3) {
         W("Please keep a question under 2,000 characters.");
@@ -12392,10 +12389,9 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
   }
   return /* @__PURE__ */ m.jsxs("main", { className: "portfolio-shell chat-view", children: [
     /* @__PURE__ */ m.jsxs("header", { className: "chat-header", children: [
-      /* @__PURE__ */ m.jsxs("button", { className: "brand-button", type: "button", onClick: s, children: [
+      /* @__PURE__ */ m.jsxs("button", { className: "brand-button", type: "button", "aria-label": "Portfolio home", onClick: s, children: [
         /* @__PURE__ */ m.jsx(Uv, { "aria-hidden": "true", size: 18 }),
-        /* @__PURE__ */ m.jsx("span", { className: "brand-mark", children: "NW" }),
-        /* @__PURE__ */ m.jsx("span", { children: x.name })
+        /* @__PURE__ */ m.jsx("span", { className: "brand-mark", children: "NW" })
       ] }),
       /* @__PURE__ */ m.jsxs("div", { className: "chat-header-center", children: [
         /* @__PURE__ */ m.jsx("span", { className: "online-dot" }),
@@ -12405,7 +12401,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
     ] }),
     /* @__PURE__ */ m.jsxs("section", { className: "chat-content", "aria-labelledby": "chat-heading", children: [
       /* @__PURE__ */ m.jsxs("div", { className: "chat-intro", children: [
-        /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+        /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
         /* @__PURE__ */ m.jsxs("div", { children: [
           /* @__PURE__ */ m.jsx("p", { className: "eyebrow", children: "AI Portfolio" }),
           /* @__PURE__ */ m.jsxs("h1", { id: "chat-heading", children: [
@@ -12418,32 +12414,32 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
       ] }),
       /* @__PURE__ */ m.jsxs("div", { className: "message-list", "aria-live": "polite", children: [
         Z.length === 0 && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
-          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsx("div", { className: "message-bubble", children: /* @__PURE__ */ m.jsx(Zi, { children: "Hi — I can give you a concise tour of this portfolio's projects, skills, experience, or process. What are you building?" }) })
         ] }),
         Z.map((I, it) => {
           var V;
           return /* @__PURE__ */ m.jsxs("div", { className: I.role === "user" ? "user-message" : "assistant-message", children: [
-            I.role !== "user" && /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+            I.role !== "user" && /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
             /* @__PURE__ */ m.jsxs("div", { className: "message-bubble", children: [
               /* @__PURE__ */ m.jsx(Zi, { children: I.content }),
-              I.role !== "user" && (v == null ? void 0 : v.showUpwork) && /* @__PURE__ */ m.jsxs("a", { className: "message-cta", href: x.upworkUrl, target: "_blank", rel: "noreferrer", children: [
+              I.role !== "user" && (v == null ? void 0 : v.showUpwork) && /* @__PURE__ */ m.jsxs("a", { className: "message-cta", href: A.upworkUrl, target: "_blank", rel: "noreferrer", children: [
                 "Continue on Upwork ",
                 /* @__PURE__ */ m.jsx(ae, {})
               ] })
             ] })
           ] }, `${I.role}-${it}-${(V = I.content) == null ? void 0 : V.slice(0, 10)}`);
         }),
-        (v == null ? void 0 : v.staticAction) && /* @__PURE__ */ m.jsx(Iv, { action: v.staticAction, profile: x }),
+        (v == null ? void 0 : v.staticAction) && /* @__PURE__ */ m.jsx(Iv, { action: v.staticAction, profile: A }),
         (v == null ? void 0 : v.streamingText) && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
-          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsxs("div", { className: "message-bubble streaming-bubble", children: [
             /* @__PURE__ */ m.jsx(Zi, { children: v.streamingText }),
             /* @__PURE__ */ m.jsx("span", { className: "streaming-caret", "aria-label": "Generating" })
           ] })
         ] }),
         ((v == null ? void 0 : v.pending) || q) && !(v != null && v.streamingText) && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
-          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsxs("div", { className: "message-bubble typing-bubble", children: [
             /* @__PURE__ */ m.jsx("span", { className: "typing-label", children: "Thinking with DeepSeek" }),
             /* @__PURE__ */ m.jsxs("span", { className: "typing-dots", "aria-label": "Generating", children: [
@@ -12454,7 +12450,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
           ] })
         ] }),
         (v == null ? void 0 : v.error) && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
-          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: x.name }),
+          /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsxs("div", { className: "message-bubble error-bubble", children: [
             /* @__PURE__ */ m.jsx(Zi, { children: v.error }),
             /* @__PURE__ */ m.jsxs("button", { className: "inline-action", type: "button", onClick: s, children: [
@@ -12470,11 +12466,11 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
     /* @__PURE__ */ m.jsxs("form", { className: "question-form chat-question", onSubmit: Tt, children: [
       /* @__PURE__ */ m.jsx("label", { htmlFor: "chat-question", children: "Ask the AI Portfolio" }),
       /* @__PURE__ */ m.jsxs("div", { className: "question-input-row", children: [
-        /* @__PURE__ */ m.jsx("input", { id: "chat-question", value: A, maxLength: 2e3, onChange: (I) => z(I.target.value), placeholder: K ? "Waiting for this answer…" : "Ask a follow-up…", autoComplete: "off", disabled: K }),
+        /* @__PURE__ */ m.jsx("input", { id: "chat-question", value: x, maxLength: 2e3, onChange: (I) => z(I.target.value), placeholder: K ? "Waiting for this answer…" : "Ask a follow-up…", autoComplete: "off", disabled: K }),
         /* @__PURE__ */ m.jsx("button", { type: "submit", className: "send-button", "aria-label": "Send question", disabled: K, children: /* @__PURE__ */ m.jsx(Ua, { icon: Qh, size: 18 }) })
       ] }),
-      A.length >= 1800 && /* @__PURE__ */ m.jsxs("p", { className: "input-counter", children: [
-        A.length.toLocaleString(),
+      x.length >= 1800 && /* @__PURE__ */ m.jsxs("p", { className: "input-counter", children: [
+        x.length.toLocaleString(),
         " / 2,000"
       ] }),
       /* @__PURE__ */ m.jsxs("p", { className: "privacy-note", children: [
@@ -12484,12 +12480,12 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
       ] })
     ] }),
     /* @__PURE__ */ m.jsxs("footer", { className: "chat-footer", children: [
-      /* @__PURE__ */ m.jsxs("a", { href: x.githubUrl, target: "_blank", rel: "noreferrer", children: [
-        x.githubHandle,
+      /* @__PURE__ */ m.jsxs("a", { href: A.githubUrl, target: "_blank", rel: "noreferrer", children: [
+        A.githubHandle,
         " ",
         /* @__PURE__ */ m.jsx(ae, {})
       ] }),
-      /* @__PURE__ */ m.jsxs("a", { className: "chat-upwork-link", href: x.upworkUrl, target: "_blank", rel: "noreferrer", children: [
+      /* @__PURE__ */ m.jsxs("a", { className: "chat-upwork-link", href: A.upworkUrl, target: "_blank", rel: "noreferrer", children: [
         "Continue on Upwork ",
         /* @__PURE__ */ m.jsx(ae, {})
       ] })
@@ -12499,14 +12495,14 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
 function t0({ onClose: v, returnFocusRef: c, profile: s }) {
   const f = nt.useRef(null), o = Ji(s);
   return nt.useEffect(() => {
-    var x;
-    (x = f.current) == null || x.focus();
-    function g(A) {
-      A.key === "Escape" && v();
+    var A;
+    (A = f.current) == null || A.focus();
+    function g(x) {
+      x.key === "Escape" && v();
     }
     return document.addEventListener("keydown", g), () => {
-      var A, z;
-      document.removeEventListener("keydown", g), (z = (A = c == null ? void 0 : c.current) == null ? void 0 : A.focus) == null || z.call(A);
+      var x, z;
+      document.removeEventListener("keydown", g), (z = (x = c == null ? void 0 : c.current) == null ? void 0 : x.focus) == null || z.call(x);
     };
   }, [v, c]), /* @__PURE__ */ m.jsx("div", { className: "modal-backdrop", role: "presentation", onMouseDown: (g) => {
     g.target === g.currentTarget && v();
@@ -12543,7 +12539,7 @@ function t0({ onClose: v, returnFocusRef: c, profile: s }) {
   ] }) });
 }
 function e0({ data: v = {}, setTriggerValue: c, assetBase: s = "./assets/" }) {
-  const f = v.profile || kv, [o, g] = nt.useState(v.view || "home"), [x, A] = nt.useState(!1), z = nt.useRef(null), b = nt.useRef(new URL(window.location.href).searchParams.has("query"));
+  const f = v.profile || kv, [o, g] = nt.useState(v.view || "home"), [A, x] = nt.useState(!1), z = nt.useRef(null), b = nt.useRef(new URL(window.location.href).searchParams.has("query"));
   nt.useEffect(() => {
     g(v.view || "home");
   }, [v.view]), nt.useEffect(() => {
@@ -12564,12 +12560,12 @@ function e0({ data: v = {}, setTriggerValue: c, assetBase: s = "./assets/" }) {
     q.trim() && (b.current = !0), g("chat"), c == null || c("submit", { query: q });
   }
   function W(q) {
-    z.current = (q == null ? void 0 : q.currentTarget) || null, A(!0);
+    z.current = (q == null ? void 0 : q.currentTarget) || null, x(!0);
   }
   return /* @__PURE__ */ m.jsxs("div", { className: "app-root", children: [
     /* @__PURE__ */ m.jsx(Jv, {}),
     o === "chat" ? /* @__PURE__ */ m.jsx(Pv, { data: v, profile: f, assetBase: s, setTriggerValue: c, onAction: B, onHome: () => B("home"), onAbout: W }) : /* @__PURE__ */ m.jsx($v, { profile: f, assetBase: s, onAction: B, onAbout: W, onOpenChat: C }),
-    x && /* @__PURE__ */ m.jsx(t0, { profile: f, returnFocusRef: z, onClose: () => A(!1) })
+    A && /* @__PURE__ */ m.jsx(t0, { profile: f, returnFocusRef: z, onClose: () => x(!1) })
   ] });
 }
 const pf = /* @__PURE__ */ new WeakMap();
@@ -12579,8 +12575,8 @@ function l0(v) {
     "./assets/",
     import.meta.url
   ).href;
-  let x = pf.get(o);
-  return x || (x = Dv.createRoot(o), pf.set(o, x)), x.render(
+  let A = pf.get(o);
+  return A || (A = Dv.createRoot(o), pf.set(o, A)), A.render(
     /* @__PURE__ */ m.jsx(bv.StrictMode, { children: /* @__PURE__ */ m.jsx(
       e0,
       {
@@ -12590,7 +12586,7 @@ function l0(v) {
       }
     ) })
   ), () => {
-    x.unmount(), pf.delete(o);
+    A.unmount(), pf.delete(o);
   };
 }
 export {

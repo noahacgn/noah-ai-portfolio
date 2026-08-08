@@ -200,9 +200,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
           <span className="opportunity-long">Looking for an AI engineer?</span>
           <span className="opportunity-short">AI work?</span>
         </button>
-        <button className="brand-button header-brand" type="button" onClick={() => onAction("home")}>
+        <button className="brand-button header-brand" type="button" aria-label="Portfolio home" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
-          <span className="header-brand-name">{profile.name}</span>
         </button>
         <nav className="header-nav" aria-label="Portfolio navigation">
           <button type="button" className="header-link" onClick={onAbout}>
@@ -413,10 +412,9 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
   return (
     <main className="portfolio-shell chat-view">
       <header className="chat-header">
-        <button className="brand-button" type="button" onClick={onHome}>
+        <button className="brand-button" type="button" aria-label="Portfolio home" onClick={onHome}>
           <ArrowLeft aria-hidden="true" size={18} />
           <span className="brand-mark">NW</span>
-          <span>{profile.name}</span>
         </button>
         <div className="chat-header-center"><span className="online-dot" /> AI Portfolio chat</div>
         <button className="header-link about-chat" type="button" onClick={onAbout}>About</button>

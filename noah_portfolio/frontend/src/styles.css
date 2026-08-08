@@ -1333,8 +1333,7 @@ button {
     white-space: nowrap;
   }
 
-  .opportunity-long,
-  .header-brand-name {
+  .opportunity-long {
     display: none;
   }
 
