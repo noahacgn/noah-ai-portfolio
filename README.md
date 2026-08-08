@@ -8,16 +8,15 @@
 
 ## 本地运行
 
-需要 Python 3.12+、Node.js 20+。
+需要 uv、Python 3.13、Node.js 20+。Python 版本由 `.python-version` 固定，Python 依赖由 `uv.lock` 固定。
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e .
+uv sync --locked
 Set-Location noah_portfolio\frontend
 npm ci
 npm run build
 Set-Location ..\..
-.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
+uv run --locked streamlit run streamlit_app.py
 ```
 
 DeepSeek Key 只配置在服务端环境变量中：
@@ -45,14 +44,14 @@ npm run test:e2e
 需要显式验证真实供应商时，在已配置 `DEEPSEEK_API_KEY` 的本机运行：
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\deepseek_smoke.py
+uv run --locked scripts\deepseek_smoke.py
 ```
 
 该脚本只输出模型名、分块数、字符数和耗时，不打印 Key、请求正文或回答正文。
 
 ## Streamlit Community Cloud
 
-当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。依赖版本以 `pyproject.toml` 为唯一来源；`requirements.txt` 只让 Community Cloud 以 editable 模式安装当前组件包，使 Streamlit 能发现组件清单，同时让后续代码更新继续直接读取仓库文件。
+当前生产配置使用 `main` 分支、`streamlit_app.py` 入口和 Python 3.13。直接依赖以 `pyproject.toml` 为唯一声明来源，完整解析结果由 `uv.lock` 锁定；Streamlit Community Cloud 识别锁文件后使用 uv 安装当前组件包及其依赖。
 
 生产应用跟随 `main` 自动更新；普通源码变更复用现有环境，依赖文件或 Python 版本变化会触发环境重建。
 
