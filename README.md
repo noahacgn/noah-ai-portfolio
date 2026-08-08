@@ -55,7 +55,7 @@ uv run --locked scripts\deepseek_smoke.py
 
 生产应用跟随 `main` 自动更新；普通源码变更复用现有环境，依赖文件或 Python 版本变化会触发环境重建。
 
-如果 Cloud 日志连续出现 `Updating the app files has failed: exit status 1`，且前端静态资源已经变化、Python 返回的数据仍停留在旧版本，说明当前实例没有完成源码更新后的进程重启。此时从应用右下角依次打开 **Manage app → Reboot app → Reboot**，强制创建干净实例。恢复后应同时确认：启动日志显示依赖来自 `uv.lock`，并且快捷资料视图返回当前 `main` 的内容。
+如果 Cloud 日志连续出现 `Updating the app files has failed: exit status 1`，且前端静态资源已经变化、Python 返回的数据仍停留在旧版本，说明当前实例没有完成源码更新后的进程重启。先从应用右下角依次打开 **Manage app → Reboot app → Reboot**，强制创建干净实例；如果下一次真实文件提交仍然拉取失败，则先备份 Secrets，再删除并使用相同仓库、分支、入口、Python 版本和域名重建应用。恢复后应同时确认：启动日志显示依赖来自 `uv.lock`，快捷资料视图返回当前 `main` 的内容，并且一次后续真实文件提交能被自动拉取。
 
 1. 将公开仓库连接到 Streamlit Community Cloud。
 2. Main file path 选择 `streamlit_app.py`。
