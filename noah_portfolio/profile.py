@@ -61,10 +61,26 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
         },
     ],
     "experience": [
-        {"company": "Merypto (CPcash)", "dates": "Aug 2024 – Jun 2026", "note": "Wallet and payment product engineering"},
-        {"company": "SandPay", "dates": "Oct 2021 – May 2024", "note": "Payment and banking backend systems"},
-        {"company": "Shanghai Jibeike", "dates": "Oct 2020 – Aug 2021", "note": "Digital goods marketplace systems"},
-        {"company": "Xiamen Ruanyun", "dates": "May 2019 – Jul 2020", "note": "Backend and distributed application delivery"},
+        {
+            "company": "Merypto (CPcash)",
+            "dates": "Aug 2024 – Jun 2026",
+            "note": "Blockchain wallet, payments, and digital marketplace",
+        },
+        {
+            "company": "SandPay",
+            "dates": "Oct 2021 – May 2024",
+            "note": "Digital products and coupon interoperability systems",
+        },
+        {
+            "company": "Shanghai Jibeike",
+            "dates": "Oct 2020 – Aug 2021",
+            "note": "Banking business platform development",
+        },
+        {
+            "company": "Xiamen Ruanyun",
+            "dates": "May 2019 – Jul 2020",
+            "note": "E-commerce backend systems",
+        },
     ],
 }
 
