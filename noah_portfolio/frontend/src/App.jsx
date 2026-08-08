@@ -54,13 +54,23 @@ function ExternalArrow() {
   return <Icon icon={ArrowUpRight} size={17} strokeWidth={1.7} />;
 }
 
+function renderInlineText(text) {
+  return String(text)
+    .split(/(\*\*[^*\n]+\*\*)/g)
+    .map((part, index) => (
+      part.startsWith("**") && part.endsWith("**")
+        ? <strong key={`${index}-${part.slice(2, 14)}`}>{part.slice(2, -2)}</strong>
+        : part
+    ));
+}
+
 function MessageText({ children }) {
   return (
     <div className="message-copy">
       {String(children)
         .split("\n")
         .map((line, index) => (
-          <p key={`${index}-${line.slice(0, 12)}`}>{line || "\u00a0"}</p>
+          <p key={`${index}-${line.slice(0, 12)}`}>{line ? renderInlineText(line) : "\u00a0"}</p>
         ))}
     </div>
   );

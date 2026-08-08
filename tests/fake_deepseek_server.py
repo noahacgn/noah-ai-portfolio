@@ -75,6 +75,8 @@ class FakeDeepSeekHandler(BaseHTTPRequestHandler):
 
         if any(token in query for token in ("中文", "中国語", "你好")):
             answer = "我是 Noah 的 AI Portfolio。我的重点是 LangGraph、RAG 与全栈交付；正式范围和条款请在 Upwork 与 Noah 确认。"
+        elif "bold-formatting" in lowered:
+            answer = "Noah builds **Custom AI Agents & Workflows** and **RAG platforms**."
         elif "injection" in lowered or "ignore" in lowered:
             answer = "I’m the AI Portfolio, so I’ll stay within Noah’s public profile. I can explain his projects, skills, experience, or process."
         else:

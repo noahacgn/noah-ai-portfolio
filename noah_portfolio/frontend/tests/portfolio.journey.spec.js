@@ -112,6 +112,21 @@ test.describe("public portfolio journey", () => {
     await expect(page.getByRole("link", { name: /Continue on Upwork/ }).last()).toBeVisible();
   });
 
+  test("assistant answers render paired bold markers as strong text", async ({ page }) => {
+    await page.goto("/");
+    const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
+    await input.fill("bold-formatting");
+    await page.getByRole("button", { name: "Ask the AI Portfolio" }).click();
+
+    const agents = page.getByText("Custom AI Agents & Workflows", { exact: true });
+    const rag = page.getByText("RAG platforms", { exact: true });
+    await expect(agents).toBeVisible({ timeout: 20_000 });
+    await expect(agents).toHaveCSS("font-weight", "700");
+    await expect(rag).toBeVisible();
+    await expect(agents).toHaveCount(1);
+    await expect(page.locator(".message-copy").last()).not.toContainText("**");
+  });
+
   test("follow-ups retain the shareable first question and browser back clears the chat", async ({ page }) => {
     await page.goto("/");
     const firstQuestion = "delayed-done: How can Noah help with an AI project?";

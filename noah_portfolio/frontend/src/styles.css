@@ -946,6 +946,10 @@ button {
   margin-top: 8px;
 }
 
+.message-copy strong {
+  font-weight: 700;
+}
+
 .message-cta,
 .inline-action {
   display: inline-flex;

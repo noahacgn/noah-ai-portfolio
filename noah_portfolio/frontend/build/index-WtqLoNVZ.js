@@ -12081,9 +12081,12 @@ function Ma({ icon: v, size: c = 18, strokeWidth: s = 1.8 }) {
 function me() {
   return /* @__PURE__ */ m.jsx(Ma, { icon: Uv, size: 17, strokeWidth: 1.7 });
 }
+function Wv(v) {
+  return String(v).split(/(\*\*[^*\n]+\*\*)/g).map((c, s) => c.startsWith("**") && c.endsWith("**") ? /* @__PURE__ */ m.jsx("strong", { children: c.slice(2, -2) }, `${s}-${c.slice(2, 14)}`) : c);
+}
 function Zi({ children: v }) {
   return /* @__PURE__ */ m.jsx("div", { className: "message-copy", children: String(v).split(`
-`).map((c, s) => /* @__PURE__ */ m.jsx("p", { children: c || " " }, `${s}-${c.slice(0, 12)}`)) });
+`).map((c, s) => /* @__PURE__ */ m.jsx("p", { children: c ? Wv(c) : " " }, `${s}-${c.slice(0, 12)}`)) });
 }
 function Vl({ small: v = !1, assetBase: c, name: s = "portfolio owner" }) {
   return /* @__PURE__ */ m.jsx(
@@ -12095,7 +12098,7 @@ function Vl({ small: v = !1, assetBase: c, name: s = "portfolio owner" }) {
     }
   );
 }
-function Wv({ project: v, assetBase: c }) {
+function $v({ project: v, assetBase: c }) {
   return /* @__PURE__ */ m.jsxs(
     "a",
     {
@@ -12125,7 +12128,7 @@ function Wv({ project: v, assetBase: c }) {
     }
   );
 }
-function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }) {
+function Iv({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }) {
   const [g, A] = nt.useState(""), x = nt.useRef(null), z = nt.useRef(null), b = nt.useRef(null), B = Ji(o);
   nt.useEffect(() => {
     const q = x.current, $ = z.current;
@@ -12254,7 +12257,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
           /* @__PURE__ */ m.jsx(me, {})
         ] })
       ] }),
-      /* @__PURE__ */ m.jsx("div", { className: "project-grid scroll-reveal", "data-scroll-reveal": !0, children: o.projects.map((q) => /* @__PURE__ */ m.jsx(Wv, { project: q, assetBase: f }, q.id)) }),
+      /* @__PURE__ */ m.jsx("div", { className: "project-grid scroll-reveal", "data-scroll-reveal": !0, children: o.projects.map((q) => /* @__PURE__ */ m.jsx($v, { project: q, assetBase: f }, q.id)) }),
       /* @__PURE__ */ m.jsxs("button", { type: "button", className: "process-banner scroll-reveal", "data-scroll-reveal": !0, onClick: () => v("process"), children: [
         /* @__PURE__ */ m.jsx("span", { className: "process-icon", children: /* @__PURE__ */ m.jsx(Hv, { "aria-hidden": "true", size: 20 }) }),
         /* @__PURE__ */ m.jsxs("span", { children: [
@@ -12297,7 +12300,7 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
     ] })
   ] });
 }
-function Iv({ action: v, profile: c }) {
+function Pv({ action: v, profile: c }) {
   const s = Ji(c);
   return v === "skills" ? /* @__PURE__ */ m.jsxs("section", { className: "static-details", "aria-label": `${s}'s grouped skills`, children: [
     /* @__PURE__ */ m.jsxs("div", { className: "details-heading", children: [
@@ -12353,7 +12356,7 @@ function Iv({ action: v, profile: c }) {
     ] }, f.id)) })
   ] }) : null;
 }
-function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTriggerValue: g, profile: A }) {
+function t0({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTriggerValue: g, profile: A }) {
   const [x, z] = nt.useState(""), [b, B] = nt.useState([]), [C, W] = nt.useState(""), [q, $] = nt.useState(!1), st = nt.useRef(null), Rt = Ji(A), dt = Array.isArray(v == null ? void 0 : v.messages) ? v.messages : [], Z = nt.useMemo(() => [...dt, ...b], [dt, b]), K = !!(v != null && v.pending || q);
   nt.useEffect(() => {
     B([]), W(""), v != null && v.pending || $(!1);
@@ -12421,7 +12424,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
             ] })
           ] }, `${I.role}-${it}-${(V = I.content) == null ? void 0 : V.slice(0, 10)}`);
         }),
-        (v == null ? void 0 : v.staticAction) && /* @__PURE__ */ m.jsx(Iv, { action: v.staticAction, profile: A }),
+        (v == null ? void 0 : v.staticAction) && /* @__PURE__ */ m.jsx(Pv, { action: v.staticAction, profile: A }),
         (v == null ? void 0 : v.streamingText) && /* @__PURE__ */ m.jsxs("div", { className: "assistant-message", children: [
           /* @__PURE__ */ m.jsx(Vl, { small: !0, assetBase: o, name: A.name }),
           /* @__PURE__ */ m.jsxs("div", { className: "message-bubble streaming-bubble", children: [
@@ -12483,7 +12486,7 @@ function Pv({ data: v, onAction: c, onHome: s, onAbout: f, assetBase: o, setTrig
     ] })
   ] });
 }
-function t0({ onClose: v, returnFocusRef: c, profile: s }) {
+function e0({ onClose: v, returnFocusRef: c, profile: s }) {
   const f = nt.useRef(null), o = Ji(s);
   return nt.useEffect(() => {
     var A;
@@ -12529,7 +12532,7 @@ function t0({ onClose: v, returnFocusRef: c, profile: s }) {
     ] })
   ] }) });
 }
-function e0({ data: v = {}, setTriggerValue: c, assetBase: s = "./assets/" }) {
+function l0({ data: v = {}, setTriggerValue: c, assetBase: s = "./assets/" }) {
   const f = v.profile || kv, [o, g] = nt.useState(v.view || "home"), [A, x] = nt.useState(!1), z = nt.useRef(null), b = nt.useRef(new URL(window.location.href).searchParams.has("query"));
   nt.useEffect(() => {
     g(v.view || "home");
@@ -12555,12 +12558,12 @@ function e0({ data: v = {}, setTriggerValue: c, assetBase: s = "./assets/" }) {
   }
   return /* @__PURE__ */ m.jsxs("div", { className: "app-root", children: [
     /* @__PURE__ */ m.jsx(Jv, {}),
-    o === "chat" ? /* @__PURE__ */ m.jsx(Pv, { data: v, profile: f, assetBase: s, setTriggerValue: c, onAction: B, onHome: () => B("home"), onAbout: W }) : /* @__PURE__ */ m.jsx($v, { profile: f, assetBase: s, onAction: B, onAbout: W, onOpenChat: C }),
-    A && /* @__PURE__ */ m.jsx(t0, { profile: f, returnFocusRef: z, onClose: () => x(!1) })
+    o === "chat" ? /* @__PURE__ */ m.jsx(t0, { data: v, profile: f, assetBase: s, setTriggerValue: c, onAction: B, onHome: () => B("home"), onAbout: W }) : /* @__PURE__ */ m.jsx(Iv, { profile: f, assetBase: s, onAction: B, onAbout: W, onOpenChat: C }),
+    A && /* @__PURE__ */ m.jsx(e0, { profile: f, returnFocusRef: z, onClose: () => x(!1) })
   ] });
 }
 const pf = /* @__PURE__ */ new WeakMap();
-function l0(v) {
+function a0(v) {
   const { data: c, parentElement: s, setTriggerValue: f } = v, o = s.querySelector("#portfolio-root"), g = new URL(
     /* @vite-ignore */
     "./assets/",
@@ -12569,7 +12572,7 @@ function l0(v) {
   let A = pf.get(o);
   return A || (A = Dv.createRoot(o), pf.set(o, A)), A.render(
     /* @__PURE__ */ m.jsx(bv.StrictMode, { children: /* @__PURE__ */ m.jsx(
-      e0,
+      l0,
       {
         data: c,
         setTriggerValue: f,
@@ -12581,5 +12584,5 @@ function l0(v) {
   };
 }
 export {
-  l0 as default
+  a0 as default
 };
