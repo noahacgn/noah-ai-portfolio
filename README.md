@@ -55,7 +55,7 @@ uv run --locked scripts\deepseek_smoke.py
 
 生产应用跟随 `main` 自动更新；普通源码变更复用现有环境，依赖文件或 Python 版本变化会触发环境重建。
 
-如果 Cloud 日志连续出现 `Updating the app files has failed: exit status 1`，且前端静态资源已经变化、Python 返回的数据仍停留在旧版本，说明当前实例没有完成源码更新后的进程重启。先从应用右下角依次打开 **Manage app → Reboot app → Reboot**，强制创建干净实例；如果下一次真实文件提交仍然拉取失败，则在 Workspace settings → Linked accounts 中断开并重新授权 GitHub Source control。重新授权后仍失败时，先备份 Secrets，再删除并使用相同仓库、分支、入口、Python 版本和域名重建应用。恢复后应同时确认：启动日志显示依赖来自 `uv.lock`，快捷资料视图返回当前 `main` 的内容，并且一次后续真实文件提交能被自动拉取。
+Cloud 日志中的 `Updating the app files has failed: exit status 1` 可能在文件已经更新时仍然出现，不能单独作为部署失败的判断依据。入口会为包级 Python 源码计算内容指纹；检测到新版本后只重新加载一次资料、AI 网关和组件模块，避免前端已经更新但 Python 仍使用旧模块。部署后应以当前 `main` 的静态资源和快捷资料视图做双重核验。如果两者在数分钟后都没有变化，先从应用右下角依次打开 **Manage app → Reboot app → Reboot**；后续真实提交仍未出现时，再到 Workspace settings → Linked accounts 重新授权 GitHub Source control。重新授权后仍失败时，备份 Secrets，并使用相同仓库、分支、入口、Python 版本和域名重建应用。
 
 1. 将公开仓库连接到 Streamlit Community Cloud。
 2. Main file path 选择 `streamlit_app.py`。

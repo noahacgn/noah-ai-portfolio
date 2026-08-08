@@ -199,6 +199,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - 生产密钥通过 Streamlit Secrets 配置，不进入 Git、前端包、查询参数、截图或部署日志。
 - 接受 Community Cloud 在约 12 小时无活动后休眠的免费层行为；Noah 在发送重要 cover letter 前手动预热应用。
 - 当前本地仓库没有远端；实施会话需要创建或连接目标 GitHub 仓库、推送公开历史并完成 Streamlit 部署。
+- Streamlit 入口为包级 Python 源码计算内容指纹；部署源码变化后只重新加载一次资料、AI 网关和组件模块，避免长驻进程继续使用旧模块。
 
 ## Testing Decisions
 

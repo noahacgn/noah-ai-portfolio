@@ -2,23 +2,58 @@
 
 from __future__ import annotations
 
+import hashlib
+import importlib
 import queue
 import threading
 from collections.abc import Mapping
 from pathlib import Path
+from types import ModuleType
 from typing import Any
 
 import streamlit as st
 
-from noah_portfolio import render_portfolio
-from noah_portfolio.deepseek import DeepSeekGateway, DeepSeekGatewayError
-from noah_portfolio.profile import PUBLIC_PROFILE, quick_message
-
-
 PAGE_TITLE = "Noah Wang — AI Portfolio"
-PAGE_ICON = Path(__file__).parent / "noah_portfolio" / "frontend" / "build" / "favicon.svg"
+PROJECT_ROOT = Path(__file__).parent
+PACKAGE_ROOT = PROJECT_ROOT / "noah_portfolio"
+PAGE_ICON = PACKAGE_ROOT / "frontend" / "build" / "favicon.svg"
 COMPONENT_KEY = "noah-ai-portfolio"
 MAX_QUERY_LENGTH = 2_000
+
+
+def _package_source_signature() -> str:
+    """Fingerprint imported Python sources that Streamlit may keep in memory."""
+
+    digest = hashlib.sha256()
+    for source_path in sorted(PACKAGE_ROOT.glob("*.py")):
+        digest.update(source_path.name.encode("utf-8"))
+        digest.update(source_path.read_bytes())
+    return digest.hexdigest()
+
+
+def _load_runtime_modules() -> tuple[ModuleType, ModuleType, ModuleType]:
+    """Reload package modules once when a deployment changes their source."""
+
+    portfolio_module = importlib.import_module("noah_portfolio")
+    profile_module = importlib.import_module("noah_portfolio.profile")
+    deepseek_module = importlib.import_module("noah_portfolio.deepseek")
+    source_signature = _package_source_signature()
+
+    if getattr(portfolio_module, "_deployment_source_signature", None) != source_signature:
+        profile_module = importlib.reload(profile_module)
+        deepseek_module = importlib.reload(deepseek_module)
+        portfolio_module = importlib.reload(portfolio_module)
+        portfolio_module._deployment_source_signature = source_signature
+
+    return portfolio_module, profile_module, deepseek_module
+
+
+portfolio_runtime, profile_runtime, deepseek_runtime = _load_runtime_modules()
+render_portfolio = portfolio_runtime.render_portfolio
+PUBLIC_PROFILE = profile_runtime.PUBLIC_PROFILE
+quick_message = profile_runtime.quick_message
+DeepSeekGateway = deepseek_runtime.DeepSeekGateway
+DeepSeekGatewayError = deepseek_runtime.DeepSeekGatewayError
 
 
 st.set_page_config(
@@ -48,8 +83,6 @@ st.html(
     </style>
     """
 )
-
-st.html('<span id="deployment-probe" hidden>deploy-probe-20260808-1</span>')
 
 
 def _ensure_state() -> None:
