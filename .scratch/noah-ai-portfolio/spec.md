@@ -61,7 +61,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 39. As a 潜在客户, I want 作品集不把 Quad Agent 标记为 Local-first, so that 页面文案聚焦对客户更重要的交付价值
 40. As a 潜在客户, I want 点击 Ask About My Process 后在对话中看到五步合作流程, so that 我能理解 Noah 如何推进项目
 41. As a 潜在客户, I want 合作流程涵盖需求与数据、架构与风险、最小纵向切片、可靠性与测试、部署与交接, so that 我能预期一个具体的合作方式
-42. As a 潜在客户, I want 点击顶部 Looking for a talent? 后先进入一条相关对话, so that 我可以在离开站点前理解 Noah 如何帮助我的 AI 项目
+42. As a 潜在客户, I want 点击顶部 Need an AI engineer? 后先进入一条相关对话, so that 我可以在离开站点前理解 Noah 如何帮助我的 AI 项目
 43. As a 潜在客户, I want 在相关回答和页面底部看到明确的 Upwork 行动入口, so that 我能带着上下文回到 Upwork 联系 Noah
 44. As a 潜在客户, I want Upwork 是最突出的合作渠道, so that 我知道正式沟通应在哪里继续
 45. As a 潜在客户, I want 看到 `noahacgn@gmail.com` 作为辅助邮箱, so that 我有一个直接联系选项
@@ -121,7 +121,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - 以 Noah 当前 Upwork 头像为人物依据，通过图像生成制作大号圆形 3D/Memoji 风格头像；头像只做轻微漂浮动画，并在对话视图复用较小版本。不得生成伪视频或暗示实时真人形象。
 - 首页快捷入口固定为 `Me / Projects / Skills / Experience / Contact`；目标站点的 Fun 被 Experience 替换，不出现 Fit。
 - 顶部不展示 `Source` 按钮；作品集仓库地址仍可作为 AI 回答的公开资料。
-- 顶部 `Looking for a talent?` 进入对话，并使用与“How can Noah help with my AI project?”含义一致的初始问题；它不直接把访客送离站点。
+- 顶部 `Need an AI engineer?` 进入对话，并使用与“How can Noah help with my AI project?”含义一致的初始问题；它不直接把访客送离站点。
 - 首页项目区只显示一行两列的两个项目卡片。卡片整体可点击、在新标签页打开 GitHub，并显示 `View on GitHub` 与 `Source Available`。
 - 项目区底部提供 `Ask About My Process`，点击后在对话中展示合作流程；首页不增加独立的静态流程区。
 - 页面底部保留明确的 Upwork CTA；对话答案可根据语境再次显示 Upwork CTA。

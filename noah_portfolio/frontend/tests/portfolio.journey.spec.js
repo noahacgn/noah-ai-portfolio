@@ -16,7 +16,7 @@ test.describe("public portfolio journey", () => {
       /^data:image\/svg\+xml;base64,/,
     );
     await expect(page.locator(".site-header")).not.toContainText("Noah Wang");
-    await expect(page.getByRole("button", { name: "Looking for a talent?" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Need an AI engineer?" })).toBeVisible();
     await expect(page.getByRole("link", { name: /^Source/ })).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Knowledge Engine/ })).toBeVisible();
@@ -195,6 +195,7 @@ test.describe("public portfolio journey", () => {
   test("mobile viewport keeps the first screen within the viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
+    await expect(page.getByRole("button", { name: "Need an AI engineer?" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Me", exact: true })).toBeVisible();
     const dimensions = await page.evaluate(() => ({

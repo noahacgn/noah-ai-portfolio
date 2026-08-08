@@ -12222,10 +12222,7 @@ function l0({ onAction: m, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
   }
   return /* @__PURE__ */ d.jsxs("main", { className: "portfolio-shell home-view", children: [
     /* @__PURE__ */ d.jsxs("header", { className: "site-header", children: [
-      /* @__PURE__ */ d.jsxs("button", { type: "button", className: "header-cta header-opportunity", onClick: () => s(`How can ${F} help with my AI project?`), children: [
-        /* @__PURE__ */ d.jsx("span", { className: "opportunity-long", children: "Looking for a talent?" }),
-        /* @__PURE__ */ d.jsx("span", { className: "opportunity-short", children: "Talent?" })
-      ] }),
+      /* @__PURE__ */ d.jsx("button", { type: "button", className: "header-cta header-opportunity", onClick: () => s(`How can ${F} help with my AI project?`), children: "Need an AI engineer?" }),
       /* @__PURE__ */ d.jsx("button", { className: "brand-button header-brand", type: "button", "aria-label": "Portfolio home", onClick: () => m("home"), children: /* @__PURE__ */ d.jsx("span", { className: "brand-mark", children: "NW" }) }),
       /* @__PURE__ */ d.jsx("nav", { className: "header-nav", "aria-label": "Portfolio navigation", children: /* @__PURE__ */ d.jsx("button", { type: "button", className: "header-link", onClick: c, children: "About" }) }),
       /* @__PURE__ */ d.jsx("button", { className: "mobile-menu", type: "button", "aria-label": "Open navigation", onClick: c, children: /* @__PURE__ */ d.jsx(Ma, { icon: Lv, size: 20 }) })

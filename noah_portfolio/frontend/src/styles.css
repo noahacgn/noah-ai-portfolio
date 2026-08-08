@@ -208,10 +208,6 @@ button {
   transform: translateY(-1px);
 }
 
-.opportunity-short {
-  display: none;
-}
-
 .header-link:hover {
   color: #101010;
   background: #f5f5f5;
@@ -1337,14 +1333,6 @@ button {
     min-height: 34px;
     padding: 7px 12px 7px 27px;
     white-space: nowrap;
-  }
-
-  .opportunity-long {
-    display: none;
-  }
-
-  .opportunity-short {
-    display: inline;
   }
 
   .hero-section {

@@ -269,8 +269,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
     <main className="portfolio-shell home-view">
       <header className="site-header">
         <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my AI project?`)}>
-          <span className="opportunity-long">Looking for a talent?</span>
-          <span className="opportunity-short">Talent?</span>
+          Need an AI engineer?
         </button>
         <button className="brand-button header-brand" type="button" aria-label="Portfolio home" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
