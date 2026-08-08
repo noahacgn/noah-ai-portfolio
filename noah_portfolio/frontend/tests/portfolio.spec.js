@@ -12,7 +12,7 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
   await expect(page.getByText(/Seven years of engineering context behind/)).toHaveCount(0);
   await expect(page.getByRole("textbox", { name: "Ask about Noah's work" })).toHaveAttribute(
     "placeholder",
-    "Ask about my work…",
+    "Could Noah build my RAG system?",
   );
   await expect(page.getByRole("button", { name: "Ask the AI Portfolio" }).locator(".lucide-bot")).toBeVisible();
   await expect(
@@ -28,6 +28,30 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
     page.getByRole("heading", { name: /Knowledge Engine/ }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: /Quad Agent/ })).toBeVisible();
+});
+
+test("hero question suggestions rotate and pause while the visitor is composing", async ({ page }) => {
+  await page.goto("/");
+  const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
+
+  await expect(input).toHaveAttribute(
+    "placeholder",
+    "Could Noah build my RAG system?",
+  );
+  await expect.poll(
+    () => input.getAttribute("placeholder"),
+    { timeout: 7_000 },
+  ).toBe("How does Noah build AI agents?");
+
+  await input.focus();
+  const focusedSuggestion = await input.getAttribute("placeholder");
+  await page.waitForTimeout(5_500);
+  await expect(input).toHaveAttribute("placeholder", focusedSuggestion);
+
+  await input.fill("Can Noah help with my retrieval workflow?");
+  await input.blur();
+  await page.waitForTimeout(5_500);
+  await expect(input).toHaveAttribute("placeholder", focusedSuggestion);
 });
 
 test("hero scroll cue clears the quick portfolio views", async ({ page }) => {
@@ -90,4 +114,10 @@ test("reduced motion removes the fluid simulation", async ({ page }) => {
 
   await expect(page.locator("canvas[data-fluid-trail]")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
+  const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
+  await page.waitForTimeout(5_500);
+  await expect(input).toHaveAttribute(
+    "placeholder",
+    "Could Noah build my RAG system?",
+  );
 });

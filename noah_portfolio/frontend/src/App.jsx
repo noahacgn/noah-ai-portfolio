@@ -31,6 +31,15 @@ const QUICK_ACTIONS = [
   { id: "contact", label: "Contact", icon: MessageCircle },
 ];
 
+const HERO_QUESTION_SUGGESTIONS = [
+  "Could Noah build my RAG system?",
+  "How does Noah build AI agents?",
+  "Does Noah have backend experience?",
+  "What project details should I share?",
+];
+const HERO_QUESTION_HOLD_MS = 5_000;
+const HERO_QUESTION_FADE_MS = 180;
+
 const EMPTY_PROFILE = {
   name: "Portfolio",
   githubHandle: "",
@@ -44,6 +53,56 @@ const EMPTY_PROFILE = {
 
 function firstNameOf(profile) {
   return String(profile.name || "").trim().split(/\s+/)[0] || "the portfolio owner";
+}
+
+function useHeroQuestionSuggestion(paused) {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [pageVisible, setPageVisible] = useState(() => document.visibilityState === "visible");
+  const [reducedMotion, setReducedMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotionPreference = () => setReducedMotion(motionPreference.matches);
+    const syncPageVisibility = () => setPageVisible(document.visibilityState === "visible");
+
+    motionPreference.addEventListener("change", syncMotionPreference);
+    document.addEventListener("visibilitychange", syncPageVisibility);
+    return () => {
+      motionPreference.removeEventListener("change", syncMotionPreference);
+      document.removeEventListener("visibilitychange", syncPageVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setIndex(0);
+      setVisible(true);
+      return undefined;
+    }
+    if (paused || !pageVisible) {
+      setVisible(true);
+      return undefined;
+    }
+
+    const fadeTimer = window.setTimeout(() => setVisible(false), HERO_QUESTION_HOLD_MS);
+    const advanceTimer = window.setTimeout(() => {
+      setIndex((current) => (current + 1) % HERO_QUESTION_SUGGESTIONS.length);
+      setVisible(true);
+    }, HERO_QUESTION_HOLD_MS + HERO_QUESTION_FADE_MS);
+
+    return () => {
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(advanceTimer);
+    };
+  }, [index, pageVisible, paused, reducedMotion]);
+
+  return {
+    suggestion: HERO_QUESTION_SUGGESTIONS[index],
+    suggestionVisible: visible,
+  };
 }
 
 function Icon({ icon: IconComponent, size = 18, strokeWidth = 1.8 }) {
@@ -116,10 +175,14 @@ function ProjectCard({ project, assetBase }) {
 
 function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
   const [question, setQuestion] = useState("");
+  const [questionFocused, setQuestionFocused] = useState(false);
   const heroRef = useRef(null);
   const interactionsRef = useRef(null);
   const projectsRef = useRef(null);
   const firstName = firstNameOf(profile);
+  const { suggestion, suggestionVisible } = useHeroQuestionSuggestion(
+    questionFocused || question.length > 0,
+  );
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -237,10 +300,13 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
             <div className="question-input-row">
               <input
                 id="hero-question"
+                className={suggestionVisible ? "hero-question-input" : "hero-question-input is-suggestion-hidden"}
                 value={question}
                 maxLength={2000}
                 onChange={(event) => setQuestion(event.target.value)}
-                placeholder="Ask about my work…"
+                onFocus={() => setQuestionFocused(true)}
+                onBlur={() => setQuestionFocused(false)}
+                placeholder={suggestion}
                 autoComplete="off"
               />
               <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
