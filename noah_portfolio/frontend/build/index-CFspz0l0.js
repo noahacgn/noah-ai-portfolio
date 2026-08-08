@@ -12094,7 +12094,7 @@ function Vl({ small: v = !1, assetBase: c, name: s = "portfolio owner" }) {
     "img",
     {
       className: v ? "avatar avatar-small" : "avatar",
-      src: Zh(c, "noah-avatar.png"),
+      src: Zh(c, "noah-avatar.webp"),
       alt: `3D portrait of ${s}`
     }
   );

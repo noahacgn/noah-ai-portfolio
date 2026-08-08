@@ -72,7 +72,7 @@ function Avatar({ small = false, assetBase, name = "portfolio owner" }) {
   return (
     <img
       className={small ? "avatar avatar-small" : "avatar"}
-      src={assetUrl(assetBase, "noah-avatar.png")}
+      src={assetUrl(assetBase, "noah-avatar.webp")}
       alt={`3D portrait of ${name}`}
     />
   );
