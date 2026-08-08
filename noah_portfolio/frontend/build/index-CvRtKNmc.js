@@ -12067,7 +12067,6 @@ const Fv = [
 ], kv = {
   name: "Portfolio",
   githubHandle: "",
-  focus: "AI Portfolio",
   upworkUrl: "#",
   githubUrl: "#",
   portfolioRepoUrl: "#",
@@ -12213,7 +12212,6 @@ function $v({ onAction: v, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
         /* @__PURE__ */ m.jsx("span", { "aria-hidden": "true", children: "👋" })
       ] }),
       /* @__PURE__ */ m.jsx("h1", { id: "hero-title", children: "AI Portfolio" }),
-      /* @__PURE__ */ m.jsx("p", { className: "hero-tagline", children: o.focus }),
       /* @__PURE__ */ m.jsxs("div", { className: "hero-avatar-wrap", children: [
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-one", "aria-hidden": "true" }),
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-two", "aria-hidden": "true" }),

@@ -34,7 +34,6 @@ const QUICK_ACTIONS = [
 const EMPTY_PROFILE = {
   name: "Portfolio",
   githubHandle: "",
-  focus: "AI Portfolio",
   upworkUrl: "#",
   githubUrl: "#",
   portfolioRepoUrl: "#",
@@ -222,7 +221,6 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         <div className="watermark" aria-hidden="true"><span>{profile.name}</span></div>
         <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
         <h1 id="hero-title">AI Portfolio</h1>
-        <p className="hero-tagline">{profile.focus}</p>
         <div className="hero-avatar-wrap">
           <div className="avatar-orbit orbit-one" aria-hidden="true" />
           <div className="avatar-orbit orbit-two" aria-hidden="true" />

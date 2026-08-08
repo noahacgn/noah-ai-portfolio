@@ -8,7 +8,7 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
     page.getByText(
       "AI Systems Engineer · Agents, RAG & Full-Stack Delivery",
     ),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(page.getByText(/Seven years of engineering context behind/)).toHaveCount(0);
   await expect(page.getByRole("textbox", { name: "Ask about Noah's work" })).toHaveAttribute(
     "placeholder",
@@ -27,6 +27,18 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
     page.getByRole("heading", { name: /Knowledge Engine/ }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: /Quad Agent/ })).toBeVisible();
+});
+
+test("hero scroll cue clears the quick portfolio views", async ({ page }) => {
+  await page.goto("/");
+
+  const gap = await page.locator(".hero-section").evaluate((hero) => {
+    const quickViews = hero.querySelector(".quick-grid").getBoundingClientRect();
+    const scrollCue = hero.querySelector(".explore-projects").getBoundingClientRect();
+    return scrollCue.top - quickViews.bottom;
+  });
+
+  expect(gap).toBeGreaterThanOrEqual(24);
 });
 
 test("scrolling from the hero recreates the source transition", async ({ page }) => {

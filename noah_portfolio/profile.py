@@ -19,7 +19,6 @@ EMAIL: Final = "noahacgn@gmail.com"
 PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "name": "Noah Wang",
     "githubHandle": "@noahacgn",
-    "focus": "AI Systems Engineer · Agents, RAG & Full-Stack Delivery",
     "upworkUrl": UPWORK_URL,
     "githubUrl": GITHUB_URL,
     "portfolioRepoUrl": PORTFOLIO_REPO_URL,

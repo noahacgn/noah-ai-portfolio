@@ -249,7 +249,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 27px 0 72px;
+  padding: 27px 0 104px;
   overflow: hidden;
   text-align: center;
 }
@@ -289,16 +289,6 @@ button {
   font-weight: 650;
   letter-spacing: -0.035em;
   line-height: 1.35;
-}
-
-.hero-tagline {
-  max-width: 900px;
-  margin: 13px auto 0;
-  color: #4d4d4d;
-  font-size: clamp(17px, 1.8vw, 22px);
-  font-weight: 540;
-  letter-spacing: -0.035em;
-  line-height: 1.24;
 }
 
 .hero-avatar-wrap {
@@ -1365,13 +1355,6 @@ button {
     max-width: 355px;
     font-size: clamp(41px, 12vw, 58px);
     line-height: 0.97;
-  }
-
-  .hero-tagline {
-    max-width: 350px;
-    margin-top: 10px;
-    font-size: 17px;
-    line-height: 1.25;
   }
 
   .hero-avatar-wrap {
