@@ -388,8 +388,11 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
   }, [data?.messageRevision, data?.view, data?.error, data?.pending]);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [messages.length, data?.pending]);
+    endRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: data?.staticAction ? "end" : "nearest",
+    });
+  }, [messages.length, data?.pending, data?.staticAction]);
 
   useEffect(() => {
     if (!data?.pending) return undefined;
@@ -425,7 +428,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
         <div className="chat-header-center"><span className="online-dot" /> AI Portfolio chat</div>
         <button className="header-link about-chat" type="button" onClick={onAbout}>About</button>
       </header>
-      <section className="chat-content" aria-labelledby="chat-heading">
+      <section className={data?.staticAction ? "chat-content chat-content-static" : "chat-content"} aria-labelledby="chat-heading">
         <div className="chat-intro">
           <Avatar small assetBase={assetBase} name={profile.name} />
           <div><p className="eyebrow">AI Portfolio</p><h1 id="chat-heading">Ask me about {firstName}&apos;s work</h1><p>I&apos;m an AI-generated portfolio, here to make the useful parts easy to explore.</p></div>
@@ -443,7 +446,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
           {(data?.pending || localPending) && !data?.streamingText && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble typing-bubble"><span className="typing-label">Preparing a response</span><span className="typing-dots" aria-label="Generating"><i /><i /><i /></span></div></div>}
           {data?.error && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble error-bubble"><MessageText>{data.error}</MessageText><button className="inline-action" type="button" onClick={onHome}>Browse the static portfolio <ExternalArrow /></button></div></div>}
           {localNotice && <p className="input-notice" role="alert">{localNotice}</p>}
-          <div ref={endRef} />
+          <div ref={endRef} className="message-end" />
         </div>
       </section>
       <form className="question-form chat-question" onSubmit={submit}>

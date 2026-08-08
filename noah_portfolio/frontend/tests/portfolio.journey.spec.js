@@ -46,7 +46,13 @@ test.describe("public portfolio journey", () => {
     await page.getByRole("button", { name: "Skills", exact: true }).click();
     const skills = page.getByRole("region", { name: "Noah's grouped skills" });
     await expect(skills).toContainText("AI Systems");
-    await expect(skills).toContainText("PostgreSQL/pgvector");
+    await expect(skills).toContainText("RAG / Retrieval");
+    await expect(skills).toContainText("Java 21");
+    await expect(skills).toContainText("Spring Boot / Cloud");
+    await expect(skills).toContainText("Distributed Systems");
+    await expect(skills).toContainText("RabbitMQ");
+    await expect(skills).toContainText("Domain Engineering");
+    await expect(skills).toContainText("Blockchain / Web3");
     await expect(skills).toContainText("Automated Testing");
 
     await page.getByRole("button", { name: "Portfolio home" }).click();

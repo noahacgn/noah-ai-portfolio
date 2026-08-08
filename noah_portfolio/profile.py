@@ -49,15 +49,68 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "skills": [
         {
             "title": "AI Systems",
-            "items": ["LangGraph", "LangChain", "RAG", "Hybrid Retrieval", "Agent Workflows"],
+            "items": [
+                "LangGraph",
+                "LangChain",
+                "Agent Workflows",
+                "ReAct",
+                "Plan-Execute",
+                "Prompt Engineering",
+            ],
+        },
+        {
+            "title": "RAG / Retrieval",
+            "items": [
+                "RAG",
+                "Hybrid Retrieval",
+                "Query Rewriting",
+                "Reranking",
+                "Vector Search",
+                "Source Citations",
+            ],
         },
         {
             "title": "Backend / Data",
-            "items": ["Python", "FastAPI", "PostgreSQL/pgvector", "Elasticsearch", "Redis", "Neo4j"],
+            "items": [
+                "Java 21",
+                "Spring Boot / Cloud",
+                "Python / FastAPI",
+                "MySQL / PostgreSQL",
+                "pgvector / Elasticsearch",
+                "Neo4j",
+            ],
+        },
+        {
+            "title": "Distributed Systems",
+            "items": [
+                "Redis",
+                "RabbitMQ",
+                "WebSocket",
+                "Concurrency",
+                "Distributed Locks",
+                "Background Jobs",
+            ],
         },
         {
             "title": "Product Delivery",
-            "items": ["React/TypeScript", "Streaming/SSE", "OpenTelemetry", "Docker", "Automated Testing"],
+            "items": [
+                "React / TypeScript",
+                "Streaming / SSE",
+                "OpenTelemetry",
+                "Docker",
+                "GitLab CI/CD",
+                "Automated Testing",
+            ],
+        },
+        {
+            "title": "Domain Engineering",
+            "items": [
+                "Payments",
+                "Wallets",
+                "Blockchain / Web3",
+                "E-commerce",
+                "Banking Systems",
+            ],
         },
     ],
     "experience": [
@@ -107,11 +160,15 @@ QUICK_RESPONSES: Final[dict[str, dict[str, str]]] = {
     "skills": {
         "title": "The stack I reach for",
         "body": (
-            "My AI systems work centers on LangGraph, LangChain, RAG, hybrid retrieval, and "
-            "agent workflows. Around that I use Python, FastAPI, PostgreSQL/pgvector, "
-            "Elasticsearch, Redis, Neo4j, React/TypeScript, streaming/SSE, OpenTelemetry, "
-            "Docker, and automated testing. The grouping is intentional: useful AI needs a "
-            "dependable product boundary."
+            "My AI work spans LangGraph and LangChain orchestration, ReAct and Plan-Execute "
+            "agents, prompt engineering, and evidence-backed RAG with query rewriting, hybrid "
+            "retrieval, reranking, and citations. I deliver those systems with Python/FastAPI "
+            "and React/TypeScript, backed by PostgreSQL/pgvector, Elasticsearch, Redis, and Neo4j.\n"
+            "\n"
+            "That newer AI stack sits on seven years of Java and distributed-systems work: "
+            "Spring Boot/Cloud, MySQL, RabbitMQ, WebSocket infrastructure, concurrency, "
+            "distributed locks, testing, observability, Docker, and CI/CD across payments, "
+            "wallets, blockchain, e-commerce, and banking products."
         ),
     },
     "experience": {
@@ -182,9 +239,12 @@ Background: payments, wallets, blockchain, e-commerce, and banking backends
 Supplementary engineering background: Java, Spring, Redis, RabbitMQ, concurrency, distributed systems
 Employers: Merypto (CPcash), Aug 2024–Jun 2026; SandPay, Oct 2021–May 2024; Shanghai Jibeike, Oct 2020–Aug 2021; Xiamen Ruanyun, May 2019–Jul 2020
 Education/languages: Jimei University; Chinese native; English Conversational
-AI Systems: LangGraph, LangChain, RAG, Hybrid Retrieval, Agent Workflows
-Backend/Data: Python, FastAPI, PostgreSQL/pgvector, Elasticsearch, Redis, Neo4j
-Product Delivery: React/TypeScript, Streaming/SSE, OpenTelemetry, Docker, Automated Testing
+AI Systems: LangGraph, LangChain, Agent Workflows, ReAct, Plan-Execute, Prompt Engineering
+RAG/Retrieval: RAG, Hybrid Retrieval, Query Rewriting, Reranking, Vector Search, Source Citations
+Backend/Data: Java 21, Spring Boot/Cloud, Python/FastAPI, MySQL/PostgreSQL, pgvector/Elasticsearch, Neo4j
+Distributed Systems: Redis, RabbitMQ, WebSocket, Concurrency, Distributed Locks, Background Jobs
+Product Delivery: React/TypeScript, Streaming/SSE, OpenTelemetry, Docker, GitLab CI/CD, Automated Testing
+Domain Engineering: Payments, Wallets, Blockchain/Web3, E-commerce, Banking Systems
 Project 1: Knowledge Engine — Evidence-First Enterprise RAG Platform. Source available at https://github.com/noahacgn/knowledge-engine. Describe it as a production-oriented reference, not production-proven or enterprise-proven.
 Project 2: Quad Agent — Full-Stack LangGraph AI Agent Workspace. Source available at https://github.com/noahacgn/quad-agent. Discuss web search, file RAG, PPT building, deep research, replayable streaming events, and HITL without claiming deployment or guarantees.
 Contact: Upwork {UPWORK_URL}; email {EMAIL}; GitHub {GITHUB_URL}

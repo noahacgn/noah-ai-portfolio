@@ -874,6 +874,10 @@ button {
   padding: 54px 0 154px;
 }
 
+.chat-content-static {
+  padding-bottom: 300px;
+}
+
 .chat-intro {
   display: flex;
   align-items: center;
@@ -907,6 +911,10 @@ button {
   flex-direction: column;
   gap: 19px;
   padding-top: 31px;
+}
+
+.message-end {
+  scroll-margin-bottom: 150px;
 }
 
 .assistant-message,
@@ -1429,6 +1437,14 @@ button {
 
   .chat-content {
     padding: 35px 0 177px;
+  }
+
+  .chat-content-static {
+    padding-bottom: 285px;
+  }
+
+  .message-end {
+    scroll-margin-bottom: 165px;
   }
 
   .chat-intro {
