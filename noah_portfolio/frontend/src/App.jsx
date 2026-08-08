@@ -2,6 +2,7 @@ import {
   ArrowLeft,
   ArrowUpRight,
   BriefcaseBusiness,
+  ChevronDown,
   ChevronRight,
   Code2,
   Github,
@@ -108,7 +109,75 @@ function ProjectCard({ project, assetBase }) {
 
 function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
   const [question, setQuestion] = useState("");
+  const heroRef = useRef(null);
+  const interactionsRef = useRef(null);
+  const projectsRef = useRef(null);
   const firstName = firstNameOf(profile);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    const interactions = interactionsRef.current;
+    if (!hero || !interactions || !("IntersectionObserver" in window)) {
+      return undefined;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const initialTop = hero.getBoundingClientRect().top;
+    let lastDistance = 0;
+
+    function applyTransition(distance) {
+      lastDistance = distance;
+      const fadeProgress = Math.min(1, Math.max(0, (distance - 360) / 190));
+      const offset = reduceMotion.matches ? 0 : Math.min(123, distance / 5.04);
+      interactions.style.setProperty("--hero-exit-opacity", reduceMotion.matches ? "1" : String(1 - fadeProgress));
+      interactions.style.setProperty("--hero-exit-offset", `${-offset}px`);
+    }
+
+    const observer = new window.IntersectionObserver(([entry]) => {
+      applyTransition(Math.max(0, initialTop - entry.boundingClientRect.top));
+    }, {
+      root: null,
+      threshold: Array.from({ length: 101 }, (_, index) => index / 100),
+    });
+    const handleMotionPreference = () => applyTransition(lastDistance);
+
+    observer.observe(hero);
+    reduceMotion.addEventListener("change", handleMotionPreference);
+    return () => {
+      observer.disconnect();
+      reduceMotion.removeEventListener("change", handleMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = projectsRef.current;
+    if (!section) {
+      return undefined;
+    }
+
+    const revealItems = [...section.querySelectorAll("[data-scroll-reveal]")];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.12,
+    });
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [profile.projects.length]);
 
   function submit(event) {
     event.preventDefault();
@@ -121,9 +190,13 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
     setQuestion("");
   }
 
+  function exploreProjects() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    projectsRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+
   return (
     <main className="portfolio-shell home-view">
-      <div className="watermark" aria-hidden="true">{profile.name}</div>
       <header className="site-header">
         <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my AI project?`)}>
           <span className="opportunity-long">Looking for an AI engineer?</span>
@@ -146,7 +219,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         </button>
       </header>
 
-      <section className="hero-section" aria-labelledby="hero-title">
+      <section ref={heroRef} className="hero-section" aria-labelledby="hero-title">
+        <div className="watermark" aria-hidden="true"><span>{profile.name}</span></div>
         <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
         <h1 id="hero-title">AI Portfolio</h1>
         <p className="hero-tagline">{profile.focus}</p>
@@ -156,37 +230,43 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
           <div className="avatar-orbit orbit-two" aria-hidden="true" />
           <Avatar assetBase={assetBase} name={profile.name} />
         </div>
-        <form className="question-form hero-question" onSubmit={submit}>
-          <label htmlFor="hero-question">Ask about {firstName}&apos;s work</label>
-          <div className="question-input-row">
-            <input
-              id="hero-question"
-              value={question}
-              maxLength={2000}
-              onChange={(event) => setQuestion(event.target.value)}
-              placeholder="Ask me anything about projects, skills, or process…"
-              autoComplete="off"
-            />
-            <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
-              <Icon icon={Send} size={18} />
-            </button>
+        <div className="hero-interactions" ref={interactionsRef}>
+          <form className="question-form hero-question" onSubmit={submit}>
+            <label htmlFor="hero-question">Ask about {firstName}&apos;s work</label>
+            <div className="question-input-row">
+              <input
+                id="hero-question"
+                value={question}
+                maxLength={2000}
+                onChange={(event) => setQuestion(event.target.value)}
+                placeholder="Ask me anything about projects, skills, or process…"
+                autoComplete="off"
+              />
+              <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
+                <Icon icon={Send} size={18} />
+              </button>
+            </div>
+            {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
+            <p className="privacy-note">AI-generated answers · Don&apos;t share secrets · Messages are sent to DeepSeek</p>
+          </form>
+          <div className="quick-grid" aria-label="Quick portfolio views">
+            {QUICK_ACTIONS.map(({ id, label, icon }) => (
+              <button key={id} className="quick-card" type="button" onClick={() => onAction(id)}>
+                <Icon icon={icon} size={19} />
+                <span>{label}</span>
+                <ChevronRight className="quick-arrow" aria-hidden="true" size={15} />
+              </button>
+            ))}
           </div>
-          {question.length >= 1800 && <p className="input-counter">{question.length.toLocaleString()} / 2,000</p>}
-          <p className="privacy-note">AI-generated answers · Don&apos;t share secrets · Messages are sent to DeepSeek</p>
-        </form>
-        <div className="quick-grid" aria-label="Quick portfolio views">
-          {QUICK_ACTIONS.map(({ id, label, icon }) => (
-            <button key={id} className="quick-card" type="button" onClick={() => onAction(id)}>
-              <Icon icon={icon} size={19} />
-              <span>{label}</span>
-              <ChevronRight className="quick-arrow" aria-hidden="true" size={15} />
-            </button>
-          ))}
         </div>
+        <button type="button" className="explore-projects" onClick={exploreProjects}>
+          <span>Explore Projects</span>
+          <span className="explore-arrow"><Icon icon={ChevronDown} size={20} strokeWidth={2} /></span>
+        </button>
       </section>
 
-      <section className="projects-section" aria-labelledby="projects-heading">
-        <div className="section-heading-row">
+      <section ref={projectsRef} className="projects-section" aria-labelledby="projects-heading">
+        <div className="section-heading-row scroll-reveal" data-scroll-reveal>
           <div>
             <p className="section-kicker">Selected work</p>
             <h2 id="projects-heading">Projects that show the whole delivery loop</h2>
@@ -195,10 +275,10 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
             Ask about the projects <ExternalArrow />
           </button>
         </div>
-        <div className="project-grid">
+        <div className="project-grid scroll-reveal" data-scroll-reveal>
           {profile.projects.map((project) => <ProjectCard key={project.id} project={project} assetBase={assetBase} />)}
         </div>
-        <button type="button" className="process-banner" onClick={() => onAction("process")}>
+        <button type="button" className="process-banner scroll-reveal" data-scroll-reveal onClick={() => onAction("process")}>
           <span className="process-icon"><Workflow aria-hidden="true" size={20} /></span>
           <span><strong>Ask About My Process</strong><small>From requirements and data to deployment and handoff</small></span>
           <ExternalArrow />

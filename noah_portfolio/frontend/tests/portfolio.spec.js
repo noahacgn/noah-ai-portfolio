@@ -20,6 +20,30 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Quad Agent/ })).toBeVisible();
 });
 
+test("scrolling from the hero recreates the source transition", async ({ page }) => {
+  await page.goto("/");
+
+  const watermark = page.locator(".watermark span");
+  await expect(watermark).toHaveCSS("color", "rgba(0, 0, 0, 0)");
+  await expect(watermark).toHaveCSS("background-image", /linear-gradient/);
+
+  const projects = page.locator(".projects-section");
+  await expect.poll(() => projects.evaluate((section) => getComputedStyle(section, "::before").backgroundImage)).toContain("linear-gradient");
+
+  const interactions = page.locator(".hero-interactions");
+  const scrollContainer = page.locator("section.stMain");
+  await scrollContainer.evaluate((element) => element.scrollTo(0, 450));
+  await expect.poll(() => interactions.evaluate((element) => Number(getComputedStyle(element).opacity))).toBeLessThan(0.8);
+  await scrollContainer.evaluate((element) => element.scrollTo(0, 0));
+  await expect.poll(() => interactions.evaluate((element) => Number(getComputedStyle(element).opacity))).toBe(1);
+
+  await page.getByRole("button", { name: "Explore Projects", exact: true }).click();
+  await expect.poll(async () => {
+    return Math.abs(await page.locator("#projects-heading").evaluate((heading) => heading.getBoundingClientRect().top));
+  }).toBeLessThan(120);
+  await expect(page.locator(".section-heading-row")).toHaveClass(/is-visible/);
+});
+
 test("fluid cursor trail reacts without blocking the portfolio", async ({ page }) => {
   await page.goto("/");
 

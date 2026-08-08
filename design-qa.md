@@ -80,4 +80,28 @@
 - 移动端补充验证确认图片自然尺寸为 1254 × 1254、渲染尺寸为 250 × 250，页面宽度 390 像素且无水平溢出。
 - 当前无遗留 P3 抛光项。
 
+## 首屏到项目区滚动过渡增量验收
+
+- 视觉事实来源：`.scratch/noah-ai-portfolio/artifacts/implementation/explore-transition/11-target-top.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/explore-transition/08-target-scroll-450.png`
+- 浏览器渲染实现：`.scratch/noah-ai-portfolio/artifacts/implementation/explore-transition/12-implementation-top.png`、`.scratch/noah-ai-portfolio/artifacts/implementation/explore-transition/10-implementation-scroll-450.png`
+- 视口与状态：1280 × 720、设备像素比 2、浅色主题；分别对照滚动 0px 的首屏，以及滚动 450px 后问答区渐隐、项目标题入场的中间状态。
+- 全景对照：首屏继续保持目标站点的居中标题、圆形 3D 头像、姓名水印与提问框层级。Noah 的定位说明、头像、导航和文案属于已确认的个人化内容差异，不是本次滚动动效偏差。
+- 聚焦对照：滚动 450px 的整张 1280 × 720 截图已经只覆盖头像下半部、问答区、快捷卡片、姓名水印、Explore Projects 与项目标题，文字、透明度和位置均可直接判读，因此无需再裁切局部图。
+- 字体与排版：本次沿用既有系统字体、字号、字重和层级；滚动只改变问答区透明度与纵向位置，不改变文字换行和可读性。
+- 间距与布局：目标站点与实现的 Explore Projects 均位于首屏底部并使用 20px 下箭头；实现项目标题在 450px 状态进入视口，未与首屏控件重叠。项目标题保留既有左对齐布局，属于已确认的内容架构差异。
+- 颜色与视觉变量：项目区叠层采用从透明到 `rgba(250, 250, 250, 0.2)` 再回到透明的纵向渐变，与目标站点运行时样式一致；姓名水印采用灰色 10% 到透明的文字渐变。
+- 图片与资产：头像继续使用用户选定的钴蓝真实位图，目标站点头像仅作为位置和遮罩参考；没有用 CSS 图形、占位图或自制 SVG 替代可见资产。
+- 文案：新增的用户可见文案仅为目标站点同款 `Explore Projects`；其余 Noah 专属文案不变。
+- 交互与无障碍：点击 Explore Projects 后，Streamlit 主滚动容器平滑滚到 876.5px，项目标题位于视口顶部约 83.9px 且完全可见；`prefers-reduced-motion` 会关闭位移和渐隐。完整端到端测试覆盖桌面滚动、移动端首屏、键盘交互与 reduced motion。
+- 运行时证据：滚动 450px 时，目标站点问答区为 `opacity: 0.54`、`translateY(-89.2857px)`；实现为 `opacity: 0.526316`、`translateY(-89.2857px)`。项目标题与卡片从 `opacity: 0`、`translateY(30px)` 进入 `opacity: 1`、原位。
+- 控制台：在新打开的本地验收页中完成 Explore Projects 点击、滚动中间帧与项目标题入场检查，浏览器日志为空。
+
+## 首屏到项目区滚动过渡比较历史
+
+- 第一轮发现 [P1]：只补齐了姓名渐变水印和 Explore Projects 入口，没有复现目标站点随滚动发生的问答区上移渐隐、项目区透明渐变和内容入场，未满足用户指出的核心视觉行为。
+- 修正：问答与快捷入口按滚动距离上移，360–550px 区间由不透明渐变到透明；项目标题、卡片与流程入口通过视口观察从下移 30px、透明状态进入原位；项目区增加目标站点同值的纵向透明渐变。
+- 修正后证据：`08-target-scroll-450.png` 与 `10-implementation-scroll-450.png` 在同一视口、同一滚动位置下呈现一致的中间态；自动化滚动断言和浏览器运行时数值均通过。
+- 第一张实现中间态截图 `09-implementation-scroll-450.png` 在入场动画稳定前截取，项目标题尚未绘制；确认元素已进入 `is-visible` 后等待 700ms 并重拍为 `10-implementation-scroll-450.png`，该问题仅属于证据捕捉时序，不是遗留实现缺陷。
+- 当前无可执行的 P0、P1 或 P2 问题，也无需要在本次交付前处理的 P3 抛光项。
+
 final result: passed
