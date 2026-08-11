@@ -1,4 +1,4 @@
-"""Streamlit entrypoint and session orchestration for Noah's AI Portfolio."""
+"""Streamlit entrypoint and session orchestration for Noah's Backend & AI Portfolio."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from typing import Any
 
 import streamlit as st
 
-PAGE_TITLE = "Noah Wang — AI Portfolio"
+PAGE_TITLE = "Noah Wang — Backend & AI Portfolio"
 PROJECT_ROOT = Path(__file__).parent
 PACKAGE_ROOT = PROJECT_ROOT / "noah_portfolio"
 PAGE_ICON = PACKAGE_ROOT / "frontend" / "build" / "favicon.svg"
@@ -262,7 +262,7 @@ def _handle_static_action(action: str) -> None:
         "experience": "What is Noah's engineering background?",
         "contact": "How can I contact Noah?",
         "process": "How does Noah work with a client?",
-        "cta": "How can Noah help with my AI project?",
+        "cta": "How can Noah help with my backend or AI integration?",
     }
     _append_message("user", labels.get(action, response["title"]))
     _append_message("assistant", response["body"])

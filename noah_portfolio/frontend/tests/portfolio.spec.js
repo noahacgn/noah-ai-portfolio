@@ -3,18 +3,15 @@ import { expect, test } from "@playwright/test";
 test("prospective client can understand Noah without AI", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Backend & AI Portfolio" })).toBeVisible();
   await expect(
-    page.getByText(
-      "AI Systems Engineer · Agents, RAG & Full-Stack Delivery",
-    ),
-  ).toHaveCount(0);
-  await expect(page.getByText(/Seven years of engineering context behind/)).toHaveCount(0);
+    page.getByText("Senior Backend Engineer · Java, Spring Boot & AI Integration"),
+  ).toBeVisible();
   await expect(page.getByRole("textbox", { name: "Ask about Noah's work" })).toHaveAttribute(
     "placeholder",
-    "Could Noah build my RAG system?",
+    "Could Noah stabilize my Spring backend?",
   );
-  await expect(page.getByRole("button", { name: "Ask the AI Portfolio" }).locator(".lucide-bot")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Ask the Backend & AI Portfolio" }).locator(".lucide-bot")).toBeVisible();
   await expect(
     page.getByText("AI-generated · Don't share sensitive information", { exact: true }),
   ).toBeVisible();
@@ -23,10 +20,9 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Skills", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Experience", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Contact", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Production AI Work" })).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: /Knowledge Engine/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Backend & AI Work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /CPcash Wallet/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Digimart/ })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Quad Agent/ })).toBeVisible();
 });
 
@@ -36,12 +32,12 @@ test("hero question suggestions rotate and pause while the visitor is composing"
 
   await expect(input).toHaveAttribute(
     "placeholder",
-    "Could Noah build my RAG system?",
+    "Could Noah stabilize my Spring backend?",
   );
   await expect.poll(
     () => input.getAttribute("placeholder"),
     { timeout: 7_000 },
-  ).toBe("How does Noah build AI agents?");
+  ).toBe("How does Noah design reliable payment flows?");
 
   await input.focus();
   const focusedSuggestion = await input.getAttribute("placeholder");
@@ -113,11 +109,11 @@ test("reduced motion removes the fluid simulation", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.locator("canvas[data-fluid-trail]")).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "AI Portfolio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Backend & AI Portfolio" })).toBeVisible();
   const input = page.getByRole("textbox", { name: "Ask about Noah's work" });
   await page.waitForTimeout(5_500);
   await expect(input).toHaveAttribute(
     "placeholder",
-    "Could Noah build my RAG system?",
+    "Could Noah stabilize my Spring backend?",
   );
 });

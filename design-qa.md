@@ -1,45 +1,32 @@
-# Skills Expansion Design QA
+# 后端与 AI 作品集设计验收
 
-- Source visual truth: `C:\Users\ADMINI~1\AppData\Local\Temp\codex-clipboard-3b383c3d-e8e0-41be-8d7a-b37e235fd25d.png`
-- Desktop implementation: `D:\IdeaProjects\my-agent\.scratch\design-qa\artifacts\skills-expanded-desktop-active.png`
-- Mobile implementation: `D:\IdeaProjects\my-agent\.scratch\design-qa\artifacts\skills-expanded-mobile.png`
-- Full-view comparison: `D:\IdeaProjects\my-agent\.scratch\design-qa\artifacts\skills-full-comparison.png`
-- Focused comparison: `D:\IdeaProjects\my-agent\.scratch\design-qa\artifacts\skills-focused-comparison.png`
-- Viewports: normalized desktop source at 866 × 374; expanded desktop at 866 × 748; mobile at 390 × 844
-- State: Skills quick view, expanded six-group content, active fluid background on desktop
+- 验收日期：2026-08-11
+- 桌面视口：1440 × 1000
+- 移动视口：390 × 844
+- 验收状态：首页、项目卡片、快速问答与响应式布局
 
-**Findings**
+## 结论
 
-- No actionable P0, P1, or P2 findings remain.
-- Fonts and typography: the system sans-serif family, weights, hierarchy, line heights, and compact tag text remain consistent with the source. Longer resume-backed labels wrap within their pills and cards without clipping.
-- Spacing and layout rhythm: the source three-column grid, card padding, gaps, radii, and border treatment are preserved. The expanded content intentionally adds a second desktop row and a six-card mobile stack.
-- Colors and visual tokens: purple heading treatment, pale skill tags, white/translucent cards, subtle borders, and the interactive fluid background remain aligned with the source.
-- Image quality and asset fidelity: the supplied avatar and existing WebGL fluid background are preserved; no source asset was replaced with generated CSS art or a placeholder.
-- Copy and content: the original three groups were replaced by six resume-backed groups covering AI systems, RAG/retrieval, backend/data, distributed systems, product delivery, and domain engineering. The accompanying answer now reflects both resumes without unsupported claims.
-- Interaction and accessibility: Skills navigation, home return, fixed composer, desktop scrolling, and mobile stacking were exercised. Six semantic group headings remain available to assistive technology. No horizontal overflow or browser console errors were found.
+- 未发现需要处理的 P0、P1 或 P2 问题。
+- 桌面端三个项目以三列等宽卡片展示；项目插画保持完整的 4:3 比例，标题、状态与链接语义一致。
+- 移动端项目区切换为单列，卡片宽 348px，图片区域为 346 × 259.5px；页面宽度与滚动宽度均为 390px，没有横向溢出。
+- 移动端首屏的品牌、职业定位、头像、提问框、快捷入口和折叠菜单均可见，没有文字或控件相互遮挡。
+- 三张项目图均作为概念插画呈现，并由卡片正文承担事实说明；CPcash Wallet 与 Digimart 使用线上产品链接，Quad Agent 使用 GitHub 源码链接。
+- 桌面端与移动端控制台均无警告或错误。静态首页只加载本地 Streamlit、前端包和站内素材，没有发出外部请求。
 
-**Open Questions**
+## 验证记录
 
-- None. The increased card height and extra scrolling are intentional consequences of the requested resume expansion.
+- [x] 品牌更新为 `Backend & AI Portfolio`，职业定位以 Java / Spring Boot 后端为主、AI Integration 为辅。
+- [x] 项目集完整替换为 CPcash Wallet、Digimart、Quad Agent。
+- [x] 验证桌面三列、平板两列、移动单列的响应式规则。
+- [x] 验证项目插画 4:3 比例、图片加载状态、链接文案和卡片等高布局。
+- [x] 验证移动端无横向溢出，菜单和快捷问答可用。
+- [x] 验证浏览器控制台与静态首页网络请求。
+- [x] 通过类型检查、生产构建、Python 编译检查和完整端到端测试。
 
-**Comparison History**
+## 实施中修复
 
-1. First pass — P2: the fixed chat composer covered the lower part of the second skill row at the bottom of the desktop viewport.
-   - Fix: added static-detail bottom space, a dedicated message-end scroll margin, and static-view-aware automatic scrolling.
-   - Post-fix evidence: `.scratch/design-qa/artifacts/skills-expanded-desktop-active.png` shows all six cards above the composer; `.scratch/design-qa/artifacts/skills-expanded-mobile.png` shows the final card and composer without overlap.
-2. Final pass — no actionable P0/P1/P2 differences. The focused comparison confirms the source card geometry, typography, colors, borders, pills, and three-column rhythm are retained while the content expands to two rows.
+- 快捷问答返回首页原先依赖 Streamlit 服务端回合，端到端测试会在网络往返期间超时。现改为先在前端立即切换首页，再通知 Streamlit，同步保留服务端状态。
+- 旧项目图片采用宽幅裁剪策略，不适合本次 4:3 插画。项目媒体区域已统一为 4:3，避免裁掉图片顶部标题或底部技术信息。
 
-**Implementation Checklist**
-
-- [x] Expand public skills from three to six resume-backed groups.
-- [x] Expand the deterministic Skills response and AI profile context.
-- [x] Preserve the visual language of the supplied screenshot.
-- [x] Keep the complete skill grid clear of the fixed composer.
-- [x] Verify desktop and mobile layouts, interaction, overflow, and console output.
-- [x] Run type checking, production build, and the complete end-to-end suite.
-
-**Follow-up Polish**
-
-- P3: fluid trail intensity varies with pointer speed and capture timing; this is expected runtime behavior rather than a visual mismatch.
-
-final result: passed
+最终结果：通过。

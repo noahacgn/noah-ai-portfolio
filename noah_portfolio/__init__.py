@@ -1,4 +1,4 @@
-"""Public mounting API for the Noah AI Portfolio component."""
+"""Public mounting API for the Noah Backend & AI Portfolio component."""
 
 from __future__ import annotations
 

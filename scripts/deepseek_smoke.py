@@ -16,7 +16,7 @@ def main() -> int:
     history = [
         {
             "role": "user",
-            "content": "In one short sentence, what kind of AI engineer is Noah Wang?",
+            "content": "In one short sentence, what kind of backend and AI integration work does Noah Wang do?",
         }
     ]
     started = time.perf_counter()
@@ -37,4 +37,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

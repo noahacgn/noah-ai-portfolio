@@ -1,6 +1,6 @@
-# Noah AI Portfolio
+# Noah Backend & AI Portfolio
 
-面向 Upwork 潜在客户的公开 AI 作品集。首页无需模型即可浏览 Noah Wang 的定位、项目、合作入口与公开联系方式；自由提问由服务端调用 DeepSeek，并持续明确这是 AI Portfolio，而不是 Noah 本人。
+面向 Upwork 潜在客户的公开后端与 AI 集成作品集。首页无需模型即可浏览 Noah Wang 的定位、项目、合作入口与公开联系方式；自由提问由服务端调用 DeepSeek，并持续明确这是 AI 生成的作品集，而不是 Noah 本人。
 
 在线地址：<https://noah-ai-portfolio.streamlit.app>
 

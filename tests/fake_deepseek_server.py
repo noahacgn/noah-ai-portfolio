@@ -74,13 +74,13 @@ class FakeDeepSeekHandler(BaseHTTPRequestHandler):
             return
 
         if any(token in query for token in ("中文", "中国語", "你好")):
-            answer = "我是 Noah 的 AI Portfolio。我的重点是 LangGraph、RAG 与全栈交付；正式范围和条款请在 Upwork 与 Noah 确认。"
+            answer = "我是 Noah 的后端与 AI 作品集。我的重点是 Java/Spring 后端、支付与订单可靠性以及 AI 集成；正式范围和条款请在 Upwork 与 Noah 确认。"
         elif "bold-formatting" in lowered:
-            answer = "Noah builds **Custom AI Agents & Workflows** and **RAG platforms**."
+            answer = "Noah builds **Reliable Java / Spring backends** and **production-oriented AI integrations**."
         elif "injection" in lowered or "ignore" in lowered:
-            answer = "I’m the AI Portfolio, so I’ll stay within Noah’s public profile. I can explain his projects, skills, experience, or process."
+            answer = "I’m the Backend & AI Portfolio, so I’ll stay within Noah’s public profile. I can explain his projects, skills, experience, or process."
         else:
-            answer = "I’m the AI Portfolio, not Noah himself. Noah builds practical LangGraph and retrieval products with the backend, UI, testing, and delivery around them. Continue on Upwork with your use case and workflow."
+            answer = "I’m the Backend & AI Portfolio, not Noah himself. Noah builds reliable Java/Spring systems and production-oriented AI integrations with testing and delivery around them. Continue on Upwork with your goal, current stack, and main blocker."
 
         self._start_stream()
         chunks = [answer[:44], answer[44:92], answer[92:]]

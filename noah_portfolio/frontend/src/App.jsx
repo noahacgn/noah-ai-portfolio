@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Code2,
   Github,
+  Globe2,
   Layers3,
   Mail,
   Menu,
@@ -32,16 +33,17 @@ const QUICK_ACTIONS = [
 ];
 
 const HERO_QUESTION_SUGGESTIONS = [
-  "Could Noah build my RAG system?",
-  "How does Noah build AI agents?",
-  "Does Noah have backend experience?",
-  "What project details should I share?",
+  "Could Noah stabilize my Spring backend?",
+  "How does Noah design reliable payment flows?",
+  "Can Noah integrate AI into my product?",
+  "What should I share for a first milestone?",
 ];
 const HERO_QUESTION_HOLD_MS = 5_000;
 const HERO_QUESTION_FADE_MS = 180;
 
 const EMPTY_PROFILE = {
   name: "Portfolio",
+  headline: "",
   githubHandle: "",
   upworkUrl: "#",
   githubUrl: "#",
@@ -146,13 +148,16 @@ function Avatar({ small = false, assetBase, name = "portfolio owner" }) {
 }
 
 function ProjectCard({ project, assetBase }) {
+  const LinkIcon = project.linkType === "source" ? Github : Globe2;
+  const linkLabel = project.linkLabel || "View project";
+
   return (
     <a
       className="project-card"
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      aria-label={`${project.title}. View on GitHub`}
+      aria-label={`${project.title}. ${linkLabel}`}
     >
       <div className="project-media">
         <img src={assetUrl(assetBase, project.visual)} alt={project.visualAlt} loading="lazy" />
@@ -160,13 +165,13 @@ function ProjectCard({ project, assetBase }) {
       </div>
       <div className="project-card-body">
         <div className="project-card-topline">
-          <span className="status-pill">Source Available</span>
+          <span className="status-pill">{project.statusLabel || "Selected Work"}</span>
           <ExternalArrow />
         </div>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
         <span className="project-link-label">
-          <Github aria-hidden="true" size={16} /> View on GitHub
+          <Icon icon={LinkIcon} size={16} /> {linkLabel}
         </span>
       </div>
     </a>
@@ -268,8 +273,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
   return (
     <main className="portfolio-shell home-view">
       <header className="site-header">
-        <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my AI project?`)}>
-          Need an AI engineer?
+        <button type="button" className="header-cta header-opportunity" onClick={() => onOpenChat(`How can ${firstName} help with my backend or AI integration?`)}>
+          Need backend or AI integration help?
         </button>
         <button className="brand-button header-brand" type="button" aria-label="Portfolio home" onClick={() => onAction("home")}>
           <span className="brand-mark">NW</span>
@@ -287,7 +292,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
       <section ref={heroRef} className="hero-section" aria-labelledby="hero-title">
         <div className="watermark" aria-hidden="true"><span>{profile.name}</span></div>
         <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
-        <h1 id="hero-title">AI Portfolio</h1>
+        <h1 id="hero-title">Backend &amp; AI Portfolio</h1>
+        {profile.headline && <p className="hero-position">{profile.headline}</p>}
         <div className="hero-avatar-wrap">
           <div className="avatar-orbit orbit-one" aria-hidden="true" />
           <div className="avatar-orbit orbit-two" aria-hidden="true" />
@@ -308,7 +314,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
                 placeholder={suggestion}
                 autoComplete="off"
               />
-              <button type="submit" className="send-button" aria-label="Ask the AI Portfolio">
+              <button type="submit" className="send-button" aria-label="Ask the Backend & AI Portfolio">
                 <Icon icon={Bot} size={20} strokeWidth={1.9} />
               </button>
             </div>
@@ -335,7 +341,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         <div className="section-heading-row scroll-reveal" data-scroll-reveal>
           <div>
             <p className="section-kicker">Selected work</p>
-            <h2 id="projects-heading">Production AI Work</h2>
+            <h2 id="projects-heading">Backend &amp; AI Work</h2>
           </div>
           <button type="button" className="text-action" onClick={() => onAction("projects")}>
             Ask about projects <ExternalArrow />
@@ -346,7 +352,7 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         </div>
         <button type="button" className="process-banner scroll-reveal" data-scroll-reveal onClick={() => onAction("process")}>
           <span className="process-icon"><Workflow aria-hidden="true" size={20} /></span>
-          <span><strong>Ask About My Process</strong><small>From requirements and data to deployment and handoff</small></span>
+          <span><strong>Ask About My Process</strong><small>From acceptance criteria and milestones to deployment and handoff</small></span>
           <ExternalArrow />
         </button>
       </section>
@@ -354,8 +360,8 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
       <section className="contact-banner" aria-labelledby="contact-heading">
         <div>
           <p className="section-kicker">Ready when you are</p>
-          <h2 id="contact-heading">Bring me the messy AI idea.</h2>
-          <p>Share the use case, data shape, current stack, and workflow. We&apos;ll find the smallest useful first slice.</p>
+          <h2 id="contact-heading">Bring me the backend or AI integration blocker.</h2>
+          <p>Share your goal, current stack, and main blocker. We&apos;ll find a practical first milestone.</p>
         </div>
         <a className="upwork-button" href={profile.upworkUrl} target="_blank" rel="noreferrer">
           Continue on Upwork <ExternalArrow />
@@ -424,7 +430,7 @@ function StaticDetails({ action, profile }) {
   if (action === "projects") {
     return (
       <section className="static-details" aria-label={`${firstName}'s project links`}>
-        <div className="details-heading"><Layers3 aria-hidden="true" size={17} /><strong>Open the source</strong></div>
+        <div className="details-heading"><Layers3 aria-hidden="true" size={17} /><strong>Explore selected work</strong></div>
         <div className="project-detail-links">
           {profile.projects.map((project) => <a key={project.id} href={project.href} target="_blank" rel="noreferrer"><span>{project.title}</span><ExternalArrow /></a>)}
         </div>
@@ -490,16 +496,16 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
           <ArrowLeft aria-hidden="true" size={18} />
           <span className="brand-mark">NW</span>
         </button>
-        <div className="chat-header-center"><span className="online-dot" /> AI Portfolio chat</div>
+        <div className="chat-header-center"><span className="online-dot" /> Backend &amp; AI Portfolio chat</div>
         <button className="header-link about-chat" type="button" onClick={onAbout}>About</button>
       </header>
       <section className={data?.staticAction ? "chat-content chat-content-static" : "chat-content"} aria-labelledby="chat-heading">
         <div className="chat-intro">
           <Avatar small assetBase={assetBase} name={profile.name} />
-          <div><p className="eyebrow">AI Portfolio</p><h1 id="chat-heading">Ask me about {firstName}&apos;s work</h1><p>I&apos;m an AI-generated portfolio, here to make the useful parts easy to explore.</p></div>
+          <div><p className="eyebrow">Backend &amp; AI Portfolio</p><h1 id="chat-heading">Ask me about {firstName}&apos;s work</h1><p>I&apos;m an AI-generated portfolio, here to make the useful parts easy to explore.</p></div>
         </div>
         <div className="message-list" aria-live="polite">
-          {messages.length === 0 && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble"><MessageText>Hi — I can give you a concise tour of this portfolio&apos;s projects, skills, experience, or process. What are you building?</MessageText></div></div>}
+          {messages.length === 0 && <div className="assistant-message"><Avatar small assetBase={assetBase} name={profile.name} /><div className="message-bubble"><MessageText>Hi — I can give you a concise tour of this portfolio&apos;s backend work, AI integrations, skills, experience, or process. What are you building?</MessageText></div></div>}
           {messages.map((message, index) => (
             <div key={`${message.role}-${index}-${message.content?.slice(0, 10)}`} className={message.role === "user" ? "user-message" : "assistant-message"}>
               {message.role !== "user" && <Avatar small assetBase={assetBase} name={profile.name} />}
@@ -515,7 +521,7 @@ function ChatView({ data, onAction, onHome, onAbout, assetBase, setTriggerValue,
         </div>
       </section>
       <form className="question-form chat-question" onSubmit={submit}>
-        <label htmlFor="chat-question">Ask the AI Portfolio</label>
+        <label htmlFor="chat-question">Ask the Backend &amp; AI Portfolio</label>
         <div className="question-input-row">
           <input id="chat-question" value={question} maxLength={2000} onChange={(event) => setQuestion(event.target.value)} placeholder={isBusy ? "Waiting for this answer…" : "Ask a follow-up…"} autoComplete="off" disabled={isBusy} />
           <button type="submit" className="send-button" aria-label="Send question" disabled={isBusy}><Icon icon={Bot} size={20} strokeWidth={1.9} /></button>
@@ -551,7 +557,7 @@ function AboutModal({ onClose, returnFocusRef, profile }) {
         <div className="modal-icon"><Sparkles size={22} /></div>
         <p className="section-kicker">About this portfolio</p>
         <h2 id="about-title">A conversational guide to {firstName}&apos;s work.</h2>
-        <p>Ask about {firstName}&apos;s projects, experience, technical decisions, and approach to building AI and backend systems. Answers are generated from a curated set of public information about his work.</p>
+        <p>Ask about {firstName}&apos;s projects, experience, technical decisions, and approach to building backend systems and AI integrations. Answers are generated from a curated set of public information about his work.</p>
         <div className="modal-boundary"><ShieldCheck size={18} /><span>AI-generated answers may be incomplete. Confirm availability, scope, rates, and project terms directly with {firstName}.</span></div>
         <a className="upwork-button modal-action" href={profile.upworkUrl} target="_blank" rel="noreferrer">Contact {firstName} on Upwork <ExternalArrow /></a>
       </section>
@@ -587,6 +593,7 @@ export function App({ data = {}, setTriggerValue, assetBase = "./assets/" }) {
   function emitAction(type, value = null) {
     if (type === "home") {
       queryPresenceRef.current = false;
+      setView("home");
       setTriggerValue?.("reset", true);
       return;
     }
