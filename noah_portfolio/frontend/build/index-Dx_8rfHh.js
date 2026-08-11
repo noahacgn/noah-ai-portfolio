@@ -12087,7 +12087,6 @@ const $v = [
   "What should I share for a first milestone?"
 ], Yh = 5e3, Iv = 180, Pv = {
   name: "Portfolio",
-  headline: "",
   githubHandle: "",
   upworkUrl: "#",
   githubUrl: "#",
@@ -12257,7 +12256,6 @@ function a0({ onAction: d, onAbout: c, onOpenChat: s, assetBase: f, profile: o }
         /* @__PURE__ */ m.jsx("span", { "aria-hidden": "true", children: "👋" })
       ] }),
       /* @__PURE__ */ m.jsx("h1", { id: "hero-title", children: "Backend & AI Portfolio" }),
-      o.headline && /* @__PURE__ */ m.jsx("p", { className: "hero-position", children: o.headline }),
       /* @__PURE__ */ m.jsxs("div", { className: "hero-avatar-wrap", children: [
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-one", "aria-hidden": "true" }),
         /* @__PURE__ */ m.jsx("div", { className: "avatar-orbit orbit-two", "aria-hidden": "true" }),

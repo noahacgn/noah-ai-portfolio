@@ -18,7 +18,6 @@ EMAIL: Final = "noahacgn@gmail.com"
 # the browser component. It is intentionally hand-curated and resume-free.
 PUBLIC_PROFILE: Final[dict[str, Any]] = {
     "name": "Noah Wang",
-    "headline": "Senior Backend Engineer · Java, Spring Boot & AI Integration",
     "githubHandle": "@noahacgn",
     "upworkUrl": UPWORK_URL,
     "githubUrl": GITHUB_URL,
@@ -32,7 +31,7 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
                 "chain-event ingestion, authentication, and recovery workflows."
             ),
             "href": "https://wallet.cp.cash/",
-            "visual": "cpcash-wallet.png",
+            "visual": "cpcash-wallet.webp",
             "visualAlt": "Concept illustration of the CPcash multi-chain wallet backend",
             "statusLabel": "Live Product",
             "linkLabel": "Visit site",
@@ -42,11 +41,11 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
             "id": "digimart",
             "title": "Digimart",
             "description": (
-                "A Java 21 marketplace spanning storefront, administration, supplier routing, "
+                "A Java marketplace spanning storefront, administration, supplier routing, "
                 "Web3 payments, purchasing, fulfillment, and operations."
             ),
             "href": "https://digimart.charprotocol.com/",
-            "visual": "digimart.png",
+            "visual": "digimart.webp",
             "visualAlt": "Concept illustration of the Digimart digital-goods marketplace",
             "statusLabel": "Live Product",
             "linkLabel": "Visit site",
@@ -60,7 +59,7 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
                 "presentations, and evidence-based deep research."
             ),
             "href": "https://github.com/noahacgn/quad-agent",
-            "visual": "quad-agent.png",
+            "visual": "quad-agent.webp",
             "visualAlt": "Concept illustration of the Quad Agent workflow platform",
             "statusLabel": "Source Available",
             "linkLabel": "View on GitHub",
@@ -71,7 +70,7 @@ PUBLIC_PROFILE: Final[dict[str, Any]] = {
         {
             "title": "Backend & Architecture",
             "items": [
-                "Java 21",
+                "Java",
                 "Spring Boot / Cloud",
                 "REST APIs",
                 "Modular Monoliths / Microservices",
@@ -173,7 +172,7 @@ QUICK_RESPONSES: Final[dict[str, dict[str, str]]] = {
         "title": "Three projects worth opening",
         "body": (
             "CPcash Wallet covers multi-chain payment and transfer orders, chain events, "
-            "authentication, risk alerts, and recovery workflows. Digimart combines a Java 21 "
+            "authentication, risk alerts, and recovery workflows. Digimart combines a Java "
             "backend, React storefront, operations app, supplier routing, Web3 payments, and "
             "fulfillment. Quad Agent brings together search, RAG, presentations, and deep "
             "research in a production-ready full-stack AI workflow platform."
@@ -182,7 +181,7 @@ QUICK_RESPONSES: Final[dict[str, dict[str, str]]] = {
     "skills": {
         "title": "Backend depth first, AI integration where it helps",
         "body": (
-            "My core stack is Java 21, Spring Boot/Cloud, REST APIs, MySQL/PostgreSQL, Redis, "
+            "My core stack is Java, Spring Boot/Cloud, REST APIs, MySQL/PostgreSQL, Redis, "
             "RabbitMQ, WebSocket, and Docker. I use it to build payment and order workflows with "
             "idempotency, state validation, concurrency control, retries, reconciliation, and "
             "compensation, plus third-party, supplier, wallet-signature, and webhook integrations.\n"
@@ -255,18 +254,18 @@ Name: Noah Wang
 Location/timezone: China · UTC+8
 Experience: 7+ years of engineering experience
 Availability: 30+ hrs/week; contract-to-hire welcome; public starting rate $30/hr when asked
-Focus: Senior Backend Engineer · Java, Spring Boot & AI Integration
+Focus: Backend-first Java/Spring engineering with AI integration
 Background: fintech, Web3 payments, digital commerce, banking, and e-commerce
 Employers: Merypto (CPcash), Aug 2024–Jun 2026; SandPay, Oct 2021–May 2024; Shanghai Jibeike, Oct 2020–Aug 2021; Xiamen Ruanyun, May 2019–Jul 2020
 Education/languages: Jimei University; Chinese native; English Conversational
-Backend & Architecture: Java 21, Spring Boot/Cloud, REST APIs, modular monoliths/microservices, MySQL/PostgreSQL, software architecture
+Backend & Architecture: Java, Spring Boot/Cloud, REST APIs, modular monoliths/microservices, MySQL/PostgreSQL, software architecture
 Payments & Order Reliability: payment/order workflows, idempotency, unique business keys, state machines, concurrency, distributed locks, retries, reconciliation, compensation, authentication, API security
 Integrations & Event-Driven Systems: third-party/supplier APIs, EVM/TRON events, wallet signatures, webhooks, Redis, RabbitMQ, WebSocket, delayed tasks
 AI Integration: Python/FastAPI, LangGraph/LangChain, agent workflows, tool calling, RAG/pgvector, streaming/SSE, checkpoints, evidence-based research, citations
 Full-Stack Delivery: React/TypeScript, full-stack MVPs, Docker, CI/CD, automated testing, deployment, handover
 Business Domains: fintech/payments, wallets/Web3, digital commerce, supplier/fulfillment systems, banking, e-commerce
 Project 1: CPcash Wallet — Multi-Chain USDT Payment Backend. Live product at https://wallet.cp.cash/. Discuss payment and transfer orders, cross-chain swaps, receipts, disputes, EVM/TRON event ingestion, wallet-signature authentication, API keys, risk monitoring, concurrency, duplicates, reordering, and missing-event recovery without inventing metrics.
-Project 2: Digimart — Web3 Payment & Digital Goods Marketplace. Live product at https://digimart.charprotocol.com/. Discuss the Java 21/Spring Boot backend, React storefront, administration app, supplier routing, chain payments, purchasing, fulfillment, retries, reconciliation, and compensation without treating concept-art orders as real transactions.
+Project 2: Digimart — Web3 Payment & Digital Goods Marketplace. Live product at https://digimart.charprotocol.com/. Discuss the Java/Spring Boot backend, React storefront, administration app, supplier routing, chain payments, purchasing, fulfillment, retries, reconciliation, and compensation without treating concept-art orders as real transactions.
 Project 3: Quad Agent — RAG, Deep Research & AI Workflow Platform. Source available at https://github.com/noahacgn/quad-agent. Noah confirms it is production-ready, meaning prepared for production deployment and handover; do not claim it is deployed, production-proven, open source, or backed by live metrics. Discuss web search, file RAG, presentation generation, deep research, PostgreSQL checkpoints, stop/resume, SSE, pgvector, citations, and artifact validation.
 Contact: Upwork {UPWORK_URL}; email {EMAIL}; GitHub {GITHUB_URL}
 Portfolio source: {PORTFOLIO_REPO_URL}

@@ -43,7 +43,6 @@ const HERO_QUESTION_FADE_MS = 180;
 
 const EMPTY_PROFILE = {
   name: "Portfolio",
-  headline: "",
   githubHandle: "",
   upworkUrl: "#",
   githubUrl: "#",
@@ -293,7 +292,6 @@ function HomeView({ onAction, onAbout, onOpenChat, assetBase, profile }) {
         <div className="watermark" aria-hidden="true"><span>{profile.name}</span></div>
         <p className="hero-intro">Hey, I&apos;m {profile.name} <span aria-hidden="true">👋</span></p>
         <h1 id="hero-title">Backend &amp; AI Portfolio</h1>
-        {profile.headline && <p className="hero-position">{profile.headline}</p>}
         <div className="hero-avatar-wrap">
           <div className="avatar-orbit orbit-one" aria-hidden="true" />
           <div className="avatar-orbit orbit-two" aria-hidden="true" />

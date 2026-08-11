@@ -22,7 +22,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 
 1. As a 潜在客户, I want 打开 cover letter 中的作品集链接后立即看到 Noah Wang 的姓名与专业定位, so that 我可以快速判断是否值得继续了解
 2. As a 潜在客户, I want 在首屏看到这是一个 Backend & AI Portfolio 且交互由 AI 生成, so that 我不会误以为自己正在直接与 Noah 本人交谈
-3. As a 潜在客户, I want 看到“Senior Backend Engineer · Java, Spring Boot & AI Integration”的清晰定位, so that 我可以快速匹配自己的后端或 AI 集成需求
+3. As a 潜在客户, I want 从 `Backend & AI Portfolio` 和后端优先的内容层级理解 Noah 的定位, so that 我可以快速匹配自己的后端或 AI 集成需求
 4. As a 潜在客户, I want 在首屏看到 Noah 的 7+ 年工程经验背景, so that 我能理解其生产后端经验
 5. As a 潜在客户, I want 看到基于 Noah 当前 Upwork 头像制作的友好 3D 头像, so that 作品集具有明确、可信且一致的个人识别
 6. As a 潜在客户, I want 在桌面和手机上获得完整且稳定的页面体验, so that 我可以从 Upwork 的任意设备顺畅浏览
@@ -117,7 +117,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - 复刻边界以 `https://www.kayverma.com/` 为视觉和交互参考：忠实匹配白色背景、系统无衬线字体、留白节奏、圆角、卡片层级、轻量动画、首页构成及进入对话的骨架。
 - 不复制目标站点的个人内容、错误、幻觉、失效 Process 行为、错误 CTA、GitHub Star 请求、矛盾地点、英文限定或空白布局问题。
 - 实施时先用浏览器重新捕获目标首页、对话入口、快捷卡片、项目卡片、Contact、About 及桌面和移动端关键状态。视觉验收必须把目标截图与实现截图置于同一比较上下文中，而不是只看单张实现截图。
-- Hero 固定使用 `Hey, I'm Noah Wang 👋`、`Backend & AI Portfolio` 和 `Senior Backend Engineer · Java, Spring Boot & AI Integration`。
+- Hero 固定使用 `Hey, I'm Noah Wang 👋` 和 `Backend & AI Portfolio`，不再增加第三行职业定位。
 - 以 Noah 当前 Upwork 头像为人物依据，通过图像生成制作大号圆形 3D/Memoji 风格头像；头像只做轻微漂浮动画，并在对话视图复用较小版本。不得生成伪视频或暗示实时真人形象。
 - 首页快捷入口固定为 `Me / Projects / Skills / Experience / Contact`；目标站点的 Fun 被 Experience 替换，不出现 Fit。
 - 顶部不展示 `Source` 按钮；作品集仓库地址仍可作为 AI 回答的公开资料。
@@ -142,7 +142,7 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 - Java、Spring、Redis、RabbitMQ、并发和分布式系统是 Hero、Skills、Experience 与针对性问答中的主要工程能力；AI 集成作为补充方向呈现。
 - 教育信息为 Jimei University；语言信息为中文母语、英文 Conversational。它们进入 Me 或相关回答，不进入首屏核心文案。
 - Skills 卡片固定按六组后端优先组织：
-  - Backend & Architecture：Java 21、Spring Boot/Cloud、REST APIs、模块化单体/微服务、MySQL/PostgreSQL、软件架构。
+  - Backend & Architecture：Java、Spring Boot/Cloud、REST APIs、模块化单体/微服务、MySQL/PostgreSQL、软件架构。
   - Payments & Order Reliability：支付/订单工作流、幂等与唯一业务键、状态机、并发与分布式锁、重试/对账/补偿、认证与 API 安全。
   - Integrations & Event-Driven Systems：第三方/供应商 API、EVM/TRON 事件、钱包签名/Webhook、Redis、RabbitMQ、WebSocket/延迟任务。
   - AI Integration：Python/FastAPI、LangGraph/LangChain、Agent/Tool Calling、RAG/pgvector、SSE/Checkpoint、证据研究与引用。
@@ -154,10 +154,10 @@ Noah Wang 需要在 Upwork cover letter 中附上一个公开链接，让潜在�
 ### 项目内容
 
 - CPcash Wallet 使用标题 `CPcash Wallet`，链接 `https://wallet.cp.cash/`，显示 `Live Product · Visit site`。文案聚焦多链 USDT 钱包与支付后端、订单可靠性、链事件、认证、安全与恢复工作流。
-- Digimart 使用标题 `Digimart`，链接 `https://digimart.charprotocol.com/`，显示 `Live Product · Visit site`。文案聚焦 Java 21/Spring Boot 后端、React 商城、运营端、供应商路由、Web3 支付、采购、履约、重试、对账和补偿。
+- Digimart 使用标题 `Digimart`，链接 `https://digimart.charprotocol.com/`，显示 `Live Product · Visit site`。文案聚焦 Java/Spring Boot 后端、React 商城、运营端、供应商路由、Web3 支付、采购、履约、重试、对账和补偿。
 - Quad Agent 使用标题 `Quad Agent`，链接 `https://github.com/noahacgn/quad-agent`，显示 `Source Available · View on GitHub`。文案聚焦 Web Search、File RAG、PPT 生成、Deep Research、PostgreSQL Checkpoint、停止/恢复、SSE、pgvector、引用与产物校验。
 - Noah 已确认 Quad Agent 可以公开使用 `Production-Ready`，其含义只限于面向生产部署和交付准备；不得外推为已经生产部署、production-proven、线上指标、Open Source 或客户验证。
-- 三个项目分别使用已确认的 4:3 概念插图。图内示意界面、订单、Dashboard、架构与数据不是产品截图、实际交易、精确架构或运行指标；卡片正文和替代文本必须维持该边界。
+- 三个项目分别使用已确认的 4:3 概念插图。部署素材统一为 960 × 720 WebP，以约两倍最大展示尺寸兼顾高密度屏幕清晰度和传输体积，不保留对应 PNG。图内示意界面、订单、Dashboard、架构与数据不是产品截图、实际交易、精确架构或运行指标；卡片正文和替代文本必须维持该边界。
 - 不保留当前三项精选作品之外的兼容展示、旧测试或死资产。
 
 ### AI 对话

@@ -52,7 +52,8 @@ test.describe("public portfolio journey", () => {
     await page.getByRole("button", { name: "Skills", exact: true }).click();
     const skills = page.getByRole("region", { name: "Noah's grouped skills" });
     await expect(skills).toContainText("Backend & Architecture");
-    await expect(skills).toContainText("Java 21");
+    await expect(skills.getByText("Java", { exact: true })).toBeVisible();
+    await expect(skills).not.toContainText("Java 21");
     await expect(skills).toContainText("Spring Boot / Cloud");
     await expect(skills).toContainText("Payments & Order Reliability");
     await expect(skills).toContainText("Retries / Reconciliation / Compensation");
@@ -231,6 +232,25 @@ test.describe("public portfolio journey", () => {
       viewport: window.innerWidth,
     }));
     expect(dimensions.width).toBeLessThanOrEqual(dimensions.viewport + 1);
+  });
+
+  test("mobile first screen keeps every quick portfolio view fully visible", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    for (const name of ["Me", "Projects", "Skills", "Experience", "Contact"]) {
+      await expect(page.getByRole("button", { name, exact: true })).toBeInViewport({ ratio: 1 });
+    }
+  });
+
+  test("narrow mobile header keeps every action fully visible", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto("/");
+
+    for (const name of ["Need backend or AI integration help?", "Open navigation"]) {
+      await expect(page.getByRole("button", { name, exact: true })).toBeInViewport({ ratio: 1 });
+    }
+    await expect(page.getByRole("button", { name: "Portfolio home" })).toBeHidden();
   });
 
   test("long input gives an explicit length cue", async ({ page }) => {

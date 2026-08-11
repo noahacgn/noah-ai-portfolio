@@ -6,7 +6,7 @@ test("prospective client can understand Noah without AI", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Backend & AI Portfolio" })).toBeVisible();
   await expect(
     page.getByText("Senior Backend Engineer · Java, Spring Boot & AI Integration"),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect(page.getByRole("textbox", { name: "Ask about Noah's work" })).toHaveAttribute(
     "placeholder",
     "Could Noah stabilize my Spring backend?",
